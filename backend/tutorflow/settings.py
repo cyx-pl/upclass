@@ -152,21 +152,15 @@ TURN_CREDENTIAL = env("TURN_CREDENTIAL")
 TURN_STATIC_AUTH_SECRET = env("TURN_STATIC_AUTH_SECRET", default="")
 TURN_CREDENTIAL_TTL_SECONDS = int(env("TURN_CREDENTIAL_TTL_SECONDS", default="28800"))
 
-if not TURN_CREDENTIAL and not TURN_STATIC_AUTH_SECRET:
-    if DEBUG or "test" in sys.argv:
-        TURN_CREDENTIAL = "dummy-turn-credential-for-development-only"
-    else:
-        from django.core.exceptions import ImproperlyConfigured
-
-        raise ImproperlyConfigured(
-            "TURN_CREDENTIAL or TURN_STATIC_AUTH_SECRET must be set in production (DEBUG=False)."
-        )
-
 MEETING_STUN_URLS = [
     "stun:stun.l.google.com:19302",
     "stun:stun1.l.google.com:19302",
 ]
-MEETING_TURN_URLS = [_TURN_URL, f"{_TURN_URL}?transport=tcp"]
+# TURN is optional: without configured credentials, use direct/STUN connections
+# only. Never advertise an unauthenticated relay or a development password.
+MEETING_TURN_URLS = (
+    [_TURN_URL, f"{_TURN_URL}?transport=tcp"] if TURN_CREDENTIAL or TURN_STATIC_AUTH_SECRET else []
+)
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
