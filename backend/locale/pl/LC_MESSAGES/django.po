@@ -17044,3 +17044,31 @@ msgstr "Faktury – Preceptly"
 #: apps/billing/templates/billing/invoice_list.html:28
 msgid "Rechnungsliste"
 msgstr "Lista faktur"
+
+#: apps/ai/apps.py:7
+msgid "Artificial intelligence"
+msgstr "Sztuczna inteligencja"
+
+#: apps/blocked_times/apps.py:7
+msgid "Blocked times"
+msgstr "Terminy niedostępności"
+
+#: apps/core/apps.py:7
+msgid "Accounts and settings"
+msgstr "Konta i ustawienia"
+
+#: apps/lesson_plans/apps.py:7
+msgid "Lesson plans"
+msgstr "Plany lekcji"
+
+msgid "Billing"
+msgstr "Rozliczenia"
+
+msgid "Lessons"
+msgstr "Lekcje"
+
+msgid "Bewertung"
+msgstr "Opinia"
+
+msgid "Bewertungen"
+msgstr "Opinie"

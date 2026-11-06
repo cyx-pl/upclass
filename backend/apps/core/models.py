@@ -454,8 +454,8 @@ class Review(models.Model):
 
     class Meta:
         ordering = ["-created_at"]
-        verbose_name = "Bewertung"
-        verbose_name_plural = "Bewertungen"
+        verbose_name = _("Bewertung")
+        verbose_name_plural = _("Bewertungen")
 
     def __str__(self):
         return f"{self.rating}\u2605 von {self.user} ({'freigegeben' if self.is_approved else 'ausstehend'})"
