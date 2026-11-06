@@ -93,6 +93,7 @@ CSRF_FAILURE_VIEW = "apps.core.views.csrf_failure"
 # Application definition
 
 INSTALLED_APPS = [
+    "apps.core.admin_site.OwnerAdminConfig",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",

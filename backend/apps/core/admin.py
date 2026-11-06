@@ -8,6 +8,7 @@ from .models import Review, UserProfile
 
 class UserProfileInline(admin.StackedInline):
     model = UserProfile
+    fk_name = "user"
     can_delete = False
     verbose_name_plural = _("Profile")
     fields = ["subscription_tier", "premium_since"]
