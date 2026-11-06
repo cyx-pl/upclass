@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load currency %}
 
-{% block title %}{% trans "Income Surplus Statement (EÜR)" %} {{ year }} - Preceptly{% endblock %}
+{% block title %}{% trans "Income Surplus Statement (EÜR)" %} {{ year }} {% blocktrans %}- Preceptly{% endblocktrans %}{% endblock %}
 
 {% block content %}
 <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:24px;">
@@ -27,7 +27,7 @@
 <table class="table" style="max-width:600px;">
     <thead>
         <tr style="background:var(--table-header-bg);">
-            <th colspan="2">{% trans "Operating income" %} (§ 4 Abs. 3 EStG)</th>
+            <th colspan="2">{% trans "Operating income" %} {% blocktrans %}(§ 4 Abs. 3 EStG){% endblocktrans %}</th>
         </tr>
     </thead>
     <tbody>
@@ -71,7 +71,7 @@
 <table class="table" style="max-width:600px; margin-top:24px;">
     <tbody>
         <tr style="font-weight:bold; font-size:1.15em;">
-            <td>{% trans "Profit" %} (§ 4 Abs. 3 EStG)</td>
+            <td>{% trans "Profit" %} {% blocktrans %}(§ 4 Abs. 3 EStG){% endblocktrans %}</td>
             <td style="text-align:right; {% if profit < 0 %}color:#c0392b;{% endif %}">{{ profit|euro }}</td>
         </tr>
     </tbody>

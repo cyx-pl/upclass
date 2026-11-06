@@ -6,7 +6,7 @@ import datetime as dt
 from decimal import Decimal
 
 from django.contrib.auth import get_user_model
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.urls import reverse
 
 from apps.contracts.forms import ContractForm
@@ -47,6 +47,7 @@ class TravelDefaultsFixture(TestCase):
         self.day = dt.date.today() + dt.timedelta(days=3)
 
 
+@override_settings(LANGUAGE_CODE="de")
 class ContractTravelDefaultsTest(TravelDefaultsFixture):
     def _data(self, **extra):
         data = {
@@ -100,6 +101,7 @@ class ContractTravelDefaultsTest(TravelDefaultsFixture):
         self.assertNotContains(near, "Standard-Fahrzeit")
 
 
+@override_settings(LANGUAGE_CODE="de")
 class LessonFormTravelDefaultsTest(TravelDefaultsFixture):
     def test_new_lesson_is_prefilled_from_the_chosen_student(self):
         form = SessionForm(user=self.tutor, initial={"contract": self.far.pk})

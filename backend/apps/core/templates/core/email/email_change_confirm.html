@@ -1,9 +1,11 @@
 {% extends "core/email/_base.html" %}
-{% block title %}Neue E-Mail-Adresse bestätigen{% endblock %}
-{% block heading %}✉️ Neue E-Mail-Adresse bestätigen{% endblock %}
+{% load i18n %}
+
+{% block title %}{% blocktrans %}Neue E-Mail-Adresse bestätigen{% endblocktrans %}{% endblock %}
+{% block heading %}{% blocktrans %}✉️ Neue E-Mail-Adresse bestätigen{% endblocktrans %}{% endblock %}
 {% block body %}
-              <p style="margin:0 0 24px;">Diese Adresse soll die neue E-Mail-Adresse deines Preceptly-Kontos werden. Geändert wird erst, wenn du bestätigst.</p>
+              <p style="margin:0 0 24px;">{% blocktrans %}Diese Adresse soll die neue E-Mail-Adresse deines Preceptly-Kontos werden. Geändert wird erst, wenn du bestätigst.{% endblocktrans %}</p>
 {% include "core/email/_account_card.html" %}
 {% include "core/email/_button.html" with url=confirm_url label="Adresse bestätigen" validity="Der Link ist 24 Stunden gültig." %}
-              <p style="margin:16px 0 0; color:#6b7280; font-size:13px;">Wenn du das nicht warst, kannst du diese E-Mail ignorieren – dann ändert sich nichts.</p>
+              <p style="margin:16px 0 0; color:#6b7280; font-size:13px;">{% blocktrans %}Wenn du das nicht warst, kannst du diese E-Mail ignorieren – dann ändert sich nichts.{% endblocktrans %}</p>
 {% endblock %}

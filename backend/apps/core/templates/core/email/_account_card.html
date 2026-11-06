@@ -1,8 +1,10 @@
+
+{% load i18n %}
 {% comment %}Detailkarte wie in der Buchungsbenachrichtigung: Benutzername, optional eine zweite Zeile.{% endcomment %}
               <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background:#f8fafc; border:1px solid #e5e7eb; border-radius:8px;">
                 <tr>
                   <td style="padding:14px 20px;{% if second_label %} border-bottom:1px solid #e5e7eb;{% endif %} width:36%;">
-                    <span style="color:#6b7280; font-size:13px; font-weight:500;">Benutzername</span>
+                    <span style="color:#6b7280; font-size:13px; font-weight:500;">{% blocktrans %}Benutzername{% endblocktrans %}</span>
                   </td>
                   <td style="padding:14px 20px;{% if second_label %} border-bottom:1px solid #e5e7eb;{% endif %}">
                     <span style="color:#111827; font-size:14px; font-weight:600;">{{ username }}</span>

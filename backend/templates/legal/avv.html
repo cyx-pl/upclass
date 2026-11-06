@@ -1,262 +1,262 @@
 {% extends "core/base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Data Processing Agreement" %} - Preceptly{% endblock %}
+{% block title %}{% trans "Data Processing Agreement" %} {% blocktrans %}- Preceptly{% endblocktrans %}{% endblock %}
 
 {% block content %}
 {% include "legal/_style.html" %}
 {% get_current_language as LANGUAGE_CODE %}
 <div class="legal-page">
 {% if LANGUAGE_CODE == "de" %}
-<h1>Auftragsverarbeitungsvertrag (AVV)</h1>
-<p class="legal-meta">gemäß Art. 28 DSGVO · Stand: 19.09.2026</p>
+<h1>{% blocktrans %}Auftragsverarbeitungsvertrag (AVV){% endblocktrans %}</h1>
+<p class="legal-meta">{% blocktrans %}gemäß Art. 28 DSGVO · Stand: 19.09.2026{% endblocktrans %}</p>
 
 <div class="legal-placeholder-box">
-<strong>zwischen</strong><br>
-dem jeweiligen Nutzer von Preceptly (nachfolgend „Verantwortlicher")<br><br>
-<strong>und</strong><br>
-Andreas Eirich, andicode / Preceptly, Birkenweg 7, 49577 Ankum, Deutschland<br>
-E-Mail: <a href="mailto:info@preceptly.de">info@preceptly.de</a> (nachfolgend „Auftragsverarbeiter")
+<strong>{% blocktrans %}zwischen{% endblocktrans %}</strong><br>
+{% blocktrans %}dem jeweiligen Nutzer von Preceptly (nachfolgend „Verantwortlicher"){% endblocktrans %}<br><br>
+<strong>{% blocktrans %}und{% endblocktrans %}</strong><br>
+{% blocktrans %}Andreas Eirich, andicode / Preceptly, Birkenweg 7, 49577 Ankum, Deutschland{% endblocktrans %}<br>
+{% blocktrans %}E-Mail:{% endblocktrans %} <a href="mailto:info@preceptly.de">info@preceptly.de</a> {% blocktrans %}(nachfolgend „Auftragsverarbeiter"){% endblocktrans %}
 </div>
 
-<p>Durch die Nutzung von Preceptly und die Zustimmung zu den <a href="{% url 'core:legal_terms' %}">Allgemeinen Geschäftsbedingungen</a> schließt der Verantwortliche diesen Auftragsverarbeitungsvertrag ab.</p>
+<p>{% blocktrans %}Durch die Nutzung von Preceptly und die Zustimmung zu den{% endblocktrans %} <a href="{% url 'core:legal_terms' %}">{% blocktrans %}Allgemeinen Geschäftsbedingungen{% endblocktrans %}</a> {% blocktrans %}schließt der Verantwortliche diesen Auftragsverarbeitungsvertrag ab.{% endblocktrans %}</p>
 
 <div class="legal-section">
-<h2>1. Gegenstand und Dauer der Verarbeitung</h2>
-<p>1.1 Der Auftragsverarbeiter verarbeitet im Auftrag des Verantwortlichen personenbezogene Daten im Rahmen der Bereitstellung der SaaS-Plattform Preceptly.</p>
-<p>1.2 Die Verarbeitung erfolgt für die Dauer der Nutzung von Preceptly durch den Verantwortlichen.</p>
+<h2>{% blocktrans %}1. Gegenstand und Dauer der Verarbeitung{% endblocktrans %}</h2>
+<p>{% blocktrans %}1.1 Der Auftragsverarbeiter verarbeitet im Auftrag des Verantwortlichen personenbezogene Daten im Rahmen der Bereitstellung der SaaS-Plattform Preceptly.{% endblocktrans %}</p>
+<p>{% blocktrans %}1.2 Die Verarbeitung erfolgt für die Dauer der Nutzung von Preceptly durch den Verantwortlichen.{% endblocktrans %}</p>
 </div>
 
 <div class="legal-section">
-<h2>2. Art, Zweck und Umfang der Verarbeitung</h2>
-<p>2.1 Folgende Kategorien personenbezogener Daten sind Gegenstand der Verarbeitung:</p>
+<h2>{% blocktrans %}2. Art, Zweck und Umfang der Verarbeitung{% endblocktrans %}</h2>
+<p>{% blocktrans %}2.1 Folgende Kategorien personenbezogener Daten sind Gegenstand der Verarbeitung:{% endblocktrans %}</p>
 <ul>
-    <li>Schülerstammdaten (Name, Klasse/Jahrgangsstufe, Fach)</li>
-    <li>Vertragsdaten (Fach, Vergütung, geplante Stundenzahl)</li>
-    <li>Termindaten (Stundentermine, Notizen, Hausaufgabenvermerke)</li>
-    <li>Elternportal-Daten (Namen und E-Mail-Adressen von Erziehungsberechtigten, sofern genutzt)</li>
-    <li>Rechnungsdaten (erbrachte Leistungen, Beträge)</li>
-    <li>Unterrichtspläne einschließlich optionaler Zusatzhinweise und PDF-Materialien, die der Verantwortliche für die KI-Unterrichtsplanung bereitstellt (Hinweise und PDF-Inhalte werden nur für die jeweilige Erstellung verarbeitet und nicht gespeichert)</li>
+    <li>{% blocktrans %}Schülerstammdaten (Name, Klasse/Jahrgangsstufe, Fach){% endblocktrans %}</li>
+    <li>{% blocktrans %}Vertragsdaten (Fach, Vergütung, geplante Stundenzahl){% endblocktrans %}</li>
+    <li>{% blocktrans %}Termindaten (Stundentermine, Notizen, Hausaufgabenvermerke){% endblocktrans %}</li>
+    <li>{% blocktrans %}Elternportal-Daten (Namen und E-Mail-Adressen von Erziehungsberechtigten, sofern genutzt){% endblocktrans %}</li>
+    <li>{% blocktrans %}Rechnungsdaten (erbrachte Leistungen, Beträge){% endblocktrans %}</li>
+    <li>{% blocktrans %}Unterrichtspläne einschließlich optionaler Zusatzhinweise und PDF-Materialien, die der Verantwortliche für die KI-Unterrichtsplanung bereitstellt (Hinweise und PDF-Inhalte werden nur für die jeweilige Erstellung verarbeitet und nicht gespeichert){% endblocktrans %}</li>
 </ul>
-<p>2.2 Betroffene Personengruppen:</p>
+<p>{% blocktrans %}2.2 Betroffene Personengruppen:{% endblocktrans %}</p>
 <ul>
-    <li>Schüler des Verantwortlichen</li>
-    <li>Erziehungsberechtigte (sofern das Elternportal genutzt wird)</li>
+    <li>{% blocktrans %}Schüler des Verantwortlichen{% endblocktrans %}</li>
+    <li>{% blocktrans %}Erziehungsberechtigte (sofern das Elternportal genutzt wird){% endblocktrans %}</li>
 </ul>
-<p>2.3 Zweck der Verarbeitung ist die technische Unterstützung der Nachhilfeverwaltung des Verantwortlichen (Stundenplanung, Vertragsverwaltung, Rechnungsstellung).</p>
+<p>{% blocktrans %}2.3 Zweck der Verarbeitung ist die technische Unterstützung der Nachhilfeverwaltung des Verantwortlichen (Stundenplanung, Vertragsverwaltung, Rechnungsstellung).{% endblocktrans %}</p>
 </div>
 
 <div class="legal-section">
-<h2>3. Weisungsgebundenheit</h2>
-<p>3.1 Der Auftragsverarbeiter verarbeitet personenbezogene Daten ausschließlich auf dokumentierte Weisung des Verantwortlichen, es sei denn, er ist durch das Unionsrecht oder das Recht eines Mitgliedstaats zur Verarbeitung verpflichtet (Art. 28 Abs. 3 lit. a DSGVO).</p>
-<p>3.2 Die Nutzung der Plattformfunktionen durch den Verantwortlichen gilt als dokumentierte Weisung im Sinne des Art. 28 DSGVO.</p>
+<h2>{% blocktrans %}3. Weisungsgebundenheit{% endblocktrans %}</h2>
+<p>{% blocktrans %}3.1 Der Auftragsverarbeiter verarbeitet personenbezogene Daten ausschließlich auf dokumentierte Weisung des Verantwortlichen, es sei denn, er ist durch das Unionsrecht oder das Recht eines Mitgliedstaats zur Verarbeitung verpflichtet (Art. 28 Abs. 3 lit. a DSGVO).{% endblocktrans %}</p>
+<p>{% blocktrans %}3.2 Die Nutzung der Plattformfunktionen durch den Verantwortlichen gilt als dokumentierte Weisung im Sinne des Art. 28 DSGVO.{% endblocktrans %}</p>
 </div>
 
 <div class="legal-section">
-<h2>4. Vertraulichkeit</h2>
-<p>4.1 Der Auftragsverarbeiter stellt sicher, dass alle zur Verarbeitung der personenbezogenen Daten befugten Personen zur Vertraulichkeit verpflichtet sind.</p>
+<h2>{% blocktrans %}4. Vertraulichkeit{% endblocktrans %}</h2>
+<p>{% blocktrans %}4.1 Der Auftragsverarbeiter stellt sicher, dass alle zur Verarbeitung der personenbezogenen Daten befugten Personen zur Vertraulichkeit verpflichtet sind.{% endblocktrans %}</p>
 </div>
 
 <div class="legal-section">
-<h2>5. Technische und organisatorische Maßnahmen (TOMs)</h2>
-<p>Der Auftragsverarbeiter trifft geeignete technische und organisatorische Maßnahmen gem. Art. 32 DSGVO, insbesondere:</p>
+<h2>{% blocktrans %}5. Technische und organisatorische Maßnahmen (TOMs){% endblocktrans %}</h2>
+<p>{% blocktrans %}Der Auftragsverarbeiter trifft geeignete technische und organisatorische Maßnahmen gem. Art. 32 DSGVO, insbesondere:{% endblocktrans %}</p>
 <ul>
-    <li>Verschlüsselte Datenübertragung (HTTPS/TLS)</li>
-    <li>Sicheres Passwort-Hashing (PBKDF2/bcrypt)</li>
-    <li>Mandantentrennung: jeder Nutzer sieht ausschließlich seine eigenen Daten</li>
-    <li>Zugangsbeschränkung auf authentifizierte Nutzer</li>
-    <li>Regelmäßige Datensicherungen</li>
-    <li>Protokollierung sicherheitsrelevanter Ereignisse</li>
-    <li>Verschlüsselte Speicherung der Zugangsdaten für die Kalender-Synchronisierung</li>
-    <li>KI-Unterrichtsplanung ausschließlich auf eigener Hardware des Auftragsverarbeiters in Deutschland; Zugriff nur über ein Ende-zu-Ende-verschlüsseltes privates Netzwerk (WireGuard), nicht aus dem öffentlichen Internet erreichbar</li>
-    <li>Automatische Entfernung von Namen, Kontaktdaten und Notizen vor der KI-Verarbeitung; in Zusatzhinweisen und PDF-Material werden Schülername, E-Mail-Adressen und Telefonnummern maskiert</li>
+    <li>{% blocktrans %}Verschlüsselte Datenübertragung (HTTPS/TLS){% endblocktrans %}</li>
+    <li>{% blocktrans %}Sicheres Passwort-Hashing (PBKDF2/bcrypt){% endblocktrans %}</li>
+    <li>{% blocktrans %}Mandantentrennung: jeder Nutzer sieht ausschließlich seine eigenen Daten{% endblocktrans %}</li>
+    <li>{% blocktrans %}Zugangsbeschränkung auf authentifizierte Nutzer{% endblocktrans %}</li>
+    <li>{% blocktrans %}Regelmäßige Datensicherungen{% endblocktrans %}</li>
+    <li>{% blocktrans %}Protokollierung sicherheitsrelevanter Ereignisse{% endblocktrans %}</li>
+    <li>{% blocktrans %}Verschlüsselte Speicherung der Zugangsdaten für die Kalender-Synchronisierung{% endblocktrans %}</li>
+    <li>{% blocktrans %}KI-Unterrichtsplanung ausschließlich auf eigener Hardware des Auftragsverarbeiters in Deutschland; Zugriff nur über ein Ende-zu-Ende-verschlüsseltes privates Netzwerk (WireGuard), nicht aus dem öffentlichen Internet erreichbar{% endblocktrans %}</li>
+    <li>{% blocktrans %}Automatische Entfernung von Namen, Kontaktdaten und Notizen vor der KI-Verarbeitung; in Zusatzhinweisen und PDF-Material werden Schülername, E-Mail-Adressen und Telefonnummern maskiert{% endblocktrans %}</li>
 </ul>
 </div>
 
 <div class="legal-section">
-<h2>6. Unterauftragsverarbeiter</h2>
-<p>6.1 Der Auftragsverarbeiter ist berechtigt, folgende Unterauftragsverarbeiter einzusetzen:</p>
+<h2>{% blocktrans %}6. Unterauftragsverarbeiter{% endblocktrans %}</h2>
+<p>{% blocktrans %}6.1 Der Auftragsverarbeiter ist berechtigt, folgende Unterauftragsverarbeiter einzusetzen:{% endblocktrans %}</p>
 <table style="width:100%; border-collapse:collapse; margin: 1em 0; font-size:0.9em;">
 <thead><tr style="background:var(--bg-secondary);">
-    <th style="padding:8px; text-align:left; border:1px solid var(--border-color);">Unterauftragsverarbeiter</th>
-    <th style="padding:8px; text-align:left; border:1px solid var(--border-color);">Zweck</th>
-    <th style="padding:8px; text-align:left; border:1px solid var(--border-color);">Sitz</th>
-    <th style="padding:8px; text-align:left; border:1px solid var(--border-color);">Transfergrundlage</th>
+    <th style="padding:8px; text-align:left; border:1px solid var(--border-color);">{% blocktrans %}Unterauftragsverarbeiter{% endblocktrans %}</th>
+    <th style="padding:8px; text-align:left; border:1px solid var(--border-color);">{% blocktrans %}Zweck{% endblocktrans %}</th>
+    <th style="padding:8px; text-align:left; border:1px solid var(--border-color);">{% blocktrans %}Sitz{% endblocktrans %}</th>
+    <th style="padding:8px; text-align:left; border:1px solid var(--border-color);">{% blocktrans %}Transfergrundlage{% endblocktrans %}</th>
 </tr></thead>
 <tbody>
 <tr>
-    <td style="padding:8px; border:1px solid var(--border-color);">Railway Corp.</td>
-    <td style="padding:8px; border:1px solid var(--border-color);">Infrastruktur &amp; Hosting</td>
-    <td style="padding:8px; border:1px solid var(--border-color);">USA</td>
-    <td style="padding:8px; border:1px solid var(--border-color);">Standardvertragsklauseln (SCCs)</td>
+    <td style="padding:8px; border:1px solid var(--border-color);">{% blocktrans %}Railway Corp.{% endblocktrans %}</td>
+    <td style="padding:8px; border:1px solid var(--border-color);">{% blocktrans %}Infrastruktur &amp; Hosting{% endblocktrans %}</td>
+    <td style="padding:8px; border:1px solid var(--border-color);">{% blocktrans %}USA{% endblocktrans %}</td>
+    <td style="padding:8px; border:1px solid var(--border-color);">{% blocktrans %}Standardvertragsklauseln (SCCs){% endblocktrans %}</td>
 </tr>
 <tr>
-    <td style="padding:8px; border:1px solid var(--border-color);">Apple Distribution International Ltd.</td>
-    <td style="padding:8px; border:1px solid var(--border-color);">E-Mail-Versand über iCloud Mail (z. B. Portal-Einladungen und Benachrichtigungen)</td>
-    <td style="padding:8px; border:1px solid var(--border-color);">Irland (Konzernmutter in den USA)</td>
-    <td style="padding:8px; border:1px solid var(--border-color);">EU; etwaige Übermittlungen in die USA auf Basis von Standardvertragsklauseln (SCCs)</td>
+    <td style="padding:8px; border:1px solid var(--border-color);">{% blocktrans %}Apple Distribution International Ltd.{% endblocktrans %}</td>
+    <td style="padding:8px; border:1px solid var(--border-color);">{% blocktrans %}E-Mail-Versand über iCloud Mail (z. B. Portal-Einladungen und Benachrichtigungen){% endblocktrans %}</td>
+    <td style="padding:8px; border:1px solid var(--border-color);">{% blocktrans %}Irland (Konzernmutter in den USA){% endblocktrans %}</td>
+    <td style="padding:8px; border:1px solid var(--border-color);">{% blocktrans %}EU; etwaige Übermittlungen in die USA auf Basis von Standardvertragsklauseln (SCCs){% endblocktrans %}</td>
 </tr>
 <tr>
-    <td style="padding:8px; border:1px solid var(--border-color);">Tailscale Inc.</td>
-    <td style="padding:8px; border:1px solid var(--border-color);">Verschlüsselte Netzwerkverbindung zum KI-Rechner (nur Pro-Tarif); kein Zugriff auf Inhalte</td>
-    <td style="padding:8px; border:1px solid var(--border-color);">Kanada</td>
-    <td style="padding:8px; border:1px solid var(--border-color);">Angemessenheitsbeschluss der EU-Kommission</td>
+    <td style="padding:8px; border:1px solid var(--border-color);">{% blocktrans %}Tailscale Inc.{% endblocktrans %}</td>
+    <td style="padding:8px; border:1px solid var(--border-color);">{% blocktrans %}Verschlüsselte Netzwerkverbindung zum KI-Rechner (nur Pro-Tarif); kein Zugriff auf Inhalte{% endblocktrans %}</td>
+    <td style="padding:8px; border:1px solid var(--border-color);">{% blocktrans %}Kanada{% endblocktrans %}</td>
+    <td style="padding:8px; border:1px solid var(--border-color);">{% blocktrans %}Angemessenheitsbeschluss der EU-Kommission{% endblocktrans %}</td>
 </tr>
 </tbody>
 </table>
-<p><small>Stripe, Inc. verarbeitet ausschließlich Zahlungsdaten des Verantwortlichen (Abo-Gebühren) und ist damit kein Unterauftragsverarbeiter für Schülerdaten im Sinne dieses AVV. Stripe ist in der allgemeinen Datenschutzerklärung separat ausgewiesen.</small></p>
-<p>6.2 Die KI-Unterrichtsplanung wird nicht von einem externen KI-Anbieter erbracht, sondern auf eigener Hardware des Auftragsverarbeiters in Deutschland (Sprachmodell Qwen 2.5, ausgeführt über Ollama).</p>
-<p>6.3 Nutzt der Verantwortliche die Kalender-Synchronisierung, überträgt der Auftragsverarbeiter auf dessen Weisung Termindaten (einschließlich des Schülernamens im Termintitel, sofern die Titelvorlage ihn enthält) in das vom Verantwortlichen selbst verbundene iCloud-Konto und liest dort Termine als Blockzeiten ein. Apple ist insoweit Dienstleister des Verantwortlichen und kein Unterauftragsverarbeiter des Auftragsverarbeiters.</p>
-<p>6.4 Push-Benachrichtigungen werden Ende-zu-Ende-verschlüsselt über den Push-Dienst des jeweiligen Browser- bzw. Betriebssystemanbieters zugestellt; dieser erhält keinen Zugriff auf die Inhalte.</p>
-<p>6.5 Änderungen hinsichtlich der eingesetzten Unterauftragsverarbeiter werden dem Verantwortlichen durch eine Aktualisierung dieser Seite mitgeteilt. Der Verantwortliche kann innerhalb von 14 Tagen nach Bekanntgabe Einspruch erheben.</p>
+<p><small>{% blocktrans %}Stripe, Inc. verarbeitet ausschließlich Zahlungsdaten des Verantwortlichen (Abo-Gebühren) und ist damit kein Unterauftragsverarbeiter für Schülerdaten im Sinne dieses AVV. Stripe ist in der allgemeinen Datenschutzerklärung separat ausgewiesen.{% endblocktrans %}</small></p>
+<p>{% blocktrans %}6.2 Die KI-Unterrichtsplanung wird nicht von einem externen KI-Anbieter erbracht, sondern auf eigener Hardware des Auftragsverarbeiters in Deutschland (Sprachmodell Qwen 2.5, ausgeführt über Ollama).{% endblocktrans %}</p>
+<p>{% blocktrans %}6.3 Nutzt der Verantwortliche die Kalender-Synchronisierung, überträgt der Auftragsverarbeiter auf dessen Weisung Termindaten (einschließlich des Schülernamens im Termintitel, sofern die Titelvorlage ihn enthält) in das vom Verantwortlichen selbst verbundene iCloud-Konto und liest dort Termine als Blockzeiten ein. Apple ist insoweit Dienstleister des Verantwortlichen und kein Unterauftragsverarbeiter des Auftragsverarbeiters.{% endblocktrans %}</p>
+<p>{% blocktrans %}6.4 Push-Benachrichtigungen werden Ende-zu-Ende-verschlüsselt über den Push-Dienst des jeweiligen Browser- bzw. Betriebssystemanbieters zugestellt; dieser erhält keinen Zugriff auf die Inhalte.{% endblocktrans %}</p>
+<p>{% blocktrans %}6.5 Änderungen hinsichtlich der eingesetzten Unterauftragsverarbeiter werden dem Verantwortlichen durch eine Aktualisierung dieser Seite mitgeteilt. Der Verantwortliche kann innerhalb von 14 Tagen nach Bekanntgabe Einspruch erheben.{% endblocktrans %}</p>
 </div>
 
 <div class="legal-section">
-<h2>7. Rechte der betroffenen Personen</h2>
-<p>7.1 Der Auftragsverarbeiter unterstützt den Verantwortlichen angemessen bei der Erfüllung seiner Pflichten zur Beantwortung von Anfragen betroffener Personen (Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerspruch).</p>
+<h2>{% blocktrans %}7. Rechte der betroffenen Personen{% endblocktrans %}</h2>
+<p>{% blocktrans %}7.1 Der Auftragsverarbeiter unterstützt den Verantwortlichen angemessen bei der Erfüllung seiner Pflichten zur Beantwortung von Anfragen betroffener Personen (Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerspruch).{% endblocktrans %}</p>
 </div>
 
 <div class="legal-section">
-<h2>8. Löschung und Rückgabe</h2>
-<p>8.1 Nach Beendigung des Auftrags löscht oder gibt der Auftragsverarbeiter – nach Wahl des Verantwortlichen – alle personenbezogenen Daten zurück und löscht vorhandene Kopien, sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
-<p>8.2 Der Verantwortliche kann die Löschung seiner Daten jederzeit per E-Mail an <a href="mailto:info@preceptly.de">info@preceptly.de</a> beantragen.</p>
+<h2>{% blocktrans %}8. Löschung und Rückgabe{% endblocktrans %}</h2>
+<p>{% blocktrans %}8.1 Nach Beendigung des Auftrags löscht oder gibt der Auftragsverarbeiter – nach Wahl des Verantwortlichen – alle personenbezogenen Daten zurück und löscht vorhandene Kopien, sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen.{% endblocktrans %}</p>
+<p>{% blocktrans %}8.2 Der Verantwortliche kann die Löschung seiner Daten jederzeit per E-Mail an{% endblocktrans %} <a href="mailto:info@preceptly.de">info@preceptly.de</a> {% blocktrans %}beantragen.{% endblocktrans %}</p>
 </div>
 
 <div class="legal-section">
-<h2>9. Kontrollrechte</h2>
-<p>9.1 Der Verantwortliche hat das Recht, die Einhaltung dieses Vertrags beim Auftragsverarbeiter zu überprüfen oder durch einen beauftragten Dritten überprüfen zu lassen. Der Auftragsverarbeiter stellt alle erforderlichen Informationen zur Verfügung und kooperiert bei Überprüfungen.</p>
+<h2>{% blocktrans %}9. Kontrollrechte{% endblocktrans %}</h2>
+<p>{% blocktrans %}9.1 Der Verantwortliche hat das Recht, die Einhaltung dieses Vertrags beim Auftragsverarbeiter zu überprüfen oder durch einen beauftragten Dritten überprüfen zu lassen. Der Auftragsverarbeiter stellt alle erforderlichen Informationen zur Verfügung und kooperiert bei Überprüfungen.{% endblocktrans %}</p>
 </div>
 
 <div class="legal-section">
-<h2>10. Meldepflichten bei Datenpannen</h2>
-<p>10.1 Der Auftragsverarbeiter unterstützt den Verantwortlichen bei der Einhaltung der in Art. 32–36 DSGVO genannten Pflichten (Sicherheit der Verarbeitung, Meldung von Verletzungen, Datenschutz-Folgenabschätzung).</p>
-<p>10.2 Der Auftragsverarbeiter meldet dem Verantwortlichen Verletzungen des Schutzes personenbezogener Daten unverzüglich, spätestens innerhalb von 72 Stunden nach Bekanntwerden, per E-Mail an die im Konto hinterlegte Adresse.</p>
+<h2>{% blocktrans %}10. Meldepflichten bei Datenpannen{% endblocktrans %}</h2>
+<p>{% blocktrans %}10.1 Der Auftragsverarbeiter unterstützt den Verantwortlichen bei der Einhaltung der in Art. 32–36 DSGVO genannten Pflichten (Sicherheit der Verarbeitung, Meldung von Verletzungen, Datenschutz-Folgenabschätzung).{% endblocktrans %}</p>
+<p>{% blocktrans %}10.2 Der Auftragsverarbeiter meldet dem Verantwortlichen Verletzungen des Schutzes personenbezogener Daten unverzüglich, spätestens innerhalb von 72 Stunden nach Bekanntwerden, per E-Mail an die im Konto hinterlegte Adresse.{% endblocktrans %}</p>
 </div>
 
 {% else %}
-<h1>Data Processing Agreement (DPA)</h1>
-<p class="legal-meta">pursuant to Art. 28 GDPR · Last updated: 19 Sep 2026</p>
+<h1>{% blocktrans %}Data Processing Agreement (DPA){% endblocktrans %}</h1>
+<p class="legal-meta">{% blocktrans %}pursuant to Art. 28 GDPR · Last updated: 19 Sep 2026{% endblocktrans %}</p>
 
 <div class="legal-placeholder-box">
-<strong>between</strong><br>
-the respective user of Preceptly (hereinafter "Controller")<br><br>
-<strong>and</strong><br>
-Andreas Eirich, andicode / Preceptly, Birkenweg 7, 49577 Ankum, Germany<br>
-E-Mail: <a href="mailto:info@preceptly.de">info@preceptly.de</a> (hereinafter "Processor")
+<strong>{% blocktrans %}between{% endblocktrans %}</strong><br>
+{% blocktrans %}the respective user of Preceptly (hereinafter "Controller"){% endblocktrans %}<br><br>
+<strong>{% blocktrans %}and{% endblocktrans %}</strong><br>
+{% blocktrans %}Andreas Eirich, andicode / Preceptly, Birkenweg 7, 49577 Ankum, Germany{% endblocktrans %}<br>
+{% blocktrans %}E-Mail:{% endblocktrans %} <a href="mailto:info@preceptly.de">info@preceptly.de</a> {% blocktrans %}(hereinafter "Processor"){% endblocktrans %}
 </div>
 
-<p>By using Preceptly and agreeing to the <a href="{% url 'core:legal_terms' %}">Terms of Service</a>, the Controller enters into this Data Processing Agreement.</p>
+<p>{% blocktrans %}By using Preceptly and agreeing to the{% endblocktrans %} <a href="{% url 'core:legal_terms' %}">{% blocktrans %}Terms of Service{% endblocktrans %}</a>{% blocktrans %}, the Controller enters into this Data Processing Agreement.{% endblocktrans %}</p>
 
 <div class="legal-section">
-<h2>1. Subject Matter and Duration</h2>
-<p>1.1 The Processor processes personal data on behalf of the Controller under this Agreement as part of the provision of the SaaS platform Preceptly.</p>
-<p>1.2 Processing takes place for the duration of the Controller's use of Preceptly.</p>
+<h2>{% blocktrans %}1. Subject Matter and Duration{% endblocktrans %}</h2>
+<p>{% blocktrans %}1.1 The Processor processes personal data on behalf of the Controller under this Agreement as part of the provision of the SaaS platform Preceptly.{% endblocktrans %}</p>
+<p>{% blocktrans %}1.2 Processing takes place for the duration of the Controller's use of Preceptly.{% endblocktrans %}</p>
 </div>
 
 <div class="legal-section">
-<h2>2. Nature, Purpose, and Scope of Processing</h2>
-<p>2.1 The following categories of personal data are subject to processing:</p>
+<h2>{% blocktrans %}2. Nature, Purpose, and Scope of Processing{% endblocktrans %}</h2>
+<p>{% blocktrans %}2.1 The following categories of personal data are subject to processing:{% endblocktrans %}</p>
 <ul>
-    <li>Student master data (name, class/grade, subject)</li>
-    <li>Contract data (subject, remuneration, planned hours)</li>
-    <li>Scheduling data (lesson appointments, notes, homework remarks)</li>
-    <li>Parent portal data (names and email addresses of guardians, if used)</li>
-    <li>Invoice data (services rendered, amounts)</li>
-    <li>Lesson plans, including optional additional notes and PDF material the Controller provides for AI lesson planning (notes and PDF content are processed only for the respective generation and are not stored)</li>
+    <li>{% blocktrans %}Student master data (name, class/grade, subject){% endblocktrans %}</li>
+    <li>{% blocktrans %}Contract data (subject, remuneration, planned hours){% endblocktrans %}</li>
+    <li>{% blocktrans %}Scheduling data (lesson appointments, notes, homework remarks){% endblocktrans %}</li>
+    <li>{% blocktrans %}Parent portal data (names and email addresses of guardians, if used){% endblocktrans %}</li>
+    <li>{% blocktrans %}Invoice data (services rendered, amounts){% endblocktrans %}</li>
+    <li>{% blocktrans %}Lesson plans, including optional additional notes and PDF material the Controller provides for AI lesson planning (notes and PDF content are processed only for the respective generation and are not stored){% endblocktrans %}</li>
 </ul>
-<p>2.2 Categories of data subjects:</p>
+<p>{% blocktrans %}2.2 Categories of data subjects:{% endblocktrans %}</p>
 <ul>
-    <li>Students of the Controller</li>
-    <li>Parents/guardians (if the parent portal is used)</li>
+    <li>{% blocktrans %}Students of the Controller{% endblocktrans %}</li>
+    <li>{% blocktrans %}Parents/guardians (if the parent portal is used){% endblocktrans %}</li>
 </ul>
-<p>2.3 Purpose: Technical support of the Controller's tutoring management (scheduling, contract management, invoicing).</p>
+<p>{% blocktrans %}2.3 Purpose: Technical support of the Controller's tutoring management (scheduling, contract management, invoicing).{% endblocktrans %}</p>
 </div>
 
 <div class="legal-section">
-<h2>3. Instructions</h2>
-<p>3.1 The Processor processes personal data solely on documented instructions of the Controller, unless required by Union or Member State law (Art. 28(3)(a) GDPR).</p>
-<p>3.2 The Controller's use of platform features constitutes documented instructions within the meaning of Art. 28 GDPR.</p>
+<h2>{% blocktrans %}3. Instructions{% endblocktrans %}</h2>
+<p>{% blocktrans %}3.1 The Processor processes personal data solely on documented instructions of the Controller, unless required by Union or Member State law (Art. 28(3)(a) GDPR).{% endblocktrans %}</p>
+<p>{% blocktrans %}3.2 The Controller's use of platform features constitutes documented instructions within the meaning of Art. 28 GDPR.{% endblocktrans %}</p>
 </div>
 
 <div class="legal-section">
-<h2>4. Confidentiality</h2>
-<p>4.1 The Processor ensures that all persons authorised to process personal data are bound to confidentiality.</p>
+<h2>{% blocktrans %}4. Confidentiality{% endblocktrans %}</h2>
+<p>{% blocktrans %}4.1 The Processor ensures that all persons authorised to process personal data are bound to confidentiality.{% endblocktrans %}</p>
 </div>
 
 <div class="legal-section">
-<h2>5. Technical and Organisational Measures (TOMs)</h2>
-<p>The Processor implements appropriate technical and organisational measures pursuant to Art. 32 GDPR, including:</p>
+<h2>{% blocktrans %}5. Technical and Organisational Measures (TOMs){% endblocktrans %}</h2>
+<p>{% blocktrans %}The Processor implements appropriate technical and organisational measures pursuant to Art. 32 GDPR, including:{% endblocktrans %}</p>
 <ul>
-    <li>Encrypted data transfer (HTTPS/TLS)</li>
-    <li>Secure password hashing (PBKDF2/bcrypt)</li>
-    <li>Multi-tenant data separation (each user sees only their own data)</li>
-    <li>Access restricted to authenticated users</li>
-    <li>Regular data backups</li>
-    <li>Logging of security-relevant events</li>
-    <li>Encrypted storage of the credentials used for calendar sync</li>
-    <li>AI lesson planning exclusively on the Processor's own hardware in Germany; accessible only through an end-to-end encrypted private network (WireGuard), not reachable from the public internet</li>
-    <li>Automatic removal of names, contact details and notes before AI processing; in additional notes and PDF material, the student's name, email addresses and phone numbers are masked</li>
+    <li>{% blocktrans %}Encrypted data transfer (HTTPS/TLS){% endblocktrans %}</li>
+    <li>{% blocktrans %}Secure password hashing (PBKDF2/bcrypt){% endblocktrans %}</li>
+    <li>{% blocktrans %}Multi-tenant data separation (each user sees only their own data){% endblocktrans %}</li>
+    <li>{% blocktrans %}Access restricted to authenticated users{% endblocktrans %}</li>
+    <li>{% blocktrans %}Regular data backups{% endblocktrans %}</li>
+    <li>{% blocktrans %}Logging of security-relevant events{% endblocktrans %}</li>
+    <li>{% blocktrans %}Encrypted storage of the credentials used for calendar sync{% endblocktrans %}</li>
+    <li>{% blocktrans %}AI lesson planning exclusively on the Processor's own hardware in Germany; accessible only through an end-to-end encrypted private network (WireGuard), not reachable from the public internet{% endblocktrans %}</li>
+    <li>{% blocktrans %}Automatic removal of names, contact details and notes before AI processing; in additional notes and PDF material, the student's name, email addresses and phone numbers are masked{% endblocktrans %}</li>
 </ul>
 </div>
 
 <div class="legal-section">
-<h2>6. Sub-processors</h2>
-<p>6.1 The Processor is authorised to engage the following sub-processors:</p>
+<h2>{% blocktrans %}6. Sub-processors{% endblocktrans %}</h2>
+<p>{% blocktrans %}6.1 The Processor is authorised to engage the following sub-processors:{% endblocktrans %}</p>
 <table style="width:100%; border-collapse:collapse; margin: 1em 0; font-size:0.9em;">
 <thead><tr style="background:var(--bg-secondary);">
-    <th style="padding:8px; text-align:left; border:1px solid var(--border-color);">Sub-processor</th>
-    <th style="padding:8px; text-align:left; border:1px solid var(--border-color);">Purpose</th>
-    <th style="padding:8px; text-align:left; border:1px solid var(--border-color);">Location</th>
-    <th style="padding:8px; text-align:left; border:1px solid var(--border-color);">Transfer Basis</th>
+    <th style="padding:8px; text-align:left; border:1px solid var(--border-color);">{% blocktrans %}Sub-processor{% endblocktrans %}</th>
+    <th style="padding:8px; text-align:left; border:1px solid var(--border-color);">{% blocktrans %}Purpose{% endblocktrans %}</th>
+    <th style="padding:8px; text-align:left; border:1px solid var(--border-color);">{% blocktrans %}Location{% endblocktrans %}</th>
+    <th style="padding:8px; text-align:left; border:1px solid var(--border-color);">{% blocktrans %}Transfer Basis{% endblocktrans %}</th>
 </tr></thead>
 <tbody>
 <tr>
-    <td style="padding:8px; border:1px solid var(--border-color);">Railway Corp.</td>
-    <td style="padding:8px; border:1px solid var(--border-color);">Infrastructure &amp; Hosting</td>
-    <td style="padding:8px; border:1px solid var(--border-color);">USA</td>
-    <td style="padding:8px; border:1px solid var(--border-color);">Standard Contractual Clauses (SCCs)</td>
+    <td style="padding:8px; border:1px solid var(--border-color);">{% blocktrans %}Railway Corp.{% endblocktrans %}</td>
+    <td style="padding:8px; border:1px solid var(--border-color);">{% blocktrans %}Infrastructure &amp; Hosting{% endblocktrans %}</td>
+    <td style="padding:8px; border:1px solid var(--border-color);">{% blocktrans %}USA{% endblocktrans %}</td>
+    <td style="padding:8px; border:1px solid var(--border-color);">{% blocktrans %}Standard Contractual Clauses (SCCs){% endblocktrans %}</td>
 </tr>
 <tr>
-    <td style="padding:8px; border:1px solid var(--border-color);">Apple Distribution International Ltd.</td>
-    <td style="padding:8px; border:1px solid var(--border-color);">Email delivery via iCloud Mail (e.g. portal invitations and notifications)</td>
-    <td style="padding:8px; border:1px solid var(--border-color);">Ireland (parent company in the USA)</td>
-    <td style="padding:8px; border:1px solid var(--border-color);">EU; any transfers to the USA based on Standard Contractual Clauses (SCCs)</td>
+    <td style="padding:8px; border:1px solid var(--border-color);">{% blocktrans %}Apple Distribution International Ltd.{% endblocktrans %}</td>
+    <td style="padding:8px; border:1px solid var(--border-color);">{% blocktrans %}Email delivery via iCloud Mail (e.g. portal invitations and notifications){% endblocktrans %}</td>
+    <td style="padding:8px; border:1px solid var(--border-color);">{% blocktrans %}Ireland (parent company in the USA){% endblocktrans %}</td>
+    <td style="padding:8px; border:1px solid var(--border-color);">{% blocktrans %}EU; any transfers to the USA based on Standard Contractual Clauses (SCCs){% endblocktrans %}</td>
 </tr>
 <tr>
-    <td style="padding:8px; border:1px solid var(--border-color);">Tailscale Inc.</td>
-    <td style="padding:8px; border:1px solid var(--border-color);">Encrypted network connection to the AI computer (Pro plan only); no access to content</td>
-    <td style="padding:8px; border:1px solid var(--border-color);">Canada</td>
-    <td style="padding:8px; border:1px solid var(--border-color);">EU Commission adequacy decision</td>
+    <td style="padding:8px; border:1px solid var(--border-color);">{% blocktrans %}Tailscale Inc.{% endblocktrans %}</td>
+    <td style="padding:8px; border:1px solid var(--border-color);">{% blocktrans %}Encrypted network connection to the AI computer (Pro plan only); no access to content{% endblocktrans %}</td>
+    <td style="padding:8px; border:1px solid var(--border-color);">{% blocktrans %}Canada{% endblocktrans %}</td>
+    <td style="padding:8px; border:1px solid var(--border-color);">{% blocktrans %}EU Commission adequacy decision{% endblocktrans %}</td>
 </tr>
 </tbody>
 </table>
-<p><small>Stripe, Inc. processes payment data of the Controller (subscription fees) only and is therefore not a sub-processor for student data within the scope of this DPA. Stripe is listed separately in the general privacy policy.</small></p>
-<p>6.2 AI lesson planning is not provided by an external AI provider but runs on the Processor's own hardware in Germany (language model Qwen 2.5, run via Ollama).</p>
-<p>6.3 If the Controller uses calendar sync, the Processor transfers scheduling data on the Controller's instruction (including the student's name in the event title, if the title template contains it) into the iCloud account the Controller has connected, and imports events from it as blocked times. Apple acts as the Controller's own service provider in this respect and is not a sub-processor of the Processor.</p>
-<p>6.4 Push notifications are delivered end-to-end encrypted via the push service of the respective browser or operating system provider, which has no access to their content.</p>
-<p>6.5 Changes to sub-processors will be communicated to the Controller by updating this page. The Controller may object within 14 days of notification.</p>
+<p><small>{% blocktrans %}Stripe, Inc. processes payment data of the Controller (subscription fees) only and is therefore not a sub-processor for student data within the scope of this DPA. Stripe is listed separately in the general privacy policy.{% endblocktrans %}</small></p>
+<p>{% blocktrans %}6.2 AI lesson planning is not provided by an external AI provider but runs on the Processor's own hardware in Germany (language model Qwen 2.5, run via Ollama).{% endblocktrans %}</p>
+<p>{% blocktrans %}6.3 If the Controller uses calendar sync, the Processor transfers scheduling data on the Controller's instruction (including the student's name in the event title, if the title template contains it) into the iCloud account the Controller has connected, and imports events from it as blocked times. Apple acts as the Controller's own service provider in this respect and is not a sub-processor of the Processor.{% endblocktrans %}</p>
+<p>{% blocktrans %}6.4 Push notifications are delivered end-to-end encrypted via the push service of the respective browser or operating system provider, which has no access to their content.{% endblocktrans %}</p>
+<p>{% blocktrans %}6.5 Changes to sub-processors will be communicated to the Controller by updating this page. The Controller may object within 14 days of notification.{% endblocktrans %}</p>
 </div>
 
 <div class="legal-section">
-<h2>7. Data Subject Rights</h2>
-<p>7.1 The Processor shall assist the Controller in fulfilling obligations towards data subjects (access, rectification, erasure, restriction, portability, objection).</p>
+<h2>{% blocktrans %}7. Data Subject Rights{% endblocktrans %}</h2>
+<p>{% blocktrans %}7.1 The Processor shall assist the Controller in fulfilling obligations towards data subjects (access, rectification, erasure, restriction, portability, objection).{% endblocktrans %}</p>
 </div>
 
 <div class="legal-section">
-<h2>8. Deletion and Return</h2>
-<p>8.1 Upon termination of the Agreement, the Processor shall, at the Controller's choice, delete or return all personal data and delete existing copies, unless retention is required by applicable law.</p>
-<p>8.2 The Controller may request deletion of their data at any time by emailing <a href="mailto:info@preceptly.de">info@preceptly.de</a>.</p>
+<h2>{% blocktrans %}8. Deletion and Return{% endblocktrans %}</h2>
+<p>{% blocktrans %}8.1 Upon termination of the Agreement, the Processor shall, at the Controller's choice, delete or return all personal data and delete existing copies, unless retention is required by applicable law.{% endblocktrans %}</p>
+<p>{% blocktrans %}8.2 The Controller may request deletion of their data at any time by emailing{% endblocktrans %} <a href="mailto:info@preceptly.de">info@preceptly.de</a>.</p>
 </div>
 
 <div class="legal-section">
-<h2>9. Audit Rights</h2>
-<p>9.1 The Controller has the right to audit compliance with this Agreement or to commission a third party to do so. The Processor shall provide all necessary information and cooperate in audits.</p>
+<h2>{% blocktrans %}9. Audit Rights{% endblocktrans %}</h2>
+<p>{% blocktrans %}9.1 The Controller has the right to audit compliance with this Agreement or to commission a third party to do so. The Processor shall provide all necessary information and cooperate in audits.{% endblocktrans %}</p>
 </div>
 
 <div class="legal-section">
-<h2>10. Data Breach Notification</h2>
-<p>10.1 The Processor shall assist the Controller in complying with the obligations set out in Art. 32–36 GDPR (security, breach notification, data protection impact assessment).</p>
-<p>10.2 The Processor shall notify the Controller of any personal data breach without undue delay, and in any event within 72 hours of becoming aware, by email to the address registered in the account.</p>
+<h2>{% blocktrans %}10. Data Breach Notification{% endblocktrans %}</h2>
+<p>{% blocktrans %}10.1 The Processor shall assist the Controller in complying with the obligations set out in Art. 32–36 GDPR (security, breach notification, data protection impact assessment).{% endblocktrans %}</p>
+<p>{% blocktrans %}10.2 The Processor shall notify the Controller of any personal data breach without undue delay, and in any event within 72 hours of becoming aware, by email to the address registered in the account.{% endblocktrans %}</p>
 </div>
 {% endif %}
 </div>

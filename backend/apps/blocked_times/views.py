@@ -141,7 +141,7 @@ class BlockedTimeCreateView(LoginRequiredMixin, FeatureRequiredMixin, CreateView
         # --- M1: Vergangenheitsprüfung ---
         start_datetime = form.cleaned_data.get("start_datetime")
         if start_datetime and start_datetime < timezone.now():
-            form.add_error("start_datetime", _("Blocked times in the past are not allowed."))
+            form.add_error(_('start_datetime'), _("Blocked times in the past are not allowed."))
             return self.form_invalid(form)
 
         # Check if a recurring blocked time should be created

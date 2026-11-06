@@ -1,8 +1,9 @@
+{% load i18n %}{% get_current_language as CURRENT_LANGUAGE %}
 {% load i18n %}
 {% load static %}
 {% load block_capture %}
 <!DOCTYPE html>
-<html lang="{{ LANGUAGE_CODE|default:'en' }}">
+<html lang="{{ CURRENT_LANGUAGE }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
@@ -1215,9 +1216,9 @@
     <h2 id="pwaModalTitle">{% trans "Add to home screen" %}</h2>
     <p class="pwa-modal-subtitle">{% trans "Add Preceptly to your home screen for quick, app-like access." %}</p>
     <div class="pwa-tabs" role="tablist">
-      <button class="pwa-tab" role="tab" id="pwa-tab-ios" aria-controls="pwa-panel-ios" aria-selected="false" tabindex="-1" data-tab="ios">iOS (Safari)</button>
-      <button class="pwa-tab" role="tab" id="pwa-tab-android" aria-controls="pwa-panel-android" aria-selected="false" tabindex="-1" data-tab="android">Android (Chrome)</button>
-      <button class="pwa-tab" role="tab" id="pwa-tab-desktop" aria-controls="pwa-panel-desktop" aria-selected="false" tabindex="-1" data-tab="desktop">Desktop</button>
+      <button class="pwa-tab" role="tab" id="pwa-tab-ios" aria-controls="pwa-panel-ios" aria-selected="false" tabindex="-1" data-tab="ios">{% blocktrans %}iOS (Safari){% endblocktrans %}</button>
+      <button class="pwa-tab" role="tab" id="pwa-tab-android" aria-controls="pwa-panel-android" aria-selected="false" tabindex="-1" data-tab="android">{% blocktrans %}Android (Chrome){% endblocktrans %}</button>
+      <button class="pwa-tab" role="tab" id="pwa-tab-desktop" aria-controls="pwa-panel-desktop" aria-selected="false" tabindex="-1" data-tab="desktop">{% blocktrans %}Desktop{% endblocktrans %}</button>
     </div>
     <!-- iOS panel -->
     <div id="pwa-panel-ios" class="pwa-panel" role="tabpanel" aria-labelledby="pwa-tab-ios">

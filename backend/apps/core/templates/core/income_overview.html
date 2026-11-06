@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load currency %}
 
-{% block title %}Einnahmenübersicht – Preceptly{% endblock %}
+{% block title %}{% blocktrans %}Einnahmenübersicht – Preceptly{% endblocktrans %}{% endblock %}
 
 {% block content %}
 <div style="display:flex;gap:8px;margin-bottom:20px;border-bottom:2px solid var(--border-color);padding-bottom:12px;">
@@ -26,7 +26,7 @@
 <p class="tutorflow-kpi-hint">{% trans "Only lessons on invoices marked paid. Each lesson counts in the calendar month it actually took place - not the month the invoice's billing period starts." %}</p>
 
 <h3>{% trans "Amounts by lesson status" %} <span class="text-muted" style="font-weight: normal; font-size: 0.88em;">({% trans "lessons dated in this month" %})</span></h3>
-<table aria-label="Beträge nach Stundenstatus">
+<table aria-label="{% blocktrans %}Beträge nach Stundenstatus{% endblocktrans %}">
     <thead>
         <tr>
             <th scope="col">{% trans "Status" %}</th>
@@ -44,7 +44,7 @@
         {% endfor %}
     </tbody>
 </table>
-<p style="font-size:0.875em;"><a href="/faq/#einnahmen">→ Wie werden Beträge ermittelt? (FAQ)</a></p>
+<p style="font-size:0.875em;"><a href="/faq/#einnahmen">{% blocktrans %}→ Wie werden Beträge ermittelt? (FAQ){% endblocktrans %}</a></p>
 
 {% else %}
 <h2>{% trans "Year Overview" %}: {{ year }}</h2>
@@ -60,7 +60,7 @@
 
 <h3>{% trans "Monthly Breakdown" %}</h3>
 <p class="tutorflow-kpi-hint">{% trans "The recognized revenue column sums lessons that took place in that month and are on a paid invoice." %}</p>
-<table class="table" aria-label="Monatsübersicht">
+<table class="table" aria-label="{% blocktrans %}Monatsübersicht{% endblocktrans %}">
     <thead>
         <tr>
             <th scope="col">{% trans "Month" %}</th>
@@ -98,7 +98,7 @@
 </table>
 
 <h3>{% trans "Amounts by lesson status" %} <span class="text-muted" style="font-weight: normal; font-size: 0.88em;">({% blocktrans with yr=year %}lessons dated in {{ yr }}{% endblocktrans %})</span></h3>
-<table aria-label="Beträge nach Stundenstatus (Jahresansicht)">
+<table aria-label="{% blocktrans %}Beträge nach Stundenstatus (Jahresansicht){% endblocktrans %}">
     <thead>
         <tr>
             <th scope="col">{% trans "Status" %}</th>
@@ -116,6 +116,6 @@
         {% endfor %}
     </tbody>
 </table>
-<p style="font-size:0.875em;"><a href="/faq/#einnahmen">→ Wie werden Beträge ermittelt? (FAQ)</a></p>
+<p style="font-size:0.875em;"><a href="/faq/#einnahmen">{% blocktrans %}→ Wie werden Beträge ermittelt? (FAQ){% endblocktrans %}</a></p>
 {% endif %}
 {% endblock %}

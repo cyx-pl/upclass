@@ -12,7 +12,7 @@ from decimal import Decimal
 import django.utils.timezone as tz
 from django.contrib.auth import get_user_model
 from django.db import connection
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.test.utils import CaptureQueriesContext
 from django.urls import reverse
 
@@ -85,6 +85,7 @@ class PickerFixture(TestCase):
         return next(w for w in response.context["weekdays"] if w["date"] == day)
 
 
+@override_settings(LANGUAGE_CODE="de")
 class DayButtonsTest(PickerFixture):
     def test_every_day_is_a_button_with_its_free_times(self):
         response = self.page()
@@ -153,6 +154,7 @@ class DayButtonsTest(PickerFixture):
         self.assertContains(response, self.monday.strftime("%d.%m."))
 
 
+@override_settings(LANGUAGE_CODE="de")
 class MarkupTest(PickerFixture):
     def test_the_old_wide_table_is_gone(self):
         response = self.page()
@@ -191,6 +193,7 @@ class MarkupTest(PickerFixture):
         self.assertContains(response, 'aria-describedby="submit-hint"')
 
 
+@override_settings(LANGUAGE_CODE="de")
 class ReschedulePageTest(PickerFixture):
     def setUp(self):
         super().setUp()

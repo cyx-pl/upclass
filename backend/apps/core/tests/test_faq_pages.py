@@ -7,7 +7,7 @@ Code ergeben, mit ihm übereinstimmen."""
 import re
 
 from django.contrib.auth.models import User
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.urls import reverse
 
 from apps.core.feature_flags import (
@@ -25,6 +25,7 @@ def _anchors_without_target(html):
     return sorted(links - targets)
 
 
+@override_settings(LANGUAGE_CODE="de")
 class TutorFaqTest(TestCase):
     def setUp(self):
         self.response = self.client.get(reverse("core:faq"))
@@ -84,6 +85,7 @@ class TutorFaqTest(TestCase):
         self.assertIn("Ändern und löschen kannst du nur Entwürfe", self.html)
 
 
+@override_settings(LANGUAGE_CODE="de")
 class PortalFaqTest(TestCase):
     def setUp(self):
         tutor = User.objects.create_user(username="tutor_faq", password="x")

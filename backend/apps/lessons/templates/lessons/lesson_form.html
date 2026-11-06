@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}
 {% load i18n static %}
 
-{% block title %}Stunde bearbeiten – Preceptly{% endblock %}
+{% block title %}{% blocktrans %}Stunde bearbeiten – Preceptly{% endblocktrans %}{% endblock %}
 
 {% block content %}
 <h1>{% if object %}{% trans "Edit Lesson" %}{% else %}{% trans "New Lesson" %}{% endif %}</h1>
@@ -17,7 +17,7 @@
         {% if matching_recurring.end_date %}- {{ matching_recurring.end_date }}{% else %}({% trans "unlimited" %}){% endif %}</p>
 
         {% if form.series_locked %}
-        <p style="margin-top: 15px;">Änderungen gelten nur für diese Stunde. Ganze Serien bearbeiten gibt es ab dem Starter-Tarif.</p>
+        <p style="margin-top: 15px;">{% blocktrans %}Änderungen gelten nur für diese Stunde. Ganze Serien bearbeiten gibt es ab dem Starter-Tarif.{% endblocktrans %}</p>
         {% else %}
         <fieldset style="border: none; padding: 0; margin-top: 15px;">
             <legend><strong>{% trans "What do you want to edit?" %}</strong></legend>

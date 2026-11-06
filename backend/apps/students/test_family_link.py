@@ -7,7 +7,7 @@ from datetime import date
 from decimal import Decimal
 
 from django.contrib.auth import get_user_model
-from django.test import Client, TestCase
+from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 
 from apps.contracts.models import Contract
@@ -17,6 +17,7 @@ from apps.portal.models import ParentStudentLink
 User = get_user_model()
 
 
+@override_settings(LANGUAGE_CODE="de")
 class FamilyDetectionAndLinkTest(TestCase):
     def setUp(self):
         self.tutor = User.objects.create_user(

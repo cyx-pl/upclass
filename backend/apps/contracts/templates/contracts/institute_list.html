@@ -1,14 +1,14 @@
 {% extends 'core/base.html' %}
 {% load i18n %}
 
-{% block title %}{% trans "Institutes" %} - Preceptly{% endblock %}
+{% block title %}{% trans "Institutes" %} {% blocktrans %}- Preceptly{% endblocktrans %}{% endblock %}
 
 {% block content %}
 <h1>{% trans "Institutes" %}</h1>
 
 <div class="btn-group">
     <a href="{% url 'contracts:institute_create' %}" class="btn">{% trans "Add institute" %}</a>
-    <a href="{% url 'contracts:list' %}" class="btn btn-secondary">Zurück zu Schülern</a>
+    <a href="{% url 'contracts:list' %}" class="btn btn-secondary">{% blocktrans %}Zurück zu Schülern{% endblocktrans %}</a>
 </div>
 
 <p style="margin-top: 1em;">{% blocktrans %}Create an institute for each place you teach through, with its own pay tiers and tutor-no-show rule. On a student's contract, pick one of your institutes, or leave it as "No institute" for private lessons.{% endblocktrans %}</p>
@@ -30,14 +30,14 @@
             <td>
                 {% for tier in institute.tiers %}
                     {% if not forloop.first %}, {% endif %}
-                    {{ tier.hours_from }}h: {{ tier.label }}
+                    {{ tier.hours_from }}{% blocktrans %}h:{% endblocktrans %} {{ tier.label }}
                 {% endfor %}
                 {% if institute.unpaid_on_tutor_no_show %}
                     {% if institute.tiers %}, {% endif %}{% trans "no billing on tutor no-show" %}
                 {% endif %}
                 {% if institute.default_hourly_rate or institute.default_unit_duration_minutes %}
                 <div style="color:var(--text-secondary); font-size:.9em;">{% trans "Default for new students" %}:
-                    {% if institute.default_hourly_rate %}{{ institute.default_hourly_rate|floatformat:2 }} €/h{% endif %}{% if institute.default_hourly_rate and institute.default_unit_duration_minutes %}, {% endif %}{% if institute.default_unit_duration_minutes %}{{ institute.default_unit_duration_minutes }} {% trans "min" %}{% endif %}
+                    {% if institute.default_hourly_rate %}{{ institute.default_hourly_rate|floatformat:2 }} {% blocktrans %}€/h{% endblocktrans %}{% endif %}{% if institute.default_hourly_rate and institute.default_unit_duration_minutes %}, {% endif %}{% if institute.default_unit_duration_minutes %}{{ institute.default_unit_duration_minutes }} {% trans "min" %}{% endif %}
                 </div>
                 {% endif %}
             </td>

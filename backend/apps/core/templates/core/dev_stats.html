@@ -1,7 +1,7 @@
 {% extends "core/base.html" %}
 {% load i18n %}
 
-{% block title %}Dev Stats – Preceptly{% endblock %}
+{% block title %}{% blocktrans %}Dev Stats – Preceptly{% endblocktrans %}{% endblock %}
 
 {% block content %}
 <style>
@@ -71,36 +71,36 @@
 </style>
 
 <div class="stats-wrap">
-  <div class="stats-title">Developer-Statistiken</div>
-  <div class="stats-sub">Stand: {{ now|date:"d.m.Y H:i" }} Uhr – nur für Superuser sichtbar</div>
+  <div class="stats-title">{% blocktrans %}Developer-Statistiken{% endblocktrans %}</div>
+  <div class="stats-sub">{% blocktrans %}Stand:{% endblocktrans %} {{ now|date:"d.m.Y H:i" }} {% blocktrans %}Uhr – nur für Superuser sichtbar{% endblocktrans %}</div>
 
   <!-- Summary Cards -->
   <div class="cards-row">
     <div class="stat-card">
-      <div class="label">Requests heute</div>
+      <div class="label">{% blocktrans %}Requests heute{% endblocktrans %}</div>
       <div class="value">{{ requests_today }}</div>
     </div>
     <div class="stat-card green">
-      <div class="label">Diese Woche</div>
+      <div class="label">{% blocktrans %}Diese Woche{% endblocktrans %}</div>
       <div class="value">{{ requests_week }}</div>
     </div>
     <div class="stat-card orange">
-      <div class="label">Diesen Monat</div>
+      <div class="label">{% blocktrans %}Diesen Monat{% endblocktrans %}</div>
       <div class="value">{{ requests_month }}</div>
     </div>
     <div class="stat-card purple">
-      <div class="label">Unique IPs heute</div>
+      <div class="label">{% blocktrans %}Unique IPs heute{% endblocktrans %}</div>
       <div class="value">{{ unique_ips_today }}</div>
     </div>
     <div class="stat-card">
-      <div class="label">Ø Antwortzeit (24h)</div>
-      <div class="value">{% if avg_response %}{{ avg_response }} ms{% else %}–{% endif %}</div>
+      <div class="label">{% blocktrans %}Ø Antwortzeit (24h){% endblocktrans %}</div>
+      <div class="value">{% if avg_response %}{{ avg_response }} {% blocktrans %}ms{% endblocktrans %}{% else %}–{% endif %}</div>
     </div>
   </div>
 
   <!-- Hourly chart (last 24h) -->
   <div class="section">
-    <h2>Requests letzte 24 Stunden</h2>
+    <h2>{% blocktrans %}Requests letzte 24 Stunden{% endblocktrans %}</h2>
     <div class="bar-chart">
       {% for item in hours_data %}
       <div class="bar-col">
@@ -113,7 +113,7 @@
 
   <!-- Daily chart (last 30d) -->
   <div class="section">
-    <h2>Requests letzte 30 Tage</h2>
+    <h2>{% blocktrans %}Requests letzte 30 Tage{% endblocktrans %}</h2>
     <div class="bar-chart">
       {% for item in days_data %}
       <div class="bar-col">
@@ -127,36 +127,36 @@
   <!-- Status codes + top paths -->
   <div class="two-col">
     <div class="section">
-      <h2>HTTP-Status-Codes (letzte 7 Tage)</h2>
+      <h2>{% blocktrans %}HTTP-Status-Codes (letzte 7 Tage){% endblocktrans %}</h2>
       <div class="status-row">
         <div class="status-badge s2xx">
           <div class="sc">{{ status_2xx }}</div>
-          <div class="sl">2xx Erfolg</div>
+          <div class="sl">{% blocktrans %}2xx Erfolg{% endblocktrans %}</div>
         </div>
         <div class="status-badge s3xx">
           <div class="sc">{{ status_3xx }}</div>
-          <div class="sl">3xx Redirect</div>
+          <div class="sl">{% blocktrans %}3xx Redirect{% endblocktrans %}</div>
         </div>
         <div class="status-badge s4xx">
           <div class="sc">{{ status_4xx }}</div>
-          <div class="sl">4xx Client</div>
+          <div class="sl">{% blocktrans %}4xx Client{% endblocktrans %}</div>
         </div>
         <div class="status-badge s5xx">
           <div class="sc">{{ status_5xx }}</div>
-          <div class="sl">5xx Server</div>
+          <div class="sl">{% blocktrans %}5xx Server{% endblocktrans %}</div>
         </div>
       </div>
     </div>
 
     <div class="section">
-      <h2>Registrierungen (laufender Monat)</h2>
+      <h2>{% blocktrans %}Registrierungen (laufender Monat){% endblocktrans %}</h2>
       <table class="data-table">
         <tbody>
-          <tr><td>Neue Django-User</td><td><strong>{{ new_users_30d }}</strong></td></tr>
-          <tr><td>Neue Portal-User</td><td><strong>{% if new_portal_users_30d is not None %}{{ new_portal_users_30d }}{% else %}–{% endif %}</strong></td></tr>
-          <tr><td>Vom Honeypot abgewiesen, heute</td><td><strong>{{ honeypot_today }}</strong></td></tr>
-          <tr><td>Vom Honeypot abgewiesen, letzte 7 Tage</td><td><strong>{{ honeypot_7d }}</strong></td></tr>
-          <tr><td>Vom Honeypot abgewiesen, gesamt (seit Zählbeginn)</td><td><strong>{{ honeypot_total }}</strong></td></tr>
+          <tr><td>{% blocktrans %}Neue Django-User{% endblocktrans %}</td><td><strong>{{ new_users_30d }}</strong></td></tr>
+          <tr><td>{% blocktrans %}Neue Portal-User{% endblocktrans %}</td><td><strong>{% if new_portal_users_30d is not None %}{{ new_portal_users_30d }}{% else %}–{% endif %}</strong></td></tr>
+          <tr><td>{% blocktrans %}Vom Honeypot abgewiesen, heute{% endblocktrans %}</td><td><strong>{{ honeypot_today }}</strong></td></tr>
+          <tr><td>{% blocktrans %}Vom Honeypot abgewiesen, letzte 7 Tage{% endblocktrans %}</td><td><strong>{{ honeypot_7d }}</strong></td></tr>
+          <tr><td>{% blocktrans %}Vom Honeypot abgewiesen, gesamt (seit Zählbeginn){% endblocktrans %}</td><td><strong>{{ honeypot_total }}</strong></td></tr>
         </tbody>
       </table>
     </div>
@@ -164,9 +164,9 @@
 
   <!-- Top paths -->
   <div class="section">
-    <h2>Top 15 Seiten (letzte 7 Tage)</h2>
+    <h2>{% blocktrans %}Top 15 Seiten (letzte 7 Tage){% endblocktrans %}</h2>
     <table class="data-table">
-      <thead><tr><th>Pfad</th><th style="text-align:right">Aufrufe</th></tr></thead>
+      <thead><tr><th>{% blocktrans %}Pfad{% endblocktrans %}</th><th style="text-align:right">{% blocktrans %}Aufrufe{% endblocktrans %}</th></tr></thead>
       <tbody>
         {% for row in top_paths %}
         <tr>
@@ -174,7 +174,7 @@
           <td style="text-align:right; font-weight:600">{{ row.count }}</td>
         </tr>
         {% empty %}
-        <tr><td colspan="2" style="text-align:center;color:var(--text-secondary)">Noch keine Daten</td></tr>
+        <tr><td colspan="2" style="text-align:center;color:var(--text-secondary)">{% blocktrans %}Noch keine Daten{% endblocktrans %}</td></tr>
         {% endfor %}
       </tbody>
     </table>
@@ -182,9 +182,9 @@
 
   <!-- Recent errors -->
   <div class="section">
-    <h2>Letzte Fehler (≥ 400)</h2>
+    <h2>{% blocktrans %}Letzte Fehler (≥ 400){% endblocktrans %}</h2>
     <table class="data-table">
-      <thead><tr><th>Zeitpunkt</th><th>Code</th><th>Pfad</th><th>IP</th></tr></thead>
+      <thead><tr><th>{% blocktrans %}Zeitpunkt{% endblocktrans %}</th><th>{% blocktrans %}Code{% endblocktrans %}</th><th>{% blocktrans %}Pfad{% endblocktrans %}</th><th>{% blocktrans %}IP{% endblocktrans %}</th></tr></thead>
       <tbody>
         {% for err in recent_errors %}
         <tr>
@@ -202,7 +202,7 @@
           <td>{{ err.ip|default:"–" }}</td>
         </tr>
         {% empty %}
-        <tr><td colspan="4" style="text-align:center;color:var(--text-secondary)">Keine Fehler – alles grün ✓</td></tr>
+        <tr><td colspan="4" style="text-align:center;color:var(--text-secondary)">{% blocktrans %}Keine Fehler – alles grün ✓{% endblocktrans %}</td></tr>
         {% endfor %}
       </tbody>
     </table>
@@ -210,9 +210,9 @@
 
   <!-- Top user agents -->
   <div class="section">
-    <h2>Top User-Agents (letzte 7 Tage)</h2>
+    <h2>{% blocktrans %}Top User-Agents (letzte 7 Tage){% endblocktrans %}</h2>
     <table class="data-table">
-      <thead><tr><th>User-Agent</th><th style="text-align:right">Aufrufe</th></tr></thead>
+      <thead><tr><th>{% blocktrans %}User-Agent{% endblocktrans %}</th><th style="text-align:right">{% blocktrans %}Aufrufe{% endblocktrans %}</th></tr></thead>
       <tbody>
         {% for row in top_agents %}
         <tr>
@@ -220,7 +220,7 @@
           <td style="text-align:right;font-weight:600">{{ row.count }}</td>
         </tr>
         {% empty %}
-        <tr><td colspan="2" style="text-align:center;color:var(--text-secondary)">Noch keine Daten</td></tr>
+        <tr><td colspan="2" style="text-align:center;color:var(--text-secondary)">{% blocktrans %}Noch keine Daten{% endblocktrans %}</td></tr>
         {% endfor %}
       </tbody>
     </table>

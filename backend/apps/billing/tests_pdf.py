@@ -49,6 +49,26 @@ class InvoicePDFTest(TestCase):
             date(2025, 3, 1), date(2025, 3, 31), contract=self.contract, user=self.user
         )
 
+    def test_polish_pdf_preserves_diacritics_and_labels(self):
+        from io import BytesIO
+
+        from django.utils.translation import override
+        from pypdf import PdfReader
+
+        from apps.billing.pdf_service import generate_invoice_pdf
+
+        self.contract.first_name = "Łucja"
+        self.contract.last_name = "Żółć"
+        self.contract.save()
+        self.invoice.refresh_from_db()
+        self.invoice.payer_name = "Łucja Żółć"
+        with override("pl"):
+            content = generate_invoice_pdf(self.invoice, language="pl")
+        reader = PdfReader(BytesIO(content))
+        text = "\n".join(page.extract_text() for page in reader.pages)
+        self.assertIn("Faktura", text)
+        self.assertIn("Łucja Żółć", text)
+
     def test_pdf_generate_returns_200_and_sets_invoice_pdf(self):
         """Generate endpoint returns 302 redirect and sets invoice.invoice_pdf."""
         self.client.login(username="tutor", password="test")

@@ -130,7 +130,7 @@ class StudentDeleteView(LoginRequiredMixin, DeleteView):
                 else:
                     plink.delete()
 
-            messages.success(self.request, "Schüler erfolgreich gelöscht.")
+            messages.success(self.request, _('Schüler erfolgreich gelöscht.'))
             return super().form_valid(form)
 
 
@@ -152,13 +152,13 @@ class FamilyLinkView(LoginRequiredMixin, View):
         if not link_a and not link_b:
             messages.error(
                 request,
-                "Bitte zuerst mindestens eines der beiden Kinder zum Portal einladen.",
+                _('Bitte zuerst mindestens eines der beiden Kinder zum Portal einladen.'),
             )
             return redirect("contracts:list")
 
         if link_a and link_b:
             if link_a.parent_id == link_b.parent_id:
-                messages.info(request, "Diese beiden Kinder sind bereits verknüpft.")
+                messages.info(request, _('Diese beiden Kinder sind bereits verknüpft.'))
                 return redirect("contracts:list")
             # Beide haben schon einen eigenen Account: Account von A wird zum
             # Familien-Konto; der separate Account von B wird deaktiviert
@@ -180,7 +180,7 @@ class FamilyLinkView(LoginRequiredMixin, View):
 
         messages.success(
             request,
-            f"{contract_a.full_name} und {contract_b.full_name} als Familie verknüpft.",
+            _('{value0} und {value1} als Familie verknüpft.').format(value0=contract_a.full_name, value1=contract_b.full_name),
         )
         return redirect("contracts:list")
 
@@ -209,12 +209,12 @@ class PortalInviteView(LoginRequiredMixin, View):
             or (contract.email or contract.parent_email or "").strip()
         )[:254]
         if not email or "\n" in email or "\r" in email:
-            messages.error(request, "Ungültige E-Mail-Adresse.")
+            messages.error(request, _('Ungültige E-Mail-Adresse.'))
             return redirect("contracts:detail", pk=pk)
         try:
             validate_email(email)
         except ValidationError:
-            messages.error(request, "Ungültige E-Mail-Adresse.")
+            messages.error(request, _('Ungültige E-Mail-Adresse.'))
             return redirect("contracts:detail", pk=pk)
 
         User = get_user_model()
@@ -225,7 +225,7 @@ class PortalInviteView(LoginRequiredMixin, View):
                 ParentStudentLink.objects.select_for_update().filter(contract=contract).first()
             )
             if existing_link or StudentPortalLink.objects.filter(contract=contract).exists():
-                messages.info(request, "Portal-Zugang bereits vorhanden.")
+                messages.info(request, _('Portal-Zugang bereits vorhanden.'))
                 return redirect("contracts:detail", pk=pk)
 
             existing_user = User.objects.filter(email__iexact=email).first()
@@ -241,8 +241,7 @@ class PortalInviteView(LoginRequiredMixin, View):
                     )
                     messages.error(
                         request,
-                        "Die Einladung konnte nicht erstellt werden. "
-                        "Bitte kontaktieren Sie den Support, falls das Problem bestehen bleibt.",
+                        _('Die Einladung konnte nicht erstellt werden. Bitte kontaktieren Sie den Support, falls das Problem bestehen bleibt.'),
                     )
                     return redirect("contracts:detail", pk=pk)
 
@@ -250,16 +249,13 @@ class PortalInviteView(LoginRequiredMixin, View):
                 if not user_has_feature(request.user, Feature.FEATURE_PARENT_PORTAL):
                     messages.error(
                         request,
-                        "Diese E-Mail-Adresse hat schon ein Portal-Konto. Mehrere Kinder an "
-                        "einem Konto (Familien-Zugang) gibt es ab dem Pro-Tarif - bitte eine "
-                        "andere E-Mail-Adresse verwenden.",
+                        _('Diese E-Mail-Adresse hat schon ein Portal-Konto. Mehrere Kinder an einem Konto (Familien-Zugang) gibt es ab dem Pro-Tarif - bitte eine andere E-Mail-Adresse verwenden.'),
                     )
                     return redirect("contracts:detail", pk=pk)
                 ParentStudentLink.objects.get_or_create(parent=existing_portal, contract=contract)
                 messages.warning(
                     request,
-                    "Hinweis: Diese E-Mail-Adresse hat bereits ein Portal-Konto — "
-                    "als Familien-Zugang mit diesem Kind verknüpft.",
+                    _('Hinweis: Diese E-Mail-Adresse hat bereits ein Portal-Konto — als Familien-Zugang mit diesem Kind verknüpft.'),
                 )
                 return redirect("contracts:detail", pk=pk)
 
@@ -274,7 +270,7 @@ class PortalInviteView(LoginRequiredMixin, View):
                 )
                 messages.error(
                     request,
-                    "Diese E-Mail-Adresse gehört bereits zu einem anderen Portal-Zugang.",
+                    _('Diese E-Mail-Adresse gehört bereits zu einem anderen Portal-Zugang.'),
                 )
                 return redirect("contracts:detail", pk=pk)
 
@@ -299,10 +295,10 @@ class PortalInviteView(LoginRequiredMixin, View):
 
             try:
                 send_portal_invite(contract, link, email, role="student")
-                messages.success(request, f"Portal-Einladung gesendet an {email}.")
+                messages.success(request, _('Portal-Einladung gesendet an {value0}.').format(value0=email))
             except Exception:
                 logger.exception("Portal invite email failed for contract_id=%s", contract.pk)
-                messages.warning(request, "Could not send email. Please try again.")
+                messages.warning(request, _('Could not send email. Please try again.'))
                 raise  # Rollback: kein verwaister Account ohne E-Mail-Versand
 
         return redirect("contracts:detail", pk=pk)
@@ -325,9 +321,7 @@ class PortalInviteResendView(LoginRequiredMixin, View):
             # a login reminder, not a new invite; don't touch it here.
             messages.info(
                 request,
-                "Dieser Portal-Zugang ist bereits aktiv. Nutze stattdessen "
-                "die Login-Erinnerung, um keinen bestehenden Zugang zu "
-                "deaktivieren.",
+                _('Dieser Portal-Zugang ist bereits aktiv. Nutze stattdessen die Login-Erinnerung, um keinen bestehenden Zugang zu deaktivieren.'),
             )
             return redirect("contracts:detail", pk=pk)
 
@@ -355,16 +349,16 @@ class PortalInviteResendView(LoginRequiredMixin, View):
                 send_portal_invite(contract, link, recipient_email, role="student")
                 messages.success(
                     request,
-                    f"Einladung erneut gesendet an {recipient_email}.",
+                    _('Einladung erneut gesendet an {value0}.').format(value0=recipient_email),
                 )
             except Exception:
                 logger.exception("Portal resend email failed for contract_id=%s", contract.pk)
                 messages.warning(
                     request,
-                    "Could not send email. Please try again.",
+                    _('Could not send email. Please try again.'),
                 )
         else:
-            messages.info(request, "Kein E-Mail-Versand möglich.")
+            messages.info(request, _('Kein E-Mail-Versand möglich.'))
         return redirect("contracts:detail", pk=pk)
 
 
@@ -391,15 +385,15 @@ class PortalLoginReminderView(LoginRequiredMixin, View):
                 )
                 messages.success(
                     request,
-                    f"Login-Erinnerung gesendet an {recipient_email}.",
+                    _('Login-Erinnerung gesendet an {value0}.').format(value0=recipient_email),
                 )
             except Exception:
                 logger.exception("Portal login reminder failed for contract_id=%s", contract.pk)
                 messages.warning(
-                    request, "E-Mail konnte nicht gesendet werden. Bitte erneut versuchen."
+                    request, _('E-Mail konnte nicht gesendet werden. Bitte erneut versuchen.')
                 )
         else:
-            messages.info(request, "Kein E-Mail-Versand möglich — keine E-Mail-Adresse hinterlegt.")
+            messages.info(request, _('Kein E-Mail-Versand möglich — keine E-Mail-Adresse hinterlegt.'))
         return redirect("contracts:detail", pk=pk)
 
 
@@ -436,12 +430,11 @@ class StudentDocumentListView(LoginRequiredMixin, View):
         if document_limit_reached(request.user, contract.pk):
             limit = document_limit(request.user)
             if limit == 0:
-                messages.error(request, "Dokumente gibt es ab dem Starter-Tarif.")
+                messages.error(request, _('Dokumente gibt es ab dem Starter-Tarif.'))
             else:
                 messages.error(
                     request,
-                    f"Im Starter-Tarif sind höchstens {limit} Dokumente je Schüler möglich. "
-                    "Mit Pro sind es unbegrenzt viele.",
+                    _('Im Starter-Tarif sind höchstens {value0} Dokumente je Schüler möglich. Mit Pro sind es unbegrenzt viele.').format(value0=limit),
                 )
             return redirect("students:documents", pk=pk)
         uploaded_file = request.FILES.get("file")
@@ -460,19 +453,19 @@ class StudentDocumentListView(LoginRequiredMixin, View):
             max_size = 50 * 1024 * 1024  # 50 MB
             ext = os.path.splitext(uploaded_file.name)[1].lower()
             if ext not in allowed_extensions:
-                messages.error(request, "Dateityp nicht erlaubt.")
+                messages.error(request, _('Dateityp nicht erlaubt.'))
                 return redirect("students:documents", pk=pk)
             if uploaded_file.size > max_size:
-                messages.error(request, "Datei ist zu groß (max. 50 MB).")
+                messages.error(request, _('Datei ist zu groß (max. 50 MB).'))
                 return redirect("students:documents", pk=pk)
             if not validate_file_magic(uploaded_file, ext):
                 messages.error(
                     request,
-                    "Dateityp nicht erlaubt (Inhalt stimmt nicht mit Dateiendung überein).",
+                    _('Dateityp nicht erlaubt (Inhalt stimmt nicht mit Dateiendung überein).'),
                 )
                 return redirect("students:documents", pk=pk)
         if not uploaded_file:
-            messages.warning(request, "Keine Datei ausgewählt.")
+            messages.warning(request, _('Keine Datei ausgewählt.'))
             return redirect("students:documents", pk=pk)
 
         # Name-Sanitisierung: Längenbegrenzung + nur erlaubte Zeichen
@@ -482,7 +475,7 @@ class StudentDocumentListView(LoginRequiredMixin, View):
         StudentDocument.objects.create(
             student=contract, file=uploaded_file, name=name, uploaded_by_tutor=True
         )
-        messages.success(request, "Datei hochgeladen.")
+        messages.success(request, _('Datei hochgeladen.'))
         return redirect("students:documents", pk=pk)
 
 
@@ -500,7 +493,7 @@ class StudentDocumentDeleteView(LoginRequiredMixin, View):
                     "Datei nicht löschbar (vermutlich nicht vorhanden): %s", doc.file.name
                 )
         doc.delete()
-        messages.success(request, "Dokument gelöscht.")
+        messages.success(request, _('Dokument gelöscht.'))
         return redirect("students:documents", pk=pk)
 
 

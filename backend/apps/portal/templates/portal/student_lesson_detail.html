@@ -1,43 +1,45 @@
 {% extends "portal/base.html" %}
+{% load i18n %}
 
-{% block title %}Stundendetails – Preceptly{% endblock %}
+
+{% block title %}{% blocktrans %}Stundendetails – Preceptly{% endblocktrans %}{% endblock %}
 
 {% block content %}
 <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:20px;">
     <h1 style="margin:0;">{{ lesson.date|date:"d.m.Y" }} – {{ student.full_name }}</h1>
     <div style="display:flex; gap:8px; flex-wrap:wrap;">
         {% if lesson.meeting_room and lesson.meeting_room.is_active %}
-        <a class="btn" href="{% url 'portal:meeting_wait' lesson.pk %}" style="font-weight:600;">📹 Meeting beitreten</a>
+        <a class="btn" href="{% url 'portal:meeting_wait' lesson.pk %}" style="font-weight:600;">{% blocktrans %}📹 Meeting beitreten{% endblocktrans %}</a>
         {% else %}
-        <span class="btn btn-secondary" style="opacity:0.5; cursor:default;" title="Der Tutor muss das Meeting zuerst starten">📹 Kein Meeting aktiv</span>
+        <span class="btn btn-secondary" style="opacity:0.5; cursor:default;" title="{% blocktrans %}Der Tutor muss das Meeting zuerst starten{% endblocktrans %}">{% blocktrans %}📹 Kein Meeting aktiv{% endblocktrans %}</span>
         {% endif %}
-        <a class="btn btn-secondary" href="{% url 'portal:student_lessons' %}">&larr; Zurück</a>
+        <a class="btn btn-secondary" href="{% url 'portal:student_lessons' %}">{% blocktrans %}&larr; Zurück{% endblocktrans %}</a>
     </div>
 </div>
 
 <div class="card">
-    <table aria-label="Stundendetails">
+    <table aria-label="{% blocktrans %}Stundendetails{% endblocktrans %}">
         <tbody>
             <tr>
-                <th scope="row" style="text-align:left; padding-right:24px; color:var(--text-secondary); font-weight:500; width:140px;">Datum</th>
+                <th scope="row" style="text-align:left; padding-right:24px; color:var(--text-secondary); font-weight:500; width:140px;">{% blocktrans %}Datum{% endblocktrans %}</th>
                 <td>{{ lesson.date|date:"d.m.Y" }}</td>
             </tr>
             <tr>
-                <th scope="row" style="text-align:left; padding-right:24px; color:var(--text-secondary); font-weight:500;">Uhrzeit</th>
-                <td>{{ lesson.start_time|time:"H:i" }} Uhr</td>
+                <th scope="row" style="text-align:left; padding-right:24px; color:var(--text-secondary); font-weight:500;">{% blocktrans %}Uhrzeit{% endblocktrans %}</th>
+                <td>{{ lesson.start_time|time:"H:i" }} {% blocktrans %}Uhr{% endblocktrans %}</td>
             </tr>
             <tr>
-                <th scope="row" style="text-align:left; padding-right:24px; color:var(--text-secondary); font-weight:500;">Dauer</th>
-                <td>{{ lesson.duration_minutes }} Min.</td>
+                <th scope="row" style="text-align:left; padding-right:24px; color:var(--text-secondary); font-weight:500;">{% blocktrans %}Dauer{% endblocktrans %}</th>
+                <td>{{ lesson.duration_minutes }} {% blocktrans %}Min.{% endblocktrans %}</td>
             </tr>
             <tr>
-                <th scope="row" style="text-align:left; padding-right:24px; color:var(--text-secondary); font-weight:500;">Status</th>
+                <th scope="row" style="text-align:left; padding-right:24px; color:var(--text-secondary); font-weight:500;">{% blocktrans %}Status{% endblocktrans %}</th>
                 <td>{{ lesson.get_status_display }}</td>
             </tr>
             <tr>
-                <th scope="row" style="text-align:left; padding-right:24px; color:var(--text-secondary); font-weight:500;">Gebucht</th>
+                <th scope="row" style="text-align:left; padding-right:24px; color:var(--text-secondary); font-weight:500;">{% blocktrans %}Gebucht{% endblocktrans %}</th>
                 <td>
-                    {{ booking.at|date:"d.m.Y, H:i" }} Uhr{% if booking.how %} · {{ booking.how }}{% endif %}
+                    {{ booking.at|date:"d.m.Y, H:i" }} {% blocktrans %}Uhr{% endblocktrans %}{% if booking.how %} · {{ booking.how }}{% endif %}
                     {% if booking.note %}<br><small style="color:var(--text-secondary);">{{ booking.note }}</small>{% endif %}
                 </td>
             </tr>
@@ -47,22 +49,22 @@
 
 {% if lesson.status == "planned" %}
 <div class="card" style="margin-top:16px;">
-    <h2 style="margin-top:0; font-size:1.1em;">Termin ändern</h2>
+    <h2 style="margin-top:0; font-size:1.1em;">{% blocktrans %}Termin ändern{% endblocktrans %}</h2>
     <div style="display:flex; gap:10px; flex-wrap:wrap;">
-        <a class="btn" href="{% url 'portal:session_reschedule' lesson.pk %}">Verschieben</a>
+        <a class="btn" href="{% url 'portal:session_reschedule' lesson.pk %}">{% blocktrans %}Verschieben{% endblocktrans %}</a>
         {% if lesson.recurring_session_id %}
         <form method="post" action="{% url 'portal:session_cancel' lesson.pk %}" data-confirm="Nur diesen Termin absagen?">
             {% csrf_token %}
-            <button type="submit" class="btn btn-danger">Nur diesen Termin absagen</button>
+            <button type="submit" class="btn btn-danger">{% blocktrans %}Nur diesen Termin absagen{% endblocktrans %}</button>
         </form>
         <form method="post" action="{% url 'portal:recurring_cancel' lesson.recurring_session_id %}" data-confirm="Die gesamte Serie absagen? Alle kommenden Termine dieser Serie entfallen.">
             {% csrf_token %}
-            <button type="submit" class="btn btn-danger">Gesamte Serie absagen</button>
+            <button type="submit" class="btn btn-danger">{% blocktrans %}Gesamte Serie absagen{% endblocktrans %}</button>
         </form>
         {% else %}
         <form method="post" action="{% url 'portal:session_cancel' lesson.pk %}" data-confirm="Termin wirklich absagen?">
             {% csrf_token %}
-            <button type="submit" class="btn btn-danger">Absagen</button>
+            <button type="submit" class="btn btn-danger">{% blocktrans %}Absagen{% endblocktrans %}</button>
         </form>
         {% endif %}
     </div>
@@ -71,19 +73,19 @@
 
 {% if lesson.meeting_url %}
 <div class="alert-info" style="margin-top:16px;">
-    🔗 <a href="{{ lesson.meeting_url }}" target="_blank" rel="noopener">Meeting beitreten</a>
+    🔗 <a href="{{ lesson.meeting_url }}" target="_blank" rel="noopener">{% blocktrans %}Meeting beitreten{% endblocktrans %}</a>
 </div>
 {% endif %}
 
 {% if lesson.homework %}
 <div class="alert-info" style="margin-top:16px;">
-    📚 <strong>Hausaufgaben:</strong> {{ lesson.homework }}
+    📚 <strong>{% blocktrans %}Hausaufgaben:{% endblocktrans %}</strong> {{ lesson.homework }}
 </div>
 {% endif %}
 
 {% if lesson.notes %}
 <div class="card" style="margin-top:16px;">
-    <h3 style="margin-top:0;">Notizen</h3>
+    <h3 style="margin-top:0;">{% blocktrans %}Notizen{% endblocktrans %}</h3>
     <p style="margin:0;">{{ lesson.notes }}</p>
 </div>
 {% endif %}

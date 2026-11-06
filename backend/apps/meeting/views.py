@@ -1,7 +1,6 @@
 """
 Views für Meeting-Räume (Tutor + Portal-Nutzer).
 """
-
 import logging
 import os
 import uuid
@@ -12,6 +11,7 @@ from django.db import transaction
 from django.http import HttpResponseForbidden, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 from django.views import View
 
 from apps.core.feature_flags import Feature, user_has_feature
@@ -53,7 +53,7 @@ class MeetingDocumentUploadView(View):
         # Auth-Check ZUERST, bevor Datei gelesen wird (DoS-Schutz)
         portal_user = get_portal_user(request)
         if not portal_user and not request.user.is_authenticated:
-            return JsonResponse({"error": "Nicht authentifiziert"}, status=401)
+            return JsonResponse({"error": _('Nicht authentifiziert')}, status=401)
 
         room = get_object_or_404(MeetingRoom, token=token, is_active=True)
         lesson = room.lesson
@@ -69,11 +69,11 @@ class MeetingDocumentUploadView(View):
             ok = False
 
         if not ok:
-            return JsonResponse({"error": "Kein Zugriff"}, status=403)
+            return JsonResponse({"error": _('Kein Zugriff')}, status=403)
 
         file = request.FILES.get("file")
         if not file:
-            return JsonResponse({"error": "Keine Datei"}, status=400)
+            return JsonResponse({"error": _('Keine Datei')}, status=400)
 
         _ALLOWED_MEETING_EXTENSIONS = {
             ".pdf",
@@ -93,11 +93,11 @@ class MeetingDocumentUploadView(View):
 
         ext = os.path.splitext(file.name)[1].lower()
         if ext not in _ALLOWED_MEETING_EXTENSIONS:
-            return JsonResponse({"error": "File type not allowed."}, status=400)
+            return JsonResponse({"error": _('File type not allowed.')}, status=400)
         if not validate_file_magic(file, ext):
-            return JsonResponse({"error": "File type not allowed."}, status=400)
+            return JsonResponse({"error": _('File type not allowed.')}, status=400)
         if file.size > _MAX_UPLOAD_SIZE:
-            return JsonResponse({"error": "File too large (max 50 MB)."}, status=400)
+            return JsonResponse({"error": _('File too large (max 50 MB).')}, status=400)
 
         name = sanitize_doc_name(request.POST.get("name", "").strip() or file.name)
         doc = SessionDocument.objects.create(session=lesson, file=file, name=name)
@@ -198,7 +198,7 @@ class MeetingDocumentDeleteView(View):
             ok = False
 
         if not ok:
-            return JsonResponse({"error": "Kein Zugriff"}, status=403)
+            return JsonResponse({"error": _('Kein Zugriff')}, status=403)
 
         doc = get_object_or_404(SessionDocument, pk=doc_pk, session=lesson)
         doc.file.delete(save=False)
@@ -276,7 +276,7 @@ class MeetingRoomView(View):
                 parent=portal_user, contract=lesson.contract, is_active=True
             ).exists()
             if not has_access:
-                return HttpResponseForbidden("Kein Zugriff auf dieses Meeting.")
+                return HttpResponseForbidden(_('Kein Zugriff auf dieses Meeting.'))
 
             # Ein-Kind-Konto: eigener Name + eigene Stunden-URL.
             # Familien-Konto (0 oder 2+ Kinder): Name des Kontoinhabers + Familienübersicht.

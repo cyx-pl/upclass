@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}
 {% load i18n %}
 
-{% block title %}Nachrichten – Preceptly{% endblock %}
+{% block title %}{% blocktrans %}Nachrichten – Preceptly{% endblocktrans %}{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -120,35 +120,35 @@
 
 {% block content %}
 <div class="btn-group">
-    <a class="btn btn-secondary" href="{% url 'core:tutor_messages_overview' %}">← Alle Nachrichten</a>
-    <a class="btn btn-secondary" href="{% url 'contracts:detail' student.pk %}">Schülerprofil</a>
+    <a class="btn btn-secondary" href="{% url 'core:tutor_messages_overview' %}">{% blocktrans %}← Alle Nachrichten{% endblocktrans %}</a>
+    <a class="btn btn-secondary" href="{% url 'contracts:detail' student.pk %}">{% blocktrans %}Schülerprofil{% endblocktrans %}</a>
 </div>
 
-<h1>{{ student.full_name }} – Nachrichten</h1>
+<h1>{{ student.full_name }} {% blocktrans %}– Nachrichten{% endblocktrans %}</h1>
 
 <div class="chat-wrap">
     <div class="chat-header">
-        💬 Chat mit {{ student.full_name }}
-        {% if chat_messages %}&nbsp;· {{ chat_messages|length }} Nachricht{% if chat_messages|length != 1 %}en{% endif %}{% endif %}
+        {% blocktrans %}💬 Chat mit{% endblocktrans %} {{ student.full_name }}
+        {% if chat_messages %}{% blocktrans %}&nbsp;·{% endblocktrans %} {% blocktrans count counter=chat_messages|length %}{{ counter }} message{% plural %}{{ counter }} messages{% endblocktrans %}{% endif %}
     </div>
-    <ul role="list" aria-label="Nachrichtenverlauf" class="chat-scroll" id="chat-scroll" style="list-style: none; margin: 0; padding: 20px 16px;">
+    <ul role="list" aria-label="{% blocktrans %}Nachrichtenverlauf{% endblocktrans %}" class="chat-scroll" id="chat-scroll" style="list-style: none; margin: 0; padding: 20px 16px;">
     {% if chat_messages %}
         {% for msg in chat_messages %}
         <li class="chat-msg {% if msg.sender_is_tutor %}tutor{% else %}portal-user{% endif %}">
             <div class="chat-bubble">
-                {% if msg.sender_is_tutor %}<span class="sr-only">Gesendet:</span>{% else %}<span class="sr-only">Empfangen:</span>{% endif %}
+                {% if msg.sender_is_tutor %}<span class="sr-only">{% blocktrans %}Gesendet:{% endblocktrans %}</span>{% else %}<span class="sr-only">{% blocktrans %}Empfangen:{% endblocktrans %}</span>{% endif %}
                 {{ msg.text }}
             </div>
             <div class="chat-meta">
-                {% if msg.sender_is_tutor %}Du{% else %}{{ msg.sender_portal_user }}{% endif %}
-                &middot; {{ msg.created_at|date:"d.m.Y" }}, {{ msg.created_at|time:"H:i" }} Uhr
+                {% if msg.sender_is_tutor %}{% blocktrans %}Du{% endblocktrans %}{% else %}{{ msg.sender_portal_user }}{% endif %}
+                &middot; {{ msg.created_at|date:"d.m.Y" }}, {{ msg.created_at|time:"H:i" }} {% blocktrans %}Uhr{% endblocktrans %}
             </div>
         </li>
         {% endfor %}
     {% else %}
         <li class="chat-empty">
             <p style="font-size:1.8em; margin-bottom:8px;">💬</p>
-            <p>Noch keine Nachrichten.<br>Schreibe die erste!</p>
+            <p>{% blocktrans %}Noch keine Nachrichten.{% endblocktrans %}<br>{% blocktrans %}Schreibe die erste!{% endblocktrans %}</p>
         </li>
     {% endif %}
     </ul>
@@ -157,9 +157,9 @@
 <div class="compose-wrap">
     <form method="post">
         {% csrf_token %}
-        <label for="id_body">Neue Nachricht</label>
-        <textarea id="id_body" name="body" placeholder="Nachricht eingeben …" required aria-required="true" aria-label="Neue Nachricht an {{ student.full_name }}"></textarea>
-        <button type="submit" class="btn">Senden</button>
+        <label for="id_body">{% blocktrans %}Neue Nachricht{% endblocktrans %}</label>
+        <textarea id="id_body" name="body" placeholder="{% blocktrans %}Nachricht eingeben …{% endblocktrans %}" required aria-required="true" aria-label="Neue Nachricht an {{ student.full_name }}"></textarea>
+        <button type="submit" class="btn">{% blocktrans %}Senden{% endblocktrans %}</button>
     </form>
 </div>
 {% endblock %}

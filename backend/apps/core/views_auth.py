@@ -1,7 +1,6 @@
 """
 Authentication views for login, logout, and registration.
 """
-
 import logging
 import re
 import unicodedata
@@ -17,6 +16,7 @@ from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 from django.views.generic import CreateView
 
 from apps.core.auth_throttle import (
@@ -155,7 +155,7 @@ class RegisterView(CreateView):
         run_in_background(
             f"Registrierungs-Benachrichtigung für {safe_username}",
             send_mail,
-            subject=f"[Preceptly] Neue Registrierung: {safe_username}",
+            subject=_('[Preceptly] Neue Registrierung: {value0}').format(value0=safe_username),
             message=plain_message,
             from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=[recipient],

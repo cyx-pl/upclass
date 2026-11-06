@@ -347,25 +347,25 @@
         <div class="lp-icon">🔗</div>
         <h3>{% trans "Booking in the portal" %}</h3>
         <p>{% trans "Students and parents book, reschedule and cancel lessons themselves in the portal — within your working hours." %}</p>
-        <span class="lp-badge">Premium</span>
+        <span class="lp-badge">{% blocktrans %}Premium{% endblocktrans %}</span>
       </div>
       <div class="lp-card">
         <div class="lp-icon">👤</div>
         <h3>{% trans "Student & Parent Portal" %}</h3>
         <p>{% trans "Students and parents get their own login. They can view lessons, send messages, access documents, and see progress notes." %}</p>
-        <span class="lp-badge">Premium</span>
+        <span class="lp-badge">{% blocktrans %}Premium{% endblocktrans %}</span>
       </div>
       <div class="lp-card">
         <div class="lp-icon">🎥</div>
         <h3>{% trans "Integrated Meeting Rooms" %}</h3>
         <p>{% trans "Start a video session directly from a lesson — no external tool needed. Students join via the portal or a link." %}</p>
-        <span class="lp-badge">Premium</span>
+        <span class="lp-badge">{% blocktrans %}Premium{% endblocktrans %}</span>
       </div>
       <div class="lp-card">
         <div class="lp-icon">🤖</div>
         <h3>{% trans "AI Lesson Plans" %}</h3>
         <p>{% trans "Generate structured lesson plans with AI — privacy-first, student data stays on your device." %}</p>
-        <span class="lp-badge">Premium</span>
+        <span class="lp-badge">{% blocktrans %}Premium{% endblocktrans %}</span>
       </div>
     </div>
   </div>
@@ -463,14 +463,14 @@
   <div class="lp-demo-box">
     <div class="lp-demo-creds">
       <div class="lp-demo-cred-block">
-        <strong>Premium Demo</strong>
-        <span>{% trans "User" %}: <code>demo_premium</code></span><br>
-        <span>{% trans "Password" %}: <code>demo123</code></span>
+        <strong>{% blocktrans %}Premium Demo{% endblocktrans %}</strong>
+        <span>{% trans "User" %}: <code>{% blocktrans %}demo_premium{% endblocktrans %}</code></span><br>
+        <span>{% trans "Password" %}: <code>{% blocktrans %}demo123{% endblocktrans %}</code></span>
       </div>
       <div class="lp-demo-cred-block">
-        <strong>Basic Demo</strong>
-        <span>{% trans "User" %}: <code>demo_user</code></span><br>
-        <span>{% trans "Password" %}: <code>demo123</code></span>
+        <strong>{% blocktrans %}Basic Demo{% endblocktrans %}</strong>
+        <span>{% trans "User" %}: <code>{% blocktrans %}demo_user{% endblocktrans %}</code></span><br>
+        <span>{% trans "Password" %}: <code>{% blocktrans %}demo123{% endblocktrans %}</code></span>
       </div>
     </div>
     <a href="{% url 'core:login' %}" class="btn">{% trans "Open Demo" %}</a>

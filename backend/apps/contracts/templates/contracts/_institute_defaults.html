@@ -1,3 +1,5 @@
+
+{% load i18n %}
 {% load static %}{# Standardwerte der Institute für das Schüler-Formular, nur bei neuen Schülern (siehe ContractForm). #}
 {% if form.institute_defaults %}
 {{ form.institute_defaults|json_script:"institute-defaults" }}

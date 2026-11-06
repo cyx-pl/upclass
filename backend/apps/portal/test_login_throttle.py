@@ -12,6 +12,7 @@ PROXY = "100.64.0.5"
 
 
 @override_settings(TRUSTED_PROXIES=["100.64.0.0/10"])
+@override_settings(LANGUAGE_CODE="de")
 class PortalLoginAccountThrottleTest(TestCase):
     def setUp(self):
         cache.clear()

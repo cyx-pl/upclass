@@ -1,31 +1,32 @@
+
+{% load i18n %}
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"><title>Preceptly Portal-Zugang</title></head>
+<head><meta charset="utf-8"><title>{% blocktrans %}Preceptly Portal-Zugang{% endblocktrans %}</title></head>
 <body style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
   <div style="text-align: center; margin-bottom: 30px;">
     <h1 style="color: #0d8069; font-size: 24px;">Preceptly</h1>
   </div>
-  <h2>{% if role == "parent" %}Dein Eltern-Portal-Zugang{% else %}Dein Portal-Zugang{% endif %}</h2>
+  <h2>{% if role == "parent" %}{% blocktrans %}Dein Eltern-Portal-Zugang{% endblocktrans %}{% else %}{% blocktrans %}Dein Portal-Zugang{% endblocktrans %}{% endif %}</h2>
   <p>
-    {{ tutor_name }} hat dir deine Zugangsdaten für das Preceptly-Portal geschickt.
-    Melde dich einfach mit deiner E-Mail-Adresse und deinem Passwort an.
+    {{ tutor_name }} {% blocktrans %}hat dir deine Zugangsdaten für das Preceptly-Portal geschickt. Melde dich einfach mit deiner E-Mail-Adresse und deinem Passwort an.{% endblocktrans %}
   </p>
   <p style="background: #f8f9fa; border-radius: 6px; padding: 12px; font-size: 0.95em;">
-    <strong>E-Mail:</strong> {{ recipient_email }}<br>
-    <strong>Passwort:</strong> dein selbst gewähltes Passwort
+    <strong>{% blocktrans %}E-Mail:{% endblocktrans %}</strong> {{ recipient_email }}<br>
+    <strong>{% blocktrans %}Passwort:{% endblocktrans %}</strong> {% blocktrans %}dein selbst gewähltes Passwort{% endblocktrans %}
   </p>
   <div style="text-align: center; margin: 30px 0;">
     <a href="{{ login_url }}"
        style="background: #0d8069; color: white; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-size: 16px; display: inline-block;">
-      Zum Portal-Login
+      {% blocktrans %}Zum Portal-Login{% endblocktrans %}
     </a>
   </div>
   <p style="color: #666; font-size: 14px;">
-    Passwort vergessen? <a href="{{ password_reset_url }}" style="color: #0d8069;">Hier zurücksetzen</a>
+    {% blocktrans %}Passwort vergessen?{% endblocktrans %} <a href="{{ password_reset_url }}" style="color: #0d8069;">{% blocktrans %}Hier zurücksetzen{% endblocktrans %}</a>
   </p>
   <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
   <p style="color: #999; font-size: 12px; text-align: center;">
-    Preceptly — Nachhilfe-Management<br>
+    {% blocktrans %}Preceptly — Nachhilfe-Management{% endblocktrans %}<br>
     <a href="{{ site_url }}" style="color: #999;">{{ site_url }}</a>
   </p>
 </body>

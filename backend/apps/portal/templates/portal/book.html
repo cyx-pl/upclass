@@ -1,7 +1,9 @@
 {% extends "portal/base.html" %}
+{% load i18n %}
+
 {% load static %}
 
-{% block title %}Termin buchen – Preceptly Portal{% endblock %}
+{% block title %}{% blocktrans %}Termin buchen – Preceptly Portal{% endblocktrans %}{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/week-picker.css' %}">
@@ -24,20 +26,20 @@
 {% endblock %}
 
 {% block content %}
-<h1>Termin buchen</h1>
-<p style="color:var(--text-secondary);">Schüler: <strong>{{ student.full_name }}</strong>
-{% if contract %} &middot; Einheit: {{ contract.unit_duration_minutes }} Min.{% endif %}</p>
+<h1>{% blocktrans %}Termin buchen{% endblocktrans %}</h1>
+<p style="color:var(--text-secondary);">{% blocktrans %}Schüler:{% endblocktrans %} <strong>{{ student.full_name }}</strong>
+{% if contract %} {% blocktrans %}&middot; Einheit:{% endblocktrans %} {{ contract.unit_duration_minutes }} {% blocktrans %}Min.{% endblocktrans %}{% endif %}</p>
 
 {% if error %}<div class="alert-danger">{{ error }}</div>{% endif %}
 {% if success %}<div class="alert-success">{{ success }}</div>{% endif %}
 
 {% if not contract %}
-<div class="alert-warning">Kein aktiver Vertrag vorhanden. Bitte den Nachhilfelehrer kontaktieren.</div>
+<div class="alert-warning">{% blocktrans %}Kein aktiver Vertrag vorhanden. Bitte den Nachhilfelehrer kontaktieren.{% endblocktrans %}</div>
 {% elif booking_blocked %}
 <div class="alert-warning">{{ booking_blocked_message }}</div>
 {% else %}
-<h2 style="margin-top:0;">Tag wählen</h2>
-<p style="color:var(--text-secondary); font-size:0.9em; margin-top:-8px;">Tippe auf einen Tag. Darunter erscheinen die freien Uhrzeiten zum Anklicken.</p>
+<h2 style="margin-top:0;">{% blocktrans %}Tag wählen{% endblocktrans %}</h2>
+<p style="color:var(--text-secondary); font-size:0.9em; margin-top:-8px;">{% blocktrans %}Tippe auf einen Tag. Darunter erscheinen die freien Uhrzeiten zum Anklicken.{% endblocktrans %}</p>
 {% include "portal/_buffer_hint.html" %}
 {% include "portal/_week_calendar_widget.html" with nav_url_name="portal:book" nav_pk=student.pk %}
 
@@ -45,35 +47,35 @@
   <form method="post" id="booking-form">
     {% csrf_token %}
     <div style="margin-bottom:16px;">
-      <label for="id_date" style="display:block; margin-bottom:4px; color:var(--text-secondary); font-size:0.88em;">Datum wählen</label>
+      <label for="id_date" style="display:block; margin-bottom:4px; color:var(--text-secondary); font-size:0.88em;">{% blocktrans %}Datum wählen{% endblocktrans %}</label>
       <input type="date" id="id_date" name="date" min="{{ today }}" required
         style="padding:8px 12px; border:1px solid var(--border-color); border-radius:4px; background:var(--bg-primary); color:var(--text-primary); font-size:0.95em;">
     </div>
 
     <div style="margin-bottom:16px;">
-      <label style="display:block; margin-bottom:4px; color:var(--text-secondary); font-size:0.88em;">Freie Uhrzeiten</label>
+      <label style="display:block; margin-bottom:4px; color:var(--text-secondary); font-size:0.88em;">{% blocktrans %}Freie Uhrzeiten{% endblocktrans %}</label>
       {% include "portal/_buffer_hint.html" with compact=True %}
       <div class="tz-note" id="tz-note" style="display:none;"></div>
-      <div class="slot-grid" id="slot-grid" aria-live="polite" aria-label="Verfügbare Zeitslots">
-        <span class="slot-empty">Bitte zuerst einen Tag auswählen.</span>
+      <div class="slot-grid" id="slot-grid" aria-live="polite" aria-label="{% blocktrans %}Verfügbare Zeitslots{% endblocktrans %}">
+        <span class="slot-empty">{% blocktrans %}Bitte zuerst einen Tag auswählen.{% endblocktrans %}</span>
       </div>
       <input type="hidden" id="id_start_time" name="start_time" required>
     </div>
 
     <div style="margin-bottom:20px;">
-      <label for="id_topic" style="display:block; margin-bottom:4px; color:var(--text-secondary); font-size:0.88em;">Thema / Nachricht (optional)</label>
-      <input type="text" id="id_topic" name="topic" placeholder="z. B. Quadratische Gleichungen"
+      <label for="id_topic" style="display:block; margin-bottom:4px; color:var(--text-secondary); font-size:0.88em;">{% blocktrans %}Thema / Nachricht (optional){% endblocktrans %}</label>
+      <input type="text" id="id_topic" name="topic" placeholder="{% blocktrans %}z. B. Quadratische Gleichungen{% endblocktrans %}"
         style="width:100%; padding:8px 12px; border:1px solid var(--border-color); border-radius:4px; background:var(--bg-primary); color:var(--text-primary); font-size:0.95em;">
     </div>
 
-    <button type="submit" class="btn-login" id="submit-btn" aria-describedby="submit-hint" disabled>Termin buchen</button>
-    <p id="submit-hint" class="slot-empty" style="margin:8px 0 0;">Wähle zuerst einen Tag und eine Uhrzeit, dann kannst du buchen.</p>
+    <button type="submit" class="btn-login" id="submit-btn" aria-describedby="submit-hint" disabled>{% blocktrans %}Termin buchen{% endblocktrans %}</button>
+    <p id="submit-hint" class="slot-empty" style="margin:8px 0 0;">{% blocktrans %}Wähle zuerst einen Tag und eine Uhrzeit, dann kannst du buchen.{% endblocktrans %}</p>
   </form>
 </div>
 
 <div style="margin-top:16px;">
-  <a href="{% url 'portal:recurring_create' student.pk %}" class="btn-sm btn-sm-secondary">↻ Serientermin erstellen</a>
-  <a href="{% url 'portal:recurring_manage' student.pk %}" class="btn-sm btn-sm-secondary" style="margin-left:8px;">Serientermine verwalten</a>
+  <a href="{% url 'portal:recurring_create' student.pk %}" class="btn-sm btn-sm-secondary">{% blocktrans %}↻ Serientermin erstellen{% endblocktrans %}</a>
+  <a href="{% url 'portal:recurring_manage' student.pk %}" class="btn-sm btn-sm-secondary" style="margin-left:8px;">{% blocktrans %}Serientermine verwalten{% endblocktrans %}</a>
 </div>
 {% endif %}
 {% endblock %}
@@ -109,7 +111,7 @@
 
   // Formatiert einen UTC-Zeitstempel in tz als "HH:MM"
   function fmtInTz(utcMs, tz) {
-    return new Intl.DateTimeFormat('de-DE', {
+    return new Intl.DateTimeFormat(document.documentElement.lang || 'pl', {
       timeZone: tz, hour: '2-digit', minute: '2-digit', hour12: false
     }).format(new Date(utcMs));
   }
@@ -135,7 +137,7 @@
         if (tzNote) {
           if (tzDiffers) {
             tzNote.style.display = '';
-            tzNote.textContent = 'Zeiten in deiner Ortszeit (' + userTz + '). Tutor-Zeitzone: ' + tutorTz + '.';
+            tzNote.textContent = '{% filter escapejs %}{% blocktrans %}Zeiten in deiner Ortszeit ({% endblocktrans %}{% endfilter %}' + userTz + '). Tutor-Zeitzone: ' + tutorTz + '.';
           } else {
             tzNote.style.display = 'none';
           }

@@ -1,102 +1,102 @@
 {% extends "core/base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Terms of Service" %} - Preceptly{% endblock %}
+{% block title %}{% trans "Terms of Service" %} {% blocktrans %}- Preceptly{% endblocktrans %}{% endblock %}
 
 {% block content %}
 {% include "legal/_style.html" %}
 {% get_current_language as LANGUAGE_CODE %}
 <div class="legal-page">
 {% if LANGUAGE_CODE == "de" %}
-<h1>Allgemeine Geschäftsbedingungen</h1>
-<p>für die Erbringung von Dienstleistungen von andicode, Preceptly, Birkenweg 7, 49577 Ankum, E-Mail: info@preceptly.de (nachfolgend „Auftragnehmer") gegenüber seinen Kunden (nachfolgend „Auftraggeber")</p>
-<h2>1. Allgemeines</h2>
-<p>1.1 Diese AGB gelten für Verträge, die zwischen dem Auftraggeber und dem Auftragnehmer unter Einbeziehung dieser AGB geschlossen werden.</p>
-<p>1.2 Soweit neben diesen AGB weitere Vertragsdokumente Vertragsbestandteil geworden sind, gehen deren Regelungen im Widerspruchsfalle vor.</p>
-<p>1.3 Abweichende AGB des Auftraggebers erkennt der Auftragnehmer – vorbehaltlich ausdrücklicher Zustimmung – nicht an.</p>
-<h2>2. Vertragsgegenstand und Leistungsumfang</h2>
-<p>2.1 Der Auftragnehmer erbringt folgende Leistungen: Bereitstellung einer webbasierten Software (SaaS) zur Verwaltung von Nachhilfestunden, Schülern, Verträgen, Terminen und Abrechnungen für selbstständige Nachhilfelehrer.</p>
-<p>2.2 Der spezifische Leistungsumfang ist Gegenstand von Individualvereinbarungen.</p>
-<p>2.3 Die Leistungen werden mit größtmöglicher Sorgfalt nach dem jeweils neuesten Stand erbracht.</p>
-<p>2.4 Der Auftragnehmer ist bei der Durchführung weisungsfrei, stimmt sich jedoch mit dem Auftraggeber ab.</p>
-<h2>3. Mitwirkungspflichten des Auftraggebers</h2>
-<p>Der Auftraggeber stellt alle erforderlichen Informationen vollständig und korrekt zur Verfügung. Verzögerungen durch verspätete Mitwirkung gehen nicht zu Lasten des Auftragnehmers.</p>
-<h2>4. Vergütung</h2>
-<p>4.1 Preceptly steht in einem kostenfreien Basisumfang (Free) zur Verfügung. Darüber hinaus werden folgende kostenpflichtige Abonnements angeboten:</p>
+<h1>{% blocktrans %}Allgemeine Geschäftsbedingungen{% endblocktrans %}</h1>
+<p>{% blocktrans %}für die Erbringung von Dienstleistungen von andicode, Preceptly, Birkenweg 7, 49577 Ankum, E-Mail: info@preceptly.de (nachfolgend „Auftragnehmer") gegenüber seinen Kunden (nachfolgend „Auftraggeber"){% endblocktrans %}</p>
+<h2>{% blocktrans %}1. Allgemeines{% endblocktrans %}</h2>
+<p>{% blocktrans %}1.1 Diese AGB gelten für Verträge, die zwischen dem Auftraggeber und dem Auftragnehmer unter Einbeziehung dieser AGB geschlossen werden.{% endblocktrans %}</p>
+<p>{% blocktrans %}1.2 Soweit neben diesen AGB weitere Vertragsdokumente Vertragsbestandteil geworden sind, gehen deren Regelungen im Widerspruchsfalle vor.{% endblocktrans %}</p>
+<p>{% blocktrans %}1.3 Abweichende AGB des Auftraggebers erkennt der Auftragnehmer – vorbehaltlich ausdrücklicher Zustimmung – nicht an.{% endblocktrans %}</p>
+<h2>{% blocktrans %}2. Vertragsgegenstand und Leistungsumfang{% endblocktrans %}</h2>
+<p>{% blocktrans %}2.1 Der Auftragnehmer erbringt folgende Leistungen: Bereitstellung einer webbasierten Software (SaaS) zur Verwaltung von Nachhilfestunden, Schülern, Verträgen, Terminen und Abrechnungen für selbstständige Nachhilfelehrer.{% endblocktrans %}</p>
+<p>{% blocktrans %}2.2 Der spezifische Leistungsumfang ist Gegenstand von Individualvereinbarungen.{% endblocktrans %}</p>
+<p>{% blocktrans %}2.3 Die Leistungen werden mit größtmöglicher Sorgfalt nach dem jeweils neuesten Stand erbracht.{% endblocktrans %}</p>
+<p>{% blocktrans %}2.4 Der Auftragnehmer ist bei der Durchführung weisungsfrei, stimmt sich jedoch mit dem Auftraggeber ab.{% endblocktrans %}</p>
+<h2>{% blocktrans %}3. Mitwirkungspflichten des Auftraggebers{% endblocktrans %}</h2>
+<p>{% blocktrans %}Der Auftraggeber stellt alle erforderlichen Informationen vollständig und korrekt zur Verfügung. Verzögerungen durch verspätete Mitwirkung gehen nicht zu Lasten des Auftragnehmers.{% endblocktrans %}</p>
+<h2>{% blocktrans %}4. Vergütung{% endblocktrans %}</h2>
+<p>{% blocktrans %}4.1 Preceptly steht in einem kostenfreien Basisumfang (Free) zur Verfügung. Darüber hinaus werden folgende kostenpflichtige Abonnements angeboten:{% endblocktrans %}</p>
 <ul>
-    <li><strong>Starter:</strong> € 4,99 pro Monat</li>
-    <li><strong>Pro:</strong> € 9,99 pro Monat</li>
-    <li><strong>Business:</strong> € 19,99 pro Monat</li>
+    <li><strong>{% blocktrans %}Starter:{% endblocktrans %}</strong> {% blocktrans %}€ 4,99 pro Monat{% endblocktrans %}</li>
+    <li><strong>{% blocktrans %}Pro:{% endblocktrans %}</strong> {% blocktrans %}€ 9,99 pro Monat{% endblocktrans %}</li>
+    <li><strong>{% blocktrans %}Business:{% endblocktrans %}</strong> {% blocktrans %}€ 19,99 pro Monat{% endblocktrans %}</li>
 </ul>
-<p>4.2 Die Abo-Gebühren werden jeweils im Voraus zu Beginn des jeweiligen Abrechnungsmonats fällig und automatisch über den Zahlungsdienstleister Stripe eingezogen.</p>
-<p>4.3 Das Abonnement verlängert sich automatisch um jeweils einen Monat, sofern es nicht rechtzeitig gekündigt wird.</p>
-<p>4.4 Die Kündigung ist jederzeit zum Ende des laufenden Abrechnungszeitraums möglich. Eine anteilige Rückerstattung für bereits bezahlte Zeiträume erfolgt nicht, es sei denn, gesetzliche Vorschriften gebieten dies.</p>
-<p>4.5 Preisänderungen werden dem Auftraggeber mindestens vier Wochen vor Inkrafttreten per E-Mail angekündigt. Widerspricht der Auftraggeber nicht binnen der gesetzten Frist, gilt die Zustimmung als erteilt.</p>
-<h2>5. Haftung / Freistellung</h2>
-<p>5.1 Der Auftragnehmer haftet unbeschränkt bei Vorsatz, grober Fahrlässigkeit sowie Verletzung von Leben, Körper oder Gesundheit. Bei fahrlässiger Verletzung wesentlicher Vertragspflichten ist die Haftung auf den typischen, vorhersehbaren Schaden begrenzt. Im Übrigen ist die Haftung ausgeschlossen.</p>
-<p>5.2 Der Auftraggeber stellt den Auftragnehmer von Ansprüchen Dritter frei, die aus Verstößen gegen diese AGB oder geltendes Recht resultieren.</p>
-<h2>6. Vertragsdauer und Kündigung</h2>
-<p>6.1 Der kostenfreie Tarif (Free) wird auf unbestimmte Zeit geschlossen und kann vom Auftraggeber jederzeit ohne Einhaltung einer Kündigungsfrist beendet werden.</p>
-<p>6.2 Kostenpflichtige Abonnements werden auf Monatsbasis geschlossen. Laufzeit und Kündigungsbedingungen richten sich nach § 4.3 und § 4.4.</p>
-<p>6.3 Das Recht zur fristlosen Kündigung aus wichtigem Grund bleibt unberührt.</p>
-<p>6.4 Nach Vertragsbeendigung werden die gespeicherten Daten nach Ablauf der gesetzlichen Aufbewahrungsfristen gelöscht, sofern der Auftraggeber keine frühere Löschung beantragt. Eine frühere Löschung kann jederzeit per E-Mail an <a href="mailto:info@preceptly.de">info@preceptly.de</a> beantragt werden.</p>
-<h2>7. Vertraulichkeit und Datenschutz</h2>
-<p>7.1 Der Auftragnehmer behandelt alle erlangten Informationen streng vertraulich – zeitlich unbegrenzt über die Vertragsdauer hinaus.</p>
-<p>7.2 Der Auftragnehmer hält alle datenschutzrechtlichen Vorschriften, insbesondere DSGVO und BDSG, ein.</p>
-<h2>8. Schlussbestimmungen</h2>
-<p>8.1 Es gilt deutsches Recht unter Ausschluss des CISG.</p>
-<p>8.2 Unwirksame Bestimmungen berühren die Gültigkeit der übrigen AGB nicht.</p>
-<p>8.3 Gerichtsstand für Kaufleute und juristische Personen des öffentlichen Rechts ist der Sitz des Auftragnehmers.</p>
-<p>8.4 Der Auftragnehmer ist berechtigt, diese AGB aus sachlich gerechtfertigten Gründen mit angemessener Frist zu ändern. Bestandskunden werden spätestens zwei Wochen vor Inkrafttreten per E-Mail informiert. Widerspricht der Bestandskunde nicht innerhalb der gesetzten Frist, gilt die Zustimmung als erteilt.</p>
-<h2>9. Informationen zur Verbraucherschlichtung</h2>
-<p>Der Anbieter ist nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
-<p>Unsere E-Mail-Adresse entnehmen Sie der Überschrift dieser AGB.</p>
-<p>Plattform der EU-Kommission zur Online-Streitbeilegung: <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr</a></p>
+<p>{% blocktrans %}4.2 Die Abo-Gebühren werden jeweils im Voraus zu Beginn des jeweiligen Abrechnungsmonats fällig und automatisch über den Zahlungsdienstleister Stripe eingezogen.{% endblocktrans %}</p>
+<p>{% blocktrans %}4.3 Das Abonnement verlängert sich automatisch um jeweils einen Monat, sofern es nicht rechtzeitig gekündigt wird.{% endblocktrans %}</p>
+<p>{% blocktrans %}4.4 Die Kündigung ist jederzeit zum Ende des laufenden Abrechnungszeitraums möglich. Eine anteilige Rückerstattung für bereits bezahlte Zeiträume erfolgt nicht, es sei denn, gesetzliche Vorschriften gebieten dies.{% endblocktrans %}</p>
+<p>{% blocktrans %}4.5 Preisänderungen werden dem Auftraggeber mindestens vier Wochen vor Inkrafttreten per E-Mail angekündigt. Widerspricht der Auftraggeber nicht binnen der gesetzten Frist, gilt die Zustimmung als erteilt.{% endblocktrans %}</p>
+<h2>{% blocktrans %}5. Haftung / Freistellung{% endblocktrans %}</h2>
+<p>{% blocktrans %}5.1 Der Auftragnehmer haftet unbeschränkt bei Vorsatz, grober Fahrlässigkeit sowie Verletzung von Leben, Körper oder Gesundheit. Bei fahrlässiger Verletzung wesentlicher Vertragspflichten ist die Haftung auf den typischen, vorhersehbaren Schaden begrenzt. Im Übrigen ist die Haftung ausgeschlossen.{% endblocktrans %}</p>
+<p>{% blocktrans %}5.2 Der Auftraggeber stellt den Auftragnehmer von Ansprüchen Dritter frei, die aus Verstößen gegen diese AGB oder geltendes Recht resultieren.{% endblocktrans %}</p>
+<h2>{% blocktrans %}6. Vertragsdauer und Kündigung{% endblocktrans %}</h2>
+<p>{% blocktrans %}6.1 Der kostenfreie Tarif (Free) wird auf unbestimmte Zeit geschlossen und kann vom Auftraggeber jederzeit ohne Einhaltung einer Kündigungsfrist beendet werden.{% endblocktrans %}</p>
+<p>{% blocktrans %}6.2 Kostenpflichtige Abonnements werden auf Monatsbasis geschlossen. Laufzeit und Kündigungsbedingungen richten sich nach § 4.3 und § 4.4.{% endblocktrans %}</p>
+<p>{% blocktrans %}6.3 Das Recht zur fristlosen Kündigung aus wichtigem Grund bleibt unberührt.{% endblocktrans %}</p>
+<p>{% blocktrans %}6.4 Nach Vertragsbeendigung werden die gespeicherten Daten nach Ablauf der gesetzlichen Aufbewahrungsfristen gelöscht, sofern der Auftraggeber keine frühere Löschung beantragt. Eine frühere Löschung kann jederzeit per E-Mail an{% endblocktrans %} <a href="mailto:info@preceptly.de">info@preceptly.de</a> {% blocktrans %}beantragt werden.{% endblocktrans %}</p>
+<h2>{% blocktrans %}7. Vertraulichkeit und Datenschutz{% endblocktrans %}</h2>
+<p>{% blocktrans %}7.1 Der Auftragnehmer behandelt alle erlangten Informationen streng vertraulich – zeitlich unbegrenzt über die Vertragsdauer hinaus.{% endblocktrans %}</p>
+<p>{% blocktrans %}7.2 Der Auftragnehmer hält alle datenschutzrechtlichen Vorschriften, insbesondere DSGVO und BDSG, ein.{% endblocktrans %}</p>
+<h2>{% blocktrans %}8. Schlussbestimmungen{% endblocktrans %}</h2>
+<p>{% blocktrans %}8.1 Es gilt deutsches Recht unter Ausschluss des CISG.{% endblocktrans %}</p>
+<p>{% blocktrans %}8.2 Unwirksame Bestimmungen berühren die Gültigkeit der übrigen AGB nicht.{% endblocktrans %}</p>
+<p>{% blocktrans %}8.3 Gerichtsstand für Kaufleute und juristische Personen des öffentlichen Rechts ist der Sitz des Auftragnehmers.{% endblocktrans %}</p>
+<p>{% blocktrans %}8.4 Der Auftragnehmer ist berechtigt, diese AGB aus sachlich gerechtfertigten Gründen mit angemessener Frist zu ändern. Bestandskunden werden spätestens zwei Wochen vor Inkrafttreten per E-Mail informiert. Widerspricht der Bestandskunde nicht innerhalb der gesetzten Frist, gilt die Zustimmung als erteilt.{% endblocktrans %}</p>
+<h2>{% blocktrans %}9. Informationen zur Verbraucherschlichtung{% endblocktrans %}</h2>
+<p>{% blocktrans %}Der Anbieter ist nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.{% endblocktrans %}</p>
+<p>{% blocktrans %}Unsere E-Mail-Adresse entnehmen Sie der Überschrift dieser AGB.{% endblocktrans %}</p>
+<p>{% blocktrans %}Plattform der EU-Kommission zur Online-Streitbeilegung:{% endblocktrans %} <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr</a></p>
 {% else %}
-<h1>Terms of Service</h1>
-<p>For the provision of services by andicode, Preceptly, Birkenweg 7, 49577 Ankum, Germany, E-Mail: info@preceptly.de (hereinafter "Provider") to its customers (hereinafter "Customer").</p>
-<h2>1. General</h2>
-<p>1.1 These Terms of Service apply to all contracts concluded between the Customer and the Provider incorporating these terms.</p>
-<p>1.2 Where additional contract documents form part of the agreement, their provisions take precedence in case of conflict.</p>
-<p>1.3 The Provider does not accept deviating terms of the Customer unless expressly agreed in writing.</p>
-<h2>2. Subject Matter and Scope</h2>
-<p>2.1 The Provider supplies the following services: a web-based software (SaaS) for managing tutoring sessions, students, contracts, appointments, and invoicing for self-employed tutors.</p>
-<p>2.2 The specific scope of services is subject to individual agreements.</p>
-<p>2.3 The Provider delivers services with the utmost care and diligence in accordance with the latest standards.</p>
-<p>2.4 The Provider is free to determine the manner, location, and timing of service delivery but coordinates with the Customer accordingly.</p>
-<h2>3. Customer Obligations</h2>
-<p>The Customer shall provide all information required for service delivery completely and accurately. Delays caused by the Customer's failure to cooperate are not attributable to the Provider.</p>
-<h2>4. Remuneration</h2>
-<p>4.1 Preceptly is available free of charge in a basic tier (Free). The following paid subscription plans are also offered:</p>
+<h1>{% blocktrans %}Terms of Service{% endblocktrans %}</h1>
+<p>{% blocktrans %}For the provision of services by andicode, Preceptly, Birkenweg 7, 49577 Ankum, Germany, E-Mail: info@preceptly.de (hereinafter "Provider") to its customers (hereinafter "Customer").{% endblocktrans %}</p>
+<h2>{% blocktrans %}1. General{% endblocktrans %}</h2>
+<p>{% blocktrans %}1.1 These Terms of Service apply to all contracts concluded between the Customer and the Provider incorporating these terms.{% endblocktrans %}</p>
+<p>{% blocktrans %}1.2 Where additional contract documents form part of the agreement, their provisions take precedence in case of conflict.{% endblocktrans %}</p>
+<p>{% blocktrans %}1.3 The Provider does not accept deviating terms of the Customer unless expressly agreed in writing.{% endblocktrans %}</p>
+<h2>{% blocktrans %}2. Subject Matter and Scope{% endblocktrans %}</h2>
+<p>{% blocktrans %}2.1 The Provider supplies the following services: a web-based software (SaaS) for managing tutoring sessions, students, contracts, appointments, and invoicing for self-employed tutors.{% endblocktrans %}</p>
+<p>{% blocktrans %}2.2 The specific scope of services is subject to individual agreements.{% endblocktrans %}</p>
+<p>{% blocktrans %}2.3 The Provider delivers services with the utmost care and diligence in accordance with the latest standards.{% endblocktrans %}</p>
+<p>{% blocktrans %}2.4 The Provider is free to determine the manner, location, and timing of service delivery but coordinates with the Customer accordingly.{% endblocktrans %}</p>
+<h2>{% blocktrans %}3. Customer Obligations{% endblocktrans %}</h2>
+<p>{% blocktrans %}The Customer shall provide all information required for service delivery completely and accurately. Delays caused by the Customer's failure to cooperate are not attributable to the Provider.{% endblocktrans %}</p>
+<h2>{% blocktrans %}4. Remuneration{% endblocktrans %}</h2>
+<p>{% blocktrans %}4.1 Preceptly is available free of charge in a basic tier (Free). The following paid subscription plans are also offered:{% endblocktrans %}</p>
 <ul>
-    <li><strong>Starter:</strong> € 4.99 per month</li>
-    <li><strong>Pro:</strong> € 9.99 per month</li>
-    <li><strong>Business:</strong> € 19.99 per month</li>
+    <li><strong>{% blocktrans %}Starter:{% endblocktrans %}</strong> {% blocktrans %}€ 4.99 per month{% endblocktrans %}</li>
+    <li><strong>{% blocktrans %}Pro:{% endblocktrans %}</strong> {% blocktrans %}€ 9.99 per month{% endblocktrans %}</li>
+    <li><strong>{% blocktrans %}Business:{% endblocktrans %}</strong> {% blocktrans %}€ 19.99 per month{% endblocktrans %}</li>
 </ul>
-<p>4.2 Subscription fees are due in advance at the beginning of each billing month and are collected automatically via the payment service provider Stripe.</p>
-<p>4.3 The subscription renews automatically on a monthly basis unless cancelled in time.</p>
-<p>4.4 Cancellation is possible at any time with effect from the end of the current billing period. No partial refund is provided for periods already paid, unless required by law.</p>
-<p>4.5 Price changes will be announced to the customer by e-mail at least four weeks before they take effect. If the customer does not object within the stated period, consent is deemed to have been given.</p>
-<h2>5. Liability / Indemnification</h2>
-<p>5.1 The Provider is liable without limitation for intent and gross negligence, and for injury to life, body, or health. For negligent breach of material obligations, liability is limited to foreseeable, typical damages. All other liability is excluded.</p>
-<p>5.2 The Customer shall indemnify the Provider against third-party claims arising from the Customer's breach of these terms or applicable law.</p>
-<h2>6. Contract Duration and Termination</h2>
-<p>6.1 The free tier (Free) is concluded for an indefinite period and may be terminated by the Customer at any time without notice.</p>
-<p>6.2 Paid subscriptions are concluded on a monthly basis. Duration and cancellation terms are governed by Sections 4.3 and 4.4.</p>
-<p>6.3 The right to terminate for cause without notice remains unaffected.</p>
-<p>6.4 After termination, stored data will be deleted upon expiry of applicable statutory retention periods, unless the Customer requests earlier deletion. Earlier deletion may be requested at any time by email to <a href="mailto:info@preceptly.de">info@preceptly.de</a>.</p>
-<h2>7. Confidentiality and Data Protection</h2>
-<p>7.1 The Provider treats all information obtained in connection with the contract as strictly confidential, without time limit beyond the contract period.</p>
-<p>7.2 The Provider complies with all applicable data protection regulations, including the GDPR and German Federal Data Protection Act.</p>
-<h2>8. Final Provisions</h2>
-<p>8.1 German law applies, excluding the CISG.</p>
-<p>8.2 Should any provision be invalid, the remaining provisions shall not be affected.</p>
-<p>8.3 The place of jurisdiction for merchants and legal entities under public law is the Provider's registered office.</p>
-<p>8.4 The Provider may amend these terms for legitimate reasons with reasonable notice. Existing customers will be notified by e-mail at least two weeks before changes take effect. Failure to object within the stated period constitutes acceptance.</p>
-<h2>9. Consumer Dispute Resolution</h2>
-<p>The Provider is neither willing nor obliged to participate in dispute resolution proceedings before a consumer arbitration board.</p>
-<p>Our e-mail address can be found in the header of these terms.</p>
-<p>EU Commission platform for online dispute resolution: <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr</a></p>
+<p>{% blocktrans %}4.2 Subscription fees are due in advance at the beginning of each billing month and are collected automatically via the payment service provider Stripe.{% endblocktrans %}</p>
+<p>{% blocktrans %}4.3 The subscription renews automatically on a monthly basis unless cancelled in time.{% endblocktrans %}</p>
+<p>{% blocktrans %}4.4 Cancellation is possible at any time with effect from the end of the current billing period. No partial refund is provided for periods already paid, unless required by law.{% endblocktrans %}</p>
+<p>{% blocktrans %}4.5 Price changes will be announced to the customer by e-mail at least four weeks before they take effect. If the customer does not object within the stated period, consent is deemed to have been given.{% endblocktrans %}</p>
+<h2>{% blocktrans %}5. Liability / Indemnification{% endblocktrans %}</h2>
+<p>{% blocktrans %}5.1 The Provider is liable without limitation for intent and gross negligence, and for injury to life, body, or health. For negligent breach of material obligations, liability is limited to foreseeable, typical damages. All other liability is excluded.{% endblocktrans %}</p>
+<p>{% blocktrans %}5.2 The Customer shall indemnify the Provider against third-party claims arising from the Customer's breach of these terms or applicable law.{% endblocktrans %}</p>
+<h2>{% blocktrans %}6. Contract Duration and Termination{% endblocktrans %}</h2>
+<p>{% blocktrans %}6.1 The free tier (Free) is concluded for an indefinite period and may be terminated by the Customer at any time without notice.{% endblocktrans %}</p>
+<p>{% blocktrans %}6.2 Paid subscriptions are concluded on a monthly basis. Duration and cancellation terms are governed by Sections 4.3 and 4.4.{% endblocktrans %}</p>
+<p>{% blocktrans %}6.3 The right to terminate for cause without notice remains unaffected.{% endblocktrans %}</p>
+<p>{% blocktrans %}6.4 After termination, stored data will be deleted upon expiry of applicable statutory retention periods, unless the Customer requests earlier deletion. Earlier deletion may be requested at any time by email to{% endblocktrans %} <a href="mailto:info@preceptly.de">info@preceptly.de</a>.</p>
+<h2>{% blocktrans %}7. Confidentiality and Data Protection{% endblocktrans %}</h2>
+<p>{% blocktrans %}7.1 The Provider treats all information obtained in connection with the contract as strictly confidential, without time limit beyond the contract period.{% endblocktrans %}</p>
+<p>{% blocktrans %}7.2 The Provider complies with all applicable data protection regulations, including the GDPR and German Federal Data Protection Act.{% endblocktrans %}</p>
+<h2>{% blocktrans %}8. Final Provisions{% endblocktrans %}</h2>
+<p>{% blocktrans %}8.1 German law applies, excluding the CISG.{% endblocktrans %}</p>
+<p>{% blocktrans %}8.2 Should any provision be invalid, the remaining provisions shall not be affected.{% endblocktrans %}</p>
+<p>{% blocktrans %}8.3 The place of jurisdiction for merchants and legal entities under public law is the Provider's registered office.{% endblocktrans %}</p>
+<p>{% blocktrans %}8.4 The Provider may amend these terms for legitimate reasons with reasonable notice. Existing customers will be notified by e-mail at least two weeks before changes take effect. Failure to object within the stated period constitutes acceptance.{% endblocktrans %}</p>
+<h2>{% blocktrans %}9. Consumer Dispute Resolution{% endblocktrans %}</h2>
+<p>{% blocktrans %}The Provider is neither willing nor obliged to participate in dispute resolution proceedings before a consumer arbitration board.{% endblocktrans %}</p>
+<p>{% blocktrans %}Our e-mail address can be found in the header of these terms.{% endblocktrans %}</p>
+<p>{% blocktrans %}EU Commission platform for online dispute resolution:{% endblocktrans %} <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr</a></p>
 {% endif %}
 </div>
 {% endblock %}

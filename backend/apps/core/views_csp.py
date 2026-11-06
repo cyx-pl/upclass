@@ -10,7 +10,6 @@ Absender. Deshalb: Länge begrenzt, pro Stunde höchstens MAX_DISTINCT_PER_HOUR
 verschiedene Meldungen im Cache — sonst könnte jemand mit erfundenen Berichten
 den gemeinsamen Cache vollschreiben, in dem auch die Zähler der Rate-Limits
 liegen."""
-
 import json
 import logging
 import re
@@ -18,6 +17,7 @@ from urllib.parse import urlsplit
 
 from django.core.cache import cache
 from django.http import HttpResponse, HttpResponseBadRequest
+from django.utils.translation import gettext_lazy as _
 from django.views.decorators.csrf import csrf_exempt
 from django_ratelimit.decorators import ratelimit
 
@@ -62,15 +62,15 @@ def _should_log(directive: str, blocked: str) -> bool:
 @ratelimit(key="ip", rate="30/m", method="POST", block=True)
 def csp_report(request):
     if request.method != "POST":
-        return HttpResponseBadRequest("POST erwartet")
+        return HttpResponseBadRequest(_('POST erwartet'))
     if len(request.body) > MAX_REPORT_BYTES:
-        return HttpResponseBadRequest("Bericht zu groß")
+        return HttpResponseBadRequest(_('Bericht zu groß'))
 
     try:
         payload = json.loads(request.body.decode("utf-8", "replace"))
         report = payload.get("csp-report") or {}
     except (ValueError, AttributeError):
-        return HttpResponseBadRequest("Kein gültiger Bericht")
+        return HttpResponseBadRequest(_('Kein gültiger Bericht'))
 
     directive = str(report.get("effective-directive") or report.get("violated-directive") or "?")
     blocked = str(report.get("blocked-uri") or "?")

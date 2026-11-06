@@ -1,14 +1,14 @@
-Preceptly — Portal-Einladung
+{% load i18n %}{% blocktrans %}Preceptly — Portal-Einladung{% endblocktrans %}
 ==============================
 
-{% if role == "parent" %}Du wurdest eingeladen, den Fortschritt von {{ student.full_name }} zu verfolgen.
+{% if role == "parent" %}{% blocktrans %}Du wurdest eingeladen, den Fortschritt von{% endblocktrans %} {{ student.full_name }} {% blocktrans %}zu verfolgen.{% endblocktrans %}
 
-{{ tutor_name }} hat einen Eltern-Portal-Zugang für dich erstellt.{% else %}Dein Portal-Zugang ist bereit.
+{{ tutor_name }} {% blocktrans %}hat einen Eltern-Portal-Zugang für dich erstellt.{% endblocktrans %}{% else %}{% blocktrans %}Dein Portal-Zugang ist bereit.{% endblocktrans %}
 
-{{ tutor_name }} hat einen Zugang für dich auf Preceptly erstellt.{% endif %}
+{{ tutor_name }} {% blocktrans %}hat einen Zugang für dich auf Preceptly erstellt.{% endblocktrans %}{% endif %}
 
-Aktiviere dein Konto hier:
+{% blocktrans %}Aktiviere dein Konto hier:{% endblocktrans %}
 {{ activate_url }}
 
 ---
-Preceptly — {{ site_url }}
+{% blocktrans %}Preceptly —{% endblocktrans %} {{ site_url }}

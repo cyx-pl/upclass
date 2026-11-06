@@ -1,5 +1,7 @@
+
+{% load i18n %}
 <footer style="text-align:center; padding:24px 16px 32px; font-size:0.85em; color:var(--text-secondary, #6b7280);">
-  <a href="{% url 'core:legal_imprint' %}" style="color:inherit;">Impressum</a>
-  <span aria-hidden="true">&nbsp;·&nbsp;</span>
-  <a href="{% url 'core:legal_privacy' %}" style="color:inherit;">Datenschutz</a>
+  <a href="{% url 'core:legal_imprint' %}" style="color:inherit;">{% blocktrans %}Impressum{% endblocktrans %}</a>
+  <span aria-hidden="true">{% blocktrans %}&nbsp;·&nbsp;{% endblocktrans %}</span>
+  <a href="{% url 'core:legal_privacy' %}" style="color:inherit;">{% blocktrans %}Datenschutz{% endblocktrans %}</a>
 </footer>

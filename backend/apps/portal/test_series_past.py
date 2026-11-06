@@ -8,6 +8,7 @@ vorbei, oder Startdatum zurück). Wie in test_week_jump_and_past.py ist "jetzt" 
 import datetime as dt
 from decimal import Decimal
 
+from django.test import override_settings
 from django.urls import reverse
 
 from apps.contracts.models import Contract
@@ -67,6 +68,7 @@ class SeriesPastFixture(NowFixture):
         return day.strftime("%d.%m.%Y")
 
 
+@override_settings(LANGUAGE_CODE="de")
 class PortalSeriesPastTest(SeriesPastFixture):
     def test_a_time_that_has_passed_today_is_left_out_and_the_rest_booked(self):
         with self.at(self.today, NOW_HOUR):

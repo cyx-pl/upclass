@@ -1,9 +1,10 @@
 """Portal-Anmeldeseite: Rückweg zum Tutor-Login und Layout auf dem Handy."""
 
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.urls import reverse
 
 
+@override_settings(LANGUAGE_CODE="de")
 class PortalLoginPageTest(TestCase):
     def test_links_back_to_the_tutor_login(self):
         response = self.client.get(reverse("portal:login"))

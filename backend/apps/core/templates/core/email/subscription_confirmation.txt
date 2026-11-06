@@ -1,27 +1,27 @@
-{% autoescape off %}Guten Tag,
+{% load i18n %}{% autoescape off %}{% blocktrans %}Guten Tag,{% endblocktrans %}
 
-vielen Dank für Ihr Abonnement bei Preceptly. Hiermit bestätigen wir den Abschluss Ihres Vertrags.
+{% blocktrans %}vielen Dank für Ihr Abonnement bei Preceptly. Hiermit bestätigen wir den Abschluss Ihres Vertrags.{% endblocktrans %}
 {% if plan %}
-Tarif: {{ plan }}{% endif %}{% if price %}
-Preis: {{ price }}{% if interval %} pro {{ interval }}{% endif %}{% endif %}{% if trial_end %}
-Kostenloser Testzeitraum bis: {{ trial_end|date:"d.m.Y" }} – die erste Zahlung erfolgt erst danach.{% endif %}
+{% blocktrans %}Tarif:{% endblocktrans %} {{ plan }}{% endif %}{% if price %}
+{% blocktrans %}Preis:{% endblocktrans %} {{ price }}{% if interval %} {% blocktrans %}pro{% endblocktrans %} {{ interval }}{% endif %}{% endif %}{% if trial_end %}
+{% blocktrans %}Kostenloser Testzeitraum bis:{% endblocktrans %} {{ trial_end|date:"d.m.Y" }} {% blocktrans %}– die erste Zahlung erfolgt erst danach.{% endblocktrans %}{% endif %}
 
-Das Abonnement verlängert sich automatisch und kann jederzeit zum Ende des laufenden Abrechnungszeitraums gekündigt werden – in Preceptly unter Einstellungen → Konto & Abo → „Abonnement verwalten“.
+{% blocktrans %}Das Abonnement verlängert sich automatisch und kann jederzeit zum Ende des laufenden Abrechnungszeitraums gekündigt werden – in Preceptly unter Einstellungen → Konto & Abo → „Abonnement verwalten“.{% endblocktrans %}
 {% if waiver_at %}
-Zustimmung zur sofortigen Vertragsausführung
-Beim Abschluss am {{ waiver_at|date:"d.m.Y" }} um {{ waiver_at|date:"H:i" }} Uhr haben Sie folgende Erklärung abgegeben:
+{% blocktrans %}Zustimmung zur sofortigen Vertragsausführung{% endblocktrans %}
+{% blocktrans %}Beim Abschluss am{% endblocktrans %} {{ waiver_at|date:"d.m.Y" }} {% blocktrans %}um{% endblocktrans %} {{ waiver_at|date:"H:i" }} {% blocktrans %}Uhr haben Sie folgende Erklärung abgegeben:{% endblocktrans %}
 
 „{{ waiver_text }}“
 {% endif %}
-Allgemeine Geschäftsbedingungen: {{ site_url }}/legal/terms/
-Widerrufsbelehrung: {{ site_url }}/legal/withdrawal/
-Datenschutzerklärung: {{ site_url }}/legal/privacy/
+{% blocktrans %}Allgemeine Geschäftsbedingungen:{% endblocktrans %} {{ site_url }}{% blocktrans %}/legal/terms/{% endblocktrans %}
+{% blocktrans %}Widerrufsbelehrung:{% endblocktrans %} {{ site_url }}{% blocktrans %}/legal/withdrawal/{% endblocktrans %}
+{% blocktrans %}Datenschutzerklärung:{% endblocktrans %} {{ site_url }}{% blocktrans %}/legal/privacy/{% endblocktrans %}
 
-Ihr Vertragspartner:
+{% blocktrans %}Ihr Vertragspartner:{% endblocktrans %}
 andicode / Preceptly, Inhaber Andreas Eirich
 Birkenweg 7, 49577 Ankum
 info@preceptly.de
 
-Viele Grüße
-Ihr Preceptly-Team
+{% blocktrans %}Viele Grüße{% endblocktrans %}
+{% blocktrans %}Ihr Preceptly-Team{% endblocktrans %}
 {% endautoescape %}

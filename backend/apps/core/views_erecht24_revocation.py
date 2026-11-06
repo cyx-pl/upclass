@@ -14,7 +14,6 @@ confirmation link to the address stored on the matched account (user.email,
 never the payload email). The Stripe cancellation happens only after the
 account owner confirms via POST on the tokenized confirmation page.
 """
-
 import hashlib
 import hmac
 import json
@@ -34,6 +33,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.dateparse import parse_datetime
 from django.utils.decorators import method_decorator
+from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django_ratelimit.decorators import ratelimit
@@ -152,7 +152,7 @@ def _send_confirmation_email(user, token: str) -> None:
     )
     try:
         send_mail(
-            subject="Widerruf für Ihr Preceptly-Abo – Bestätigung erforderlich",
+            subject=_('Widerruf für Ihr Preceptly-Abo – Bestätigung erforderlich'),
             message=body,
             from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=[user.email],
@@ -180,31 +180,31 @@ class Erecht24RevocationWebhookView(View):
             # verified, so none is accepted (analogous to the SECRET_KEY
             # pattern in settings.py).
             logger.error("ERECHT24_REVOCATION_WEBHOOK_SECRET not configured — rejecting webhook")
-            return JsonResponse({"code": 503, "message": "webhook not configured"}, status=503)
+            return JsonResponse({"code": 503, "message": _('webhook not configured')}, status=503)
 
         content_length = request.META.get("CONTENT_LENGTH")
         if content_length is not None:
             try:
                 if int(content_length) > MAX_WEBHOOK_BYTES:
-                    return JsonResponse({"code": 413, "message": "payload too large"}, status=413)
+                    return JsonResponse({"code": 413, "message": _('payload too large')}, status=413)
             except (ValueError, TypeError):
                 # Malformed Content-Length header - fall through to the real
                 # body-length check below instead of trusting the header.
                 logger.debug("Malformed Content-Length header: %r", content_length)
         body = request.body
         if len(body) > MAX_WEBHOOK_BYTES:
-            return JsonResponse({"code": 413, "message": "payload too large"}, status=413)
+            return JsonResponse({"code": 413, "message": _('payload too large')}, status=413)
 
         signature = request.headers.get("X-Webhook-Signature", "")
         if not _verify_signature(body, signature, secret):
-            return JsonResponse({"code": 403, "message": "invalid signature"}, status=403)
+            return JsonResponse({"code": 403, "message": _('invalid signature')}, status=403)
 
         try:
             parsed = json.loads(body.decode("utf-8"))
         except (ValueError, UnicodeDecodeError):
-            return JsonResponse({"code": 400, "message": "invalid json"}, status=400)
+            return JsonResponse({"code": 400, "message": _('invalid json')}, status=400)
         if not isinstance(parsed, dict):
-            return JsonResponse({"code": 400, "message": "invalid payload"}, status=400)
+            return JsonResponse({"code": 400, "message": _('invalid payload')}, status=400)
 
         # e-recht24 documents the body as {"payload": {...}}; accept both the
         # wrapped and the unwrapped form.
@@ -219,10 +219,10 @@ class Erecht24RevocationWebhookView(View):
 
         data = payload.get("data")
         if not isinstance(data, dict):
-            return JsonResponse({"code": 400, "message": "missing data"}, status=400)
+            return JsonResponse({"code": 400, "message": _('missing data')}, status=400)
         revo_id = str(data.get("revo_id") or "").strip()[:64]
         if not revo_id:
-            return JsonResponse({"code": 400, "message": "missing revo_id"}, status=400)
+            return JsonResponse({"code": 400, "message": _('missing revo_id')}, status=400)
 
         # Idempotency: webhook retries with a known revo_id are acknowledged
         # without any new action (no duplicate confirmation emails).

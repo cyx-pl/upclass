@@ -1,30 +1,32 @@
+
+{% load i18n %}
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"><title>Preceptly Portal-Einladung</title></head>
+<head><meta charset="utf-8"><title>{% blocktrans %}Preceptly Portal-Einladung{% endblocktrans %}</title></head>
 <body style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
   <div style="text-align: center; margin-bottom: 30px;">
     <h1 style="color: #0d8069; font-size: 24px;">Preceptly</h1>
   </div>
-  <h2>{% if role == "parent" %}Einladung zum Eltern-Portal für {{ student.full_name }}{% else %}Dein Portal-Zugang ist bereit{% endif %}</h2>
+  <h2>{% if role == "parent" %}{% blocktrans %}Einladung zum Eltern-Portal für{% endblocktrans %} {{ student.full_name }}{% else %}{% blocktrans %}Dein Portal-Zugang ist bereit{% endblocktrans %}{% endif %}</h2>
   <p>
     {% if role == "parent" %}
-      {{ tutor_name }} hat einen Eltern-Portal-Zugang für dich erstellt, damit du die Nachhilfestunden, Fortschritte und Hausaufgaben von {{ student.full_name }} verfolgen kannst.
+      {{ tutor_name }} {% blocktrans %}hat einen Eltern-Portal-Zugang für dich erstellt, damit du die Nachhilfestunden, Fortschritte und Hausaufgaben von{% endblocktrans %} {{ student.full_name }} {% blocktrans %}verfolgen kannst.{% endblocktrans %}
     {% else %}
-      {{ tutor_name }} hat einen Portal-Zugang für dich auf Preceptly erstellt. Du kannst deine bevorstehenden Stunden, Hausaufgaben einsehen und mit deinem Tutor kommunizieren.
+      {{ tutor_name }} {% blocktrans %}hat einen Portal-Zugang für dich auf Preceptly erstellt. Du kannst deine bevorstehenden Stunden, Hausaufgaben einsehen und mit deinem Tutor kommunizieren.{% endblocktrans %}
     {% endif %}
   </p>
   <div style="text-align: center; margin: 30px 0;">
     <a href="{{ activate_url }}"
        style="background: #0d8069; color: white; padding: 14px 28px; text-decoration: none; border-radius: 6px; font-size: 16px; display: inline-block;">
-      Konto aktivieren
+      {% blocktrans %}Konto aktivieren{% endblocktrans %}
     </a>
   </div>
-  <p style="color: #666; font-size: 14px;">Oder kopiere diesen Link in deinen Browser:<br>
+  <p style="color: #666; font-size: 14px;">{% blocktrans %}Oder kopiere diesen Link in deinen Browser:{% endblocktrans %}<br>
     <a href="{{ activate_url }}" style="color: #0d8069;">{{ activate_url }}</a>
   </p>
   <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
   <p style="color: #999; font-size: 12px; text-align: center;">
-    Preceptly — Nachhilfe-Management<br>
+    {% blocktrans %}Preceptly — Nachhilfe-Management{% endblocktrans %}<br>
     <a href="{{ site_url }}" style="color: #999;">{{ site_url }}</a>
   </p>
 </body>

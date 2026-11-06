@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load currency %}
 
-{% block title %}Rechnungen – Preceptly{% endblock %}
+{% block title %}{% blocktrans %}Rechnungen – Preceptly{% endblocktrans %}{% endblock %}
 
 {% block content %}
 <h1>{% trans "Invoices" %}</h1>
@@ -25,7 +25,7 @@
 {% endif %}
 
 {% if invoices %}
-<table aria-label="Rechnungsliste">
+<table aria-label="{% blocktrans %}Rechnungsliste{% endblocktrans %}">
     <thead>
         <tr>
             <th scope="col">{% trans "ID" %}</th>

@@ -7,7 +7,7 @@ from decimal import Decimal
 from unittest.mock import Mock, patch
 
 from django.contrib.auth.models import User
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.utils import timezone
 
 from apps.ai.client import LLMClientError, LLMServiceUnavailableError
@@ -144,6 +144,7 @@ class PromptBuildingTest(TestCase):
         self.assertEqual(subject, "Allgemein")
 
 
+@override_settings(LANGUAGE_CODE="de")
 class LessonPlanServiceTest(TestCase):
     """Tests für LessonPlanService mit Mock-LLM-Client."""
 

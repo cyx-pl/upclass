@@ -1,15 +1,15 @@
-Neue Portal-Buchung — Preceptly
+{% load i18n %}{% blocktrans %}Neue Portal-Buchung — Preceptly{% endblocktrans %}
 
-{{ student_name }} hat soeben einen Termin über das Portal gebucht.
+{{ student_name }} {% blocktrans %}hat soeben einen Termin über das Portal gebucht.{% endblocktrans %}
 
-Schüler:  {{ student_name }}
-Datum:    {{ date_str }}
-Uhrzeit:  {{ time_str }} Uhr
-{% if topic and topic != "-" %}Thema:    {{ topic }}
-{% endif %}Tutor:    {{ tutor_name }}
+{% blocktrans %}Schüler:{% endblocktrans %}  {{ student_name }}
+{% blocktrans %}Datum:{% endblocktrans %}    {{ date_str }}
+{% blocktrans %}Uhrzeit:{% endblocktrans %}  {{ time_str }} {% blocktrans %}Uhr{% endblocktrans %}
+{% if topic and topic != "-" %}{% blocktrans %}Thema:{% endblocktrans %}    {{ topic }}
+{% endif %}{% blocktrans %}Tutor:{% endblocktrans %}    {{ tutor_name }}
 
-Im Dashboard ansehen: {{ dashboard_url }}
+{% blocktrans %}Im Dashboard ansehen:{% endblocktrans %} {{ dashboard_url }}
 
 ---
-Preceptly — Nachhilfe-Management
+{% blocktrans %}Preceptly — Nachhilfe-Management{% endblocktrans %}
 {{ site_url }}

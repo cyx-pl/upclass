@@ -8,7 +8,7 @@ from decimal import Decimal
 
 from django.contrib.auth.models import User
 from django.core import mail
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.urls import reverse
 
 from apps.contracts.models import Contract
@@ -18,6 +18,7 @@ from apps.lessons.recurring_models import RecurringSession
 from apps.portal.models import ParentStudentLink, PortalUser
 
 
+@override_settings(LANGUAGE_CODE="de")
 class PortalChangeFixture(TestCase):
     def setUp(self):
         self.tutor = User.objects.create_user(
@@ -194,6 +195,7 @@ class SeriesCancelTest(PortalChangeFixture):
         self.assertIn("Entfallene Termine: 3 (", mail.outbox[0].body)
 
 
+@override_settings(LANGUAGE_CODE="de")
 class OverviewTest(PortalChangeFixture):
     def test_family_and_tutor_see_who_cancelled(self):
         self.cancel(self.lesson())

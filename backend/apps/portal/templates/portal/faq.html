@@ -1,241 +1,243 @@
 {% extends "portal/base.html" %}
+{% load i18n %}
 
-{% block title %}Hilfe &amp; FAQ – Preceptly Portal{% endblock %}
+
+{% block title %}{% blocktrans %}Hilfe &amp; FAQ – Preceptly Portal{% endblocktrans %}{% endblock %}
 
 {% block content %}
-<h1>Hilfe &amp; FAQ</h1>
+<h1>{% blocktrans %}Hilfe &amp; FAQ{% endblocktrans %}</h1>
 <p style="color:var(--text-secondary); margin-top:-8px; margin-bottom:16px;">
-    Antworten auf häufige Fragen von Schülern und Eltern zum Preceptly-Portal.
+    {% blocktrans %}Antworten auf häufige Fragen von Schülern und Eltern zum Preceptly-Portal.{% endblocktrans %}
 </p>
 
 {# Bewusst kein nav-Element: portal/base.html gestaltet jedes nav als Hauptnavigation. #}
-<div class="card" role="navigation" aria-label="Inhalt der Hilfe">
-    <h2 style="margin-top:0; font-size:1.1em;">Themen</h2>
+<div class="card" role="navigation" aria-label="{% blocktrans %}Inhalt der Hilfe{% endblocktrans %}">
+    <h2 style="margin-top:0; font-size:1.1em;">{% blocktrans %}Themen{% endblocktrans %}</h2>
     <ul style="columns: 2 200px; column-gap: 28px; padding-left: 1.2em; margin: 0;">
-        <li><a href="#erste-schritte">Erste Schritte</a></li>
-        <li><a href="#buchen">Termine buchen</a></li>
-        <li><a href="#aendern">Verschieben &amp; absagen</a></li>
-        <li><a href="#serien">Serientermine</a></li>
-        <li><a href="#stunden">Stunden &amp; Hausaufgaben</a></li>
-        <li><a href="#kalender">Kalender</a></li>
-        <li><a href="#meeting">Online-Meeting</a></li>
-        <li><a href="#nachrichten">Nachrichten &amp; Dokumente</a></li>
-        <li><a href="#familie">Eltern &amp; mehrere Kinder</a></li>
-        <li><a href="#konto">Konto &amp; Passwort</a></li>
-        <li><a href="#zeitzone">Zeitzone &amp; Uhrzeiten</a></li>
-        <li><a href="#hilfe">Datenschutz &amp; Hilfe</a></li>
+        <li><a href="#erste-schritte">{% blocktrans %}Erste Schritte{% endblocktrans %}</a></li>
+        <li><a href="#buchen">{% blocktrans %}Termine buchen{% endblocktrans %}</a></li>
+        <li><a href="#aendern">{% blocktrans %}Verschieben &amp; absagen{% endblocktrans %}</a></li>
+        <li><a href="#serien">{% blocktrans %}Serientermine{% endblocktrans %}</a></li>
+        <li><a href="#stunden">{% blocktrans %}Stunden &amp; Hausaufgaben{% endblocktrans %}</a></li>
+        <li><a href="#kalender">{% blocktrans %}Kalender{% endblocktrans %}</a></li>
+        <li><a href="#meeting">{% blocktrans %}Online-Meeting{% endblocktrans %}</a></li>
+        <li><a href="#nachrichten">{% blocktrans %}Nachrichten &amp; Dokumente{% endblocktrans %}</a></li>
+        <li><a href="#familie">{% blocktrans %}Eltern &amp; mehrere Kinder{% endblocktrans %}</a></li>
+        <li><a href="#konto">{% blocktrans %}Konto &amp; Passwort{% endblocktrans %}</a></li>
+        <li><a href="#zeitzone">{% blocktrans %}Zeitzone &amp; Uhrzeiten{% endblocktrans %}</a></li>
+        <li><a href="#hilfe">{% blocktrans %}Datenschutz &amp; Hilfe{% endblocktrans %}</a></li>
     </ul>
 </div>
 
 <div class="card" id="erste-schritte">
-    <h2 style="margin-top:0;">Erste Schritte</h2>
+    <h2 style="margin-top:0;">{% blocktrans %}Erste Schritte{% endblocktrans %}</h2>
 
-    <h3>Was ist das Portal?</h3>
-    <p>Hier siehst du deine Nachhilfestunden und Hausaufgaben. Du kannst Termine buchen, verschieben und absagen, deinem Nachhilfelehrer schreiben, Dokumente austauschen und an Online-Meetings teilnehmen. Welche dieser Funktionen freigeschaltet sind, legt dein Nachhilfelehrer fest.</p>
+    <h3>{% blocktrans %}Was ist das Portal?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Hier siehst du deine Nachhilfestunden und Hausaufgaben. Du kannst Termine buchen, verschieben und absagen, deinem Nachhilfelehrer schreiben, Dokumente austauschen und an Online-Meetings teilnehmen. Welche dieser Funktionen freigeschaltet sind, legt dein Nachhilfelehrer fest.{% endblocktrans %}</p>
 
-    <h3>Wie aktiviere ich meinen Portal-Zugang?</h3>
-    <p>Du erhältst per E-Mail einen persönlichen Aktivierungslink. Klicke darauf und setze dein Passwort. Danach bist du sofort angemeldet. Der Link ist 7 Tage gültig. Ist er abgelaufen, bitte deinen Nachhilfelehrer um eine neue Einladung.</p>
+    <h3>{% blocktrans %}Wie aktiviere ich meinen Portal-Zugang?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Du erhältst per E-Mail einen persönlichen Aktivierungslink. Klicke darauf und setze dein Passwort. Danach bist du sofort angemeldet. Der Link ist 7 Tage gültig. Ist er abgelaufen, bitte deinen Nachhilfelehrer um eine neue Einladung.{% endblocktrans %}</p>
 
-    <h3>Wie melde ich mich später an?</h3>
-    <p>Mit deiner E-Mail-Adresse und deinem Passwort auf der Anmeldeseite des Portals.</p>
+    <h3>{% blocktrans %}Wie melde ich mich später an?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Mit deiner E-Mail-Adresse und deinem Passwort auf der Anmeldeseite des Portals.{% endblocktrans %}</p>
 
-    <h3>Ich habe keine Einladung erhalten.</h3>
-    <p>Prüfe deinen Spam-Ordner. Ist die E-Mail dort nicht, schickt dir dein Nachhilfelehrer eine neue Einladung.</p>
+    <h3>{% blocktrans %}Ich habe keine Einladung erhalten.{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Prüfe deinen Spam-Ordner. Ist die E-Mail dort nicht, schickt dir dein Nachhilfelehrer eine neue Einladung.{% endblocktrans %}</p>
 
-    <h3>Kann ich das Portal wie eine App nutzen?</h3>
-    <p>Ja. Unter <a href="{% url 'portal:profile' %}">Profil</a> findest du „Zum Home-Bildschirm hinzufügen“. Danach öffnest du das Portal über ein eigenes Symbol auf deinem Handy.</p>
+    <h3>{% blocktrans %}Kann ich das Portal wie eine App nutzen?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Ja. Unter{% endblocktrans %} <a href="{% url 'portal:profile' %}">{% blocktrans %}Profil{% endblocktrans %}</a> {% blocktrans %}findest du „Zum Home-Bildschirm hinzufügen“. Danach öffnest du das Portal über ein eigenes Symbol auf deinem Handy.{% endblocktrans %}</p>
 </div>
 
 <div class="card" id="buchen">
-    <h2 style="margin-top:0;">Termine buchen</h2>
+    <h2 style="margin-top:0;">{% blocktrans %}Termine buchen{% endblocktrans %}</h2>
 
-    <h3>Wie buche ich einen Termin?</h3>
-    <p>Gehe zu <strong>Termin buchen</strong> (über das Dashboard oder den Kalender). Wähle ein Datum. Du siehst dann die freien Zeiten deines Nachhilfelehrers. Tippe auf eine Zeit und bestätige die Buchung. Im Feld „Thema / Nachricht“ kannst du angeben, was du in der Stunde besprechen möchtest.</p>
+    <h3>{% blocktrans %}Wie buche ich einen Termin?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Gehe zu{% endblocktrans %} <strong>{% blocktrans %}Termin buchen{% endblocktrans %}</strong> {% blocktrans %}(über das Dashboard oder den Kalender). Wähle ein Datum. Du siehst dann die freien Zeiten deines Nachhilfelehrers. Tippe auf eine Zeit und bestätige die Buchung. Im Feld „Thema / Nachricht“ kannst du angeben, was du in der Stunde besprechen möchtest.{% endblocktrans %}</p>
 
-    <h3>Welche Zeiten kann ich buchen?</h3>
-    <p>Zeiten innerhalb der Arbeitszeiten deines Nachhilfelehrers, die noch frei sind. Termine in der Vergangenheit lassen sich nicht buchen. Tippe erst auf einen Tag (oben in der Übersicht steht bei jedem Tag, wie viele Zeiten frei sind, oder wähle ein Datum im Feld „Datum wählen“), dann erscheinen darunter die freien Uhrzeiten zum Anklicken. Die Seite öffnet auf der ersten Woche, in der noch etwas frei ist; mit „Vorige Woche“ und „Nächste Woche“ blätterst du weiter. Uhrzeiten von heute, die schon vorbei sind, werden nicht angeboten.</p>
+    <h3>{% blocktrans %}Welche Zeiten kann ich buchen?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Zeiten innerhalb der Arbeitszeiten deines Nachhilfelehrers, die noch frei sind. Termine in der Vergangenheit lassen sich nicht buchen. Tippe erst auf einen Tag (oben in der Übersicht steht bei jedem Tag, wie viele Zeiten frei sind, oder wähle ein Datum im Feld „Datum wählen“), dann erscheinen darunter die freien Uhrzeiten zum Anklicken. Die Seite öffnet auf der ersten Woche, in der noch etwas frei ist; mit „Vorige Woche“ und „Nächste Woche“ blätterst du weiter. Uhrzeiten von heute, die schon vorbei sind, werden nicht angeboten.{% endblocktrans %}</p>
 
-    <h3>Was bedeuten die grauen „Belegt“-Felder?</h3>
-    <p>Sie zeigen Zeiten, in denen dein Nachhilfelehrer schon einen anderen Termin oder eine Blockzeit hat. Diese Zeiten kannst du nicht buchen.</p>
+    <h3>{% blocktrans %}Was bedeuten die grauen „Belegt“-Felder?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Sie zeigen Zeiten, in denen dein Nachhilfelehrer schon einen anderen Termin oder eine Blockzeit hat. Diese Zeiten kannst du nicht buchen.{% endblocktrans %}</p>
 
-    <h3>Warum kann ich eine Zeit nicht buchen, obwohl sie nicht als „Belegt“ markiert ist?</h3>
-    <p>Dein Nachhilfelehrer hält zwischen Terminen eine Pause ein und rechnet Fahrzeiten zu seinen Terminen. Zeiten, die dicht vor oder nach einem Termin oder einer Blockzeit liegen, werden deshalb nicht als frei angeboten. Wähle dann eine Zeit mit etwas mehr Abstand.</p>
+    <h3>{% blocktrans %}Warum kann ich eine Zeit nicht buchen, obwohl sie nicht als „Belegt“ markiert ist?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Dein Nachhilfelehrer hält zwischen Terminen eine Pause ein und rechnet Fahrzeiten zu seinen Terminen. Zeiten, die dicht vor oder nach einem Termin oder einer Blockzeit liegen, werden deshalb nicht als frei angeboten. Wähle dann eine Zeit mit etwas mehr Abstand.{% endblocktrans %}</p>
 
-    <h3>Wie lange dauert ein gebuchter Termin?</h3>
-    <p>So lange, wie es in eurem Vertrag als Einheit vereinbart ist. Brauchst du eine längere Stunde, sprich das mit deinem Nachhilfelehrer ab.</p>
+    <h3>{% blocktrans %}Wie lange dauert ein gebuchter Termin?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}So lange, wie es in eurem Vertrag als Einheit vereinbart ist. Brauchst du eine längere Stunde, sprich das mit deinem Nachhilfelehrer ab.{% endblocktrans %}</p>
 
-    <h3>Warum soll ich Abstand zu anderen Terminen lassen?</h3>
-    <p>Manche Nachhilfelehrer bitten beim Buchen darum, etwa eine halbe Stunde Puffer zu ihren anderen Terminen zu lassen. So bleibt Zeit für die Vorbereitung. Das ist eine Bitte. Hat dein Nachhilfelehrer dagegen einen festen Mindestabstand eingestellt, zeigt das Portal Zeiten, die ihn unterschreiten, gar nicht erst als frei an.</p>
+    <h3>{% blocktrans %}Warum soll ich Abstand zu anderen Terminen lassen?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Manche Nachhilfelehrer bitten beim Buchen darum, etwa eine halbe Stunde Puffer zu ihren anderen Terminen zu lassen. So bleibt Zeit für die Vorbereitung. Das ist eine Bitte. Hat dein Nachhilfelehrer dagegen einen festen Mindestabstand eingestellt, zeigt das Portal Zeiten, die ihn unterschreiten, gar nicht erst als frei an.{% endblocktrans %}</p>
 
-    <h3>Warum steht dort „Online-Buchungen sind im Moment nicht möglich“?</h3>
-    <p>Dann nimmt dein Nachhilfelehrer gerade keine Buchungen über das Portal an. Sprich den Termin direkt mit ihm ab.</p>
+    <h3>{% blocktrans %}Warum steht dort „Online-Buchungen sind im Moment nicht möglich“?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Dann nimmt dein Nachhilfelehrer gerade keine Buchungen über das Portal an. Sprich den Termin direkt mit ihm ab.{% endblocktrans %}</p>
 
-    <h3>Erfährt mein Nachhilfelehrer von meiner Buchung?</h3>
-    <p>Ja. Der Termin steht sofort in seinem Kalender. Außerdem bekommt er eine Benachrichtigung, sofern er sie nicht abgeschaltet hat.</p>
+    <h3>{% blocktrans %}Erfährt mein Nachhilfelehrer von meiner Buchung?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Ja. Der Termin steht sofort in seinem Kalender. Außerdem bekommt er eine Benachrichtigung, sofern er sie nicht abgeschaltet hat.{% endblocktrans %}</p>
 </div>
 
 <div class="card" id="aendern">
-    <h2 style="margin-top:0;">Verschieben &amp; absagen</h2>
+    <h2 style="margin-top:0;">{% blocktrans %}Verschieben &amp; absagen{% endblocktrans %}</h2>
 
-    <h3>Wie verschiebe ich einen Termin?</h3>
-    <p>Tippe unter <a href="{% url 'portal:student_lessons' %}">Stunden</a> oder im Dashboard auf den Termin und wähle <strong>Verschieben</strong>. Suche einen neuen Tag und eine freie Zeit aus. Ist an einem Tag nichts mehr frei, wähle einen anderen Tag oder die nächste Woche.</p>
+    <h3>{% blocktrans %}Wie verschiebe ich einen Termin?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Tippe unter{% endblocktrans %} <a href="{% url 'portal:student_lessons' %}">{% blocktrans %}Stunden{% endblocktrans %}</a> {% blocktrans %}oder im Dashboard auf den Termin und wähle{% endblocktrans %} <strong>{% blocktrans %}Verschieben{% endblocktrans %}</strong>{% blocktrans %}. Suche einen neuen Tag und eine freie Zeit aus. Ist an einem Tag nichts mehr frei, wähle einen anderen Tag oder die nächste Woche.{% endblocktrans %}</p>
 
-    <h3>Wie sage ich einen Termin ab?</h3>
-    <p>Öffne den Termin und wähle <strong>Absagen</strong>. Der Termin wird dann aus deinem Kalender und aus dem deines Nachhilfelehrers entfernt. Unter <a href="{% url 'portal:student_lessons' %}">Stunden</a> steht er danach bei „Abgesagte Termine“, mit dem Zeitpunkt der Absage.</p>
+    <h3>{% blocktrans %}Wie sage ich einen Termin ab?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Öffne den Termin und wähle{% endblocktrans %} <strong>{% blocktrans %}Absagen{% endblocktrans %}</strong>{% blocktrans %}. Der Termin wird dann aus deinem Kalender und aus dem deines Nachhilfelehrers entfernt. Unter{% endblocktrans %} <a href="{% url 'portal:student_lessons' %}">{% blocktrans %}Stunden{% endblocktrans %}</a> {% blocktrans %}steht er danach bei „Abgesagte Termine“, mit dem Zeitpunkt der Absage.{% endblocktrans %}</p>
 
-    <h3>Welche Termine kann ich ändern?</h3>
-    <p>Nur geplante Termine. Eine Stunde, die schon stattgefunden hat, lässt sich im Portal nicht mehr verschieben oder absagen.</p>
+    <h3>{% blocktrans %}Welche Termine kann ich ändern?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Nur geplante Termine. Eine Stunde, die schon stattgefunden hat, lässt sich im Portal nicht mehr verschieben oder absagen.{% endblocktrans %}</p>
 
-    <h3>Erfährt mein Nachhilfelehrer von einer Absage oder Verschiebung?</h3>
-    <p>Ja. Er bekommt eine Benachrichtigung, sofern er sie nicht abgeschaltet hat, und sieht die Änderung in seinem Kalender. Bei sehr kurzfristigen Änderungen gib ihm trotzdem direkt Bescheid, zum Beispiel über <strong>Nachrichten</strong>.</p>
+    <h3>{% blocktrans %}Erfährt mein Nachhilfelehrer von einer Absage oder Verschiebung?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Ja. Er bekommt eine Benachrichtigung, sofern er sie nicht abgeschaltet hat, und sieht die Änderung in seinem Kalender. Bei sehr kurzfristigen Änderungen gib ihm trotzdem direkt Bescheid, zum Beispiel über{% endblocktrans %} <strong>{% blocktrans %}Nachrichten{% endblocktrans %}</strong>.</p>
 
-    <h3>Bis wann muss ich absagen?</h3>
-    <p>Das Portal setzt keine Frist. Es gilt, was du mit deinem Nachhilfelehrer vereinbart hast. Frag ihn, wenn du unsicher bist, ob eine späte Absage berechnet wird.</p>
+    <h3>{% blocktrans %}Bis wann muss ich absagen?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Das Portal setzt keine Frist. Es gilt, was du mit deinem Nachhilfelehrer vereinbart hast. Frag ihn, wenn du unsicher bist, ob eine späte Absage berechnet wird.{% endblocktrans %}</p>
 
-    <h3>Der Termin gehört zu einer Serie. Was passiert beim Verschieben?</h3>
-    <p>Nur dieser eine Termin wird verschoben. Er gehört danach nicht mehr zur Serie. Die anderen Termine der Serie bleiben, wie sie sind.</p>
+    <h3>{% blocktrans %}Der Termin gehört zu einer Serie. Was passiert beim Verschieben?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Nur dieser eine Termin wird verschoben. Er gehört danach nicht mehr zur Serie. Die anderen Termine der Serie bleiben, wie sie sind.{% endblocktrans %}</p>
 </div>
 
 <div class="card" id="serien">
-    <h2 style="margin-top:0;">Serientermine</h2>
+    <h2 style="margin-top:0;">{% blocktrans %}Serientermine{% endblocktrans %}</h2>
 
-    <h3>Was sind Serientermine?</h3>
-    <p>Regelmäßig wiederkehrende Stunden, zum Beispiel jeden Montag um 16:00 Uhr. Deine Serien findest du unter <strong>Serientermine</strong>.</p>
+    <h3>{% blocktrans %}Was sind Serientermine?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Regelmäßig wiederkehrende Stunden, zum Beispiel jeden Montag um 16:00 Uhr. Deine Serien findest du unter{% endblocktrans %} <strong>{% blocktrans %}Serientermine{% endblocktrans %}</strong>.</p>
 
-    <h3>Kann ich selbst eine Serie anlegen?</h3>
-    <p>Das hängt davon ab, was dein Nachhilfelehrer freigeschaltet hat. Siehst du unter „Serientermine“ die Schaltfläche „Neue Serie“, wählst du Wochentage, Uhrzeit, Start und auf Wunsch ein Ende. Sonst sprichst du die Serie direkt mit ihm ab. Ist dein Nachhilfelehrer an einem Tag der Serie zu dieser Zeit schon belegt oder liegt die Uhrzeit außerhalb seiner Arbeitszeiten, wird dieser Tag ausgelassen, alle anderen werden gebucht. Termine, die schon vorbei sind, lässt Preceptly ebenfalls aus. Nach dem Anlegen siehst du, welche Tage ausgelassen wurden.</p>
+    <h3>{% blocktrans %}Kann ich selbst eine Serie anlegen?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Das hängt davon ab, was dein Nachhilfelehrer freigeschaltet hat. Siehst du unter „Serientermine“ die Schaltfläche „Neue Serie“, wählst du Wochentage, Uhrzeit, Start und auf Wunsch ein Ende. Sonst sprichst du die Serie direkt mit ihm ab. Ist dein Nachhilfelehrer an einem Tag der Serie zu dieser Zeit schon belegt oder liegt die Uhrzeit außerhalb seiner Arbeitszeiten, wird dieser Tag ausgelassen, alle anderen werden gebucht. Termine, die schon vorbei sind, lässt Preceptly ebenfalls aus. Nach dem Anlegen siehst du, welche Tage ausgelassen wurden.{% endblocktrans %}</p>
 
-    <h3>Wie sage ich nur einen Termin einer Serie ab?</h3>
-    <p>Öffne den Termin und wähle „Nur diesen Termin absagen“. Die übrigen Termine bleiben bestehen.</p>
+    <h3>{% blocktrans %}Wie sage ich nur einen Termin einer Serie ab?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Öffne den Termin und wähle „Nur diesen Termin absagen“. Die übrigen Termine bleiben bestehen.{% endblocktrans %}</p>
 
-    <h3>Wie beende ich eine ganze Serie?</h3>
-    <p>Unter „Serientermine“ mit „Serie beenden“ oder im Termin mit „Gesamte Serie absagen“. Alle kommenden Termine der Serie entfallen dann und stehen bei „Abgesagte Termine“. Stunden, die schon stattgefunden haben, bleiben erhalten.</p>
+    <h3>{% blocktrans %}Wie beende ich eine ganze Serie?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Unter „Serientermine“ mit „Serie beenden“ oder im Termin mit „Gesamte Serie absagen“. Alle kommenden Termine der Serie entfallen dann und stehen bei „Abgesagte Termine“. Stunden, die schon stattgefunden haben, bleiben erhalten.{% endblocktrans %}</p>
 </div>
 
 <div class="card" id="stunden">
-    <h2 style="margin-top:0;">Stunden &amp; Hausaufgaben</h2>
+    <h2 style="margin-top:0;">{% blocktrans %}Stunden &amp; Hausaufgaben{% endblocktrans %}</h2>
 
-    <h3>Was bedeutet der Status einer Stunde?</h3>
+    <h3>{% blocktrans %}Was bedeutet der Status einer Stunde?{% endblocktrans %}</h3>
     <ul>
-        <li><strong>Geplant:</strong> Der Termin steht an.</li>
-        <li><strong>Unterrichtet:</strong> Die Stunde hat stattgefunden.</li>
-        <li><strong>Ausgefallen:</strong> Die Stunde ist ausgefallen.</li>
-        <li><strong>Bezahlt:</strong> Die Stunde ist abgerechnet und bezahlt.</li>
+        <li><strong>{% blocktrans %}Geplant:{% endblocktrans %}</strong> {% blocktrans %}Der Termin steht an.{% endblocktrans %}</li>
+        <li><strong>{% blocktrans %}Unterrichtet:{% endblocktrans %}</strong> {% blocktrans %}Die Stunde hat stattgefunden.{% endblocktrans %}</li>
+        <li><strong>{% blocktrans %}Ausgefallen:{% endblocktrans %}</strong> {% blocktrans %}Die Stunde ist ausgefallen.{% endblocktrans %}</li>
+        <li><strong>{% blocktrans %}Bezahlt:{% endblocktrans %}</strong> {% blocktrans %}Die Stunde ist abgerechnet und bezahlt.{% endblocktrans %}</li>
     </ul>
 
-    <h3>Eine Stunde steht auf „Unterrichtet“, hat aber nicht stattgefunden. Warum?</h3>
-    <p>Ein geplanter Termin wechselt automatisch auf „Unterrichtet“, sobald seine Endzeit vorbei ist. Wurde er vorher nicht abgesagt, gilt er deshalb als gehalten. Melde dich bei deinem Nachhilfelehrer. Er kann den Status berichtigen.</p>
+    <h3>{% blocktrans %}Eine Stunde steht auf „Unterrichtet“, hat aber nicht stattgefunden. Warum?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Ein geplanter Termin wechselt automatisch auf „Unterrichtet“, sobald seine Endzeit vorbei ist. Wurde er vorher nicht abgesagt, gilt er deshalb als gehalten. Melde dich bei deinem Nachhilfelehrer. Er kann den Status berichtigen.{% endblocktrans %}</p>
 
-    <h3>Wo sehe ich, wann und von wem ein Termin gebucht wurde?</h3>
-    <p>Öffne den Termin. In der Zeile „Gebucht“ stehen der Zeitpunkt und das Konto, zum Beispiel „über das Portal von dir“ oder der Name deines Nachhilfelehrers. Das Konto wird seit dem 29.09.2026 gespeichert. Ältere Termine zeigen nur den Zeitpunkt.</p>
+    <h3>{% blocktrans %}Wo sehe ich, wann und von wem ein Termin gebucht wurde?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Öffne den Termin. In der Zeile „Gebucht“ stehen der Zeitpunkt und das Konto, zum Beispiel „über das Portal von dir“ oder der Name deines Nachhilfelehrers. Das Konto wird seit dem 29.09.2026 gespeichert. Ältere Termine zeigen nur den Zeitpunkt.{% endblocktrans %}</p>
 
-    <h3>Wo finde ich meine Hausaufgaben?</h3>
-    <p>Im Dashboard unter „Letzte Stunden“ und auf der Detailseite der Stunde. Dort stehen auch Notizen, die dein Nachhilfelehrer zur Stunde geschrieben hat.</p>
+    <h3>{% blocktrans %}Wo finde ich meine Hausaufgaben?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Im Dashboard unter „Letzte Stunden“ und auf der Detailseite der Stunde. Dort stehen auch Notizen, die dein Nachhilfelehrer zur Stunde geschrieben hat.{% endblocktrans %}</p>
 </div>
 
 <div class="card" id="kalender">
-    <h2 style="margin-top:0;">Kalender</h2>
+    <h2 style="margin-top:0;">{% blocktrans %}Kalender{% endblocktrans %}</h2>
 
-    <h3>Was bedeuten die roten „Belegt“-Blöcke im Kalender?</h3>
-    <p>Sie zeigen, dass dein Nachhilfelehrer zu dieser Zeit einen anderen Termin oder eine Blockzeit hat. Du siehst keine Details, also keinen Namen und kein Thema.</p>
+    <h3>{% blocktrans %}Was bedeuten die roten „Belegt“-Blöcke im Kalender?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Sie zeigen, dass dein Nachhilfelehrer zu dieser Zeit einen anderen Termin oder eine Blockzeit hat. Du siehst keine Details, also keinen Namen und kein Thema.{% endblocktrans %}</p>
 
-    <h3>Was bedeuten die blauen Blöcke?</h3>
-    <p>Das sind deine eigenen Stunden. Tippe darauf, um die Details zu sehen.</p>
+    <h3>{% blocktrans %}Was bedeuten die blauen Blöcke?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Das sind deine eigenen Stunden. Tippe darauf, um die Details zu sehen.{% endblocktrans %}</p>
 
-    <h3>Kann ich meine Termine im eigenen Kalender sehen?</h3>
-    <p>Ja. Unter <a href="{% url 'portal:profile' %}">Profil</a> findest du bei „Kalender abonnieren“ einen persönlichen Link. Trage ihn einmal als Kalender-Abo in Google Kalender, iCloud oder Outlook ein. Neue Termine erscheinen dann von selbst. Der Kalender aktualisiert sich alle paar Stunden und ist nur lesend: Änderungen dort wirken sich nicht auf das Portal aus.</p>
+    <h3>{% blocktrans %}Kann ich meine Termine im eigenen Kalender sehen?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Ja. Unter{% endblocktrans %} <a href="{% url 'portal:profile' %}">{% blocktrans %}Profil{% endblocktrans %}</a> {% blocktrans %}findest du bei „Kalender abonnieren“ einen persönlichen Link. Trage ihn einmal als Kalender-Abo in Google Kalender, iCloud oder Outlook ein. Neue Termine erscheinen dann von selbst. Der Kalender aktualisiert sich alle paar Stunden und ist nur lesend: Änderungen dort wirken sich nicht auf das Portal aus.{% endblocktrans %}</p>
 
-    <h3>Ich habe den Kalender-Link versehentlich weitergegeben. Was nun?</h3>
-    <p>Wähle im Profil „Link erneuern“. Der alte Link funktioniert dann nicht mehr, und du trägst den neuen in deinem Kalender ein.</p>
+    <h3>{% blocktrans %}Ich habe den Kalender-Link versehentlich weitergegeben. Was nun?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Wähle im Profil „Link erneuern“. Der alte Link funktioniert dann nicht mehr, und du trägst den neuen in deinem Kalender ein.{% endblocktrans %}</p>
 </div>
 
 <div class="card" id="meeting">
-    <h2 style="margin-top:0;">Online-Meeting</h2>
+    <h2 style="margin-top:0;">{% blocktrans %}Online-Meeting{% endblocktrans %}</h2>
 
-    <h3>Wie nehme ich an einem Online-Meeting teil?</h3>
-    <p>Läuft ein Meeting, zeigt das Dashboard „Meeting läuft – Jetzt beitreten“. Du kannst auch den Termin öffnen und „Meeting beitreten“ wählen.</p>
+    <h3>{% blocktrans %}Wie nehme ich an einem Online-Meeting teil?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Läuft ein Meeting, zeigt das Dashboard „Meeting läuft – Jetzt beitreten“. Du kannst auch den Termin öffnen und „Meeting beitreten“ wählen.{% endblocktrans %}</p>
 
-    <h3>Dort steht „Kein Meeting aktiv“. Was heißt das?</h3>
-    <p>Dein Nachhilfelehrer hat das Meeting noch nicht gestartet. Sobald er es startet, kannst du beitreten. Wartest du schon im Warteraum, wirst du automatisch verbunden.</p>
+    <h3>{% blocktrans %}Dort steht „Kein Meeting aktiv“. Was heißt das?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Dein Nachhilfelehrer hat das Meeting noch nicht gestartet. Sobald er es startet, kannst du beitreten. Wartest du schon im Warteraum, wirst du automatisch verbunden.{% endblocktrans %}</p>
 
-    <h3>Was brauche ich dafür?</h3>
-    <p>Einen aktuellen Browser, eine Kamera und ein Mikrofon. Ein Programm musst du nicht installieren. Beim ersten Mal fragt der Browser, ob er Kamera und Mikrofon nutzen darf. Erlaube das, sonst hört und sieht dich dein Nachhilfelehrer nicht.</p>
+    <h3>{% blocktrans %}Was brauche ich dafür?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Einen aktuellen Browser, eine Kamera und ein Mikrofon. Ein Programm musst du nicht installieren. Beim ersten Mal fragt der Browser, ob er Kamera und Mikrofon nutzen darf. Erlaube das, sonst hört und sieht dich dein Nachhilfelehrer nicht.{% endblocktrans %}</p>
 
-    <h3>Bild oder Ton funktionieren nicht.</h3>
-    <p>Prüfe in den Einstellungen des Browsers, ob Kamera und Mikrofon für das Portal erlaubt sind, und lade die Seite neu. Hilft das nicht, probiere einen anderen Browser oder ein anderes Gerät.</p>
+    <h3>{% blocktrans %}Bild oder Ton funktionieren nicht.{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Prüfe in den Einstellungen des Browsers, ob Kamera und Mikrofon für das Portal erlaubt sind, und lade die Seite neu. Hilft das nicht, probiere einen anderen Browser oder ein anderes Gerät.{% endblocktrans %}</p>
 </div>
 
 <div class="card" id="nachrichten">
-    <h2 style="margin-top:0;">Nachrichten &amp; Dokumente</h2>
+    <h2 style="margin-top:0;">{% blocktrans %}Nachrichten &amp; Dokumente{% endblocktrans %}</h2>
 
-    <h3>Wie schreibe ich meinem Nachhilfelehrer?</h3>
-    <p>Über <strong>Nachrichten</strong> im Dashboard. Dort siehst du auch seine Antworten.</p>
+    <h3>{% blocktrans %}Wie schreibe ich meinem Nachhilfelehrer?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Über{% endblocktrans %} <strong>{% blocktrans %}Nachrichten{% endblocktrans %}</strong> {% blocktrans %}im Dashboard. Dort siehst du auch seine Antworten.{% endblocktrans %}</p>
 
-    <h3>Wo finde ich Unterrichtsmaterial?</h3>
-    <p>Unter <strong>Dokumente</strong>. Dort lädst du Dateien herunter, die dein Nachhilfelehrer bereitgestellt hat.</p>
+    <h3>{% blocktrans %}Wo finde ich Unterrichtsmaterial?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Unter{% endblocktrans %} <strong>{% blocktrans %}Dokumente{% endblocktrans %}</strong>{% blocktrans %}. Dort lädst du Dateien herunter, die dein Nachhilfelehrer bereitgestellt hat.{% endblocktrans %}</p>
 
-    <h3>Kann ich selbst Dateien hochladen?</h3>
-    <p>Ja, zum Beispiel ein Foto deiner Hausaufgabe. Erlaubt sind PDF, Bilder (PNG, JPG), Word, Excel und Textdateien bis 50 MB.</p>
+    <h3>{% blocktrans %}Kann ich selbst Dateien hochladen?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Ja, zum Beispiel ein Foto deiner Hausaufgabe. Erlaubt sind PDF, Bilder (PNG, JPG), Word, Excel und Textdateien bis 50 MB.{% endblocktrans %}</p>
 
-    <h3>Warum kann ich keine weitere Datei hochladen?</h3>
-    <p>Dann ist die Zahl der Dateien für dich ausgeschöpft. Wende dich an deinen Nachhilfelehrer.</p>
+    <h3>{% blocktrans %}Warum kann ich keine weitere Datei hochladen?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Dann ist die Zahl der Dateien für dich ausgeschöpft. Wende dich an deinen Nachhilfelehrer.{% endblocktrans %}</p>
 </div>
 
 <div class="card" id="familie">
-    <h2 style="margin-top:0;">Eltern &amp; mehrere Kinder</h2>
+    <h2 style="margin-top:0;">{% blocktrans %}Eltern &amp; mehrere Kinder{% endblocktrans %}</h2>
 
-    <h3>Brauchen Eltern und Kind getrennte Konten?</h3>
-    <p>Nein. Eltern und Kind nutzen gemeinsam ein Konto.</p>
+    <h3>{% blocktrans %}Brauchen Eltern und Kind getrennte Konten?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Nein. Eltern und Kind nutzen gemeinsam ein Konto.{% endblocktrans %}</p>
 
-    <h3>Ich habe mehrere Kinder bei demselben Nachhilfelehrer. Brauche ich mehrere Konten?</h3>
-    <p>Das hängt davon ab, was dein Nachhilfelehrer freigeschaltet hat. Mit dem Familien-Zugang siehst du nach der Anmeldung alle Kinder auf einer Seite und wählst für jedes Kind Termine, Kalender, Dokumente und Nachrichten. Sonst hat jedes Kind ein eigenes Konto mit eigener E-Mail-Adresse.</p>
+    <h3>{% blocktrans %}Ich habe mehrere Kinder bei demselben Nachhilfelehrer. Brauche ich mehrere Konten?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Das hängt davon ab, was dein Nachhilfelehrer freigeschaltet hat. Mit dem Familien-Zugang siehst du nach der Anmeldung alle Kinder auf einer Seite und wählst für jedes Kind Termine, Kalender, Dokumente und Nachrichten. Sonst hat jedes Kind ein eigenes Konto mit eigener E-Mail-Adresse.{% endblocktrans %}</p>
 
-    <h3>Sehen andere Familien unsere Daten?</h3>
-    <p>Nein. Du siehst nur die Daten deiner eigenen Kinder. Termine anderer Schüler erscheinen höchstens als „Belegt“, ohne Namen.</p>
+    <h3>{% blocktrans %}Sehen andere Familien unsere Daten?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Nein. Du siehst nur die Daten deiner eigenen Kinder. Termine anderer Schüler erscheinen höchstens als „Belegt“, ohne Namen.{% endblocktrans %}</p>
 </div>
 
 <div class="card" id="konto">
-    <h2 style="margin-top:0;">Konto &amp; Passwort</h2>
+    <h2 style="margin-top:0;">{% blocktrans %}Konto &amp; Passwort{% endblocktrans %}</h2>
 
-    <h3>Ich habe mein Passwort vergessen. Was jetzt?</h3>
-    <p>Gehe zur Seite <a href="{% url 'portal:password_reset' %}">Passwort zurücksetzen</a> und gib deine E-Mail-Adresse ein. Du erhältst einen Link. Er gilt eine Stunde. Danach forderst du einfach einen neuen an.</p>
+    <h3>{% blocktrans %}Ich habe mein Passwort vergessen. Was jetzt?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Gehe zur Seite{% endblocktrans %} <a href="{% url 'portal:password_reset' %}">{% blocktrans %}Passwort zurücksetzen{% endblocktrans %}</a> {% blocktrans %}und gib deine E-Mail-Adresse ein. Du erhältst einen Link. Er gilt eine Stunde. Danach forderst du einfach einen neuen an.{% endblocktrans %}</p>
 
-    <h3>Wie ändere ich mein Passwort?</h3>
-    <p>Unter <a href="{% url 'portal:profile' %}">Profil</a> bei „Passwort ändern“. Du brauchst dafür dein aktuelles Passwort.</p>
+    <h3>{% blocktrans %}Wie ändere ich mein Passwort?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Unter{% endblocktrans %} <a href="{% url 'portal:profile' %}">{% blocktrans %}Profil{% endblocktrans %}</a> {% blocktrans %}bei „Passwort ändern“. Du brauchst dafür dein aktuelles Passwort.{% endblocktrans %}</p>
 
-    <h3>Wie ändere ich meine E-Mail-Adresse oder Telefonnummer?</h3>
-    <p>Unter <a href="{% url 'portal:profile' %}">Profil</a> bei „Kontaktdaten“. Mit der E-Mail-Adresse meldest du dich an, und an sie gehen Benachrichtigungen.</p>
+    <h3>{% blocktrans %}Wie ändere ich meine E-Mail-Adresse oder Telefonnummer?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Unter{% endblocktrans %} <a href="{% url 'portal:profile' %}">{% blocktrans %}Profil{% endblocktrans %}</a> {% blocktrans %}bei „Kontaktdaten“. Mit der E-Mail-Adresse meldest du dich an, und an sie gehen Benachrichtigungen.{% endblocktrans %}</p>
 
-    <h3>Wie schalte ich Push-Nachrichten ein?</h3>
-    <p>Im Profil unter „Benachrichtigungen“. Push-Nachrichten aktivierst du für jedes Gerät einzeln. Unterstützt dein Browser sie nicht, steht das dort.</p>
+    <h3>{% blocktrans %}Wie schalte ich Push-Nachrichten ein?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Im Profil unter „Benachrichtigungen“. Push-Nachrichten aktivierst du für jedes Gerät einzeln. Unterstützt dein Browser sie nicht, steht das dort.{% endblocktrans %}</p>
 
-    <h3>Wie lösche ich mein Konto?</h3>
-    <p>Wende dich an deinen Nachhilfelehrer. Er verwaltet die Portal-Zugänge seiner Schüler.</p>
+    <h3>{% blocktrans %}Wie lösche ich mein Konto?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Wende dich an deinen Nachhilfelehrer. Er verwaltet die Portal-Zugänge seiner Schüler.{% endblocktrans %}</p>
 </div>
 
 <div class="card" id="zeitzone">
-    <h2 style="margin-top:0;">Zeitzone &amp; Uhrzeiten</h2>
+    <h2 style="margin-top:0;">{% blocktrans %}Zeitzone &amp; Uhrzeiten{% endblocktrans %}</h2>
 
-    <h3>In welcher Zeitzone werden die freien Zeiten beim Buchen angezeigt?</h3>
-    <p>In deiner Ortszeit. Das Portal erkennt die Zeitzone über deinen Browser und rechnet die freien Zeiten deines Nachhilfelehrers um.</p>
+    <h3>{% blocktrans %}In welcher Zeitzone werden die freien Zeiten beim Buchen angezeigt?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}In deiner Ortszeit. Das Portal erkennt die Zeitzone über deinen Browser und rechnet die freien Zeiten deines Nachhilfelehrers um.{% endblocktrans %}</p>
 
-    <h3>Was passiert, wenn mein Nachhilfelehrer in einer anderen Zeitzone ist?</h3>
-    <p>Beim Buchen wird die gewählte Uhrzeit in seine Zeitzone umgerechnet und richtig gespeichert. Du musst nichts selbst ausrechnen. Ein Hinweis nennt dir beide Zeitzonen.</p>
+    <h3>{% blocktrans %}Was passiert, wenn mein Nachhilfelehrer in einer anderen Zeitzone ist?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Beim Buchen wird die gewählte Uhrzeit in seine Zeitzone umgerechnet und richtig gespeichert. Du musst nichts selbst ausrechnen. Ein Hinweis nennt dir beide Zeitzonen.{% endblocktrans %}</p>
 
-    <h3>Warum sehe ich manchmal eine Uhrzeit mit „(Tutor)“ in Klammern?</h3>
-    <p>Weichen eure Zeitzonen ab, zeigt die Buchung neben deiner Ortszeit auch die Zeit deines Nachhilfelehrers. So vermeidest du Verwechslungen.</p>
+    <h3>{% blocktrans %}Warum sehe ich manchmal eine Uhrzeit mit „(Tutor)“ in Klammern?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Weichen eure Zeitzonen ab, zeigt die Buchung neben deiner Ortszeit auch die Zeit deines Nachhilfelehrers. So vermeidest du Verwechslungen.{% endblocktrans %}</p>
 </div>
 
 <div class="card" id="hilfe">
-    <h2 style="margin-top:0;">Datenschutz &amp; Hilfe</h2>
+    <h2 style="margin-top:0;">{% blocktrans %}Datenschutz &amp; Hilfe{% endblocktrans %}</h2>
 
-    <h3>Sind meine Daten sicher?</h3>
-    <p>Alle Daten werden verschlüsselt übertragen (HTTPS). Du siehst ausschließlich Informationen zu deinem eigenen Unterricht. Daten anderer Schüler kannst du nicht einsehen. Einzelheiten stehen in der Datenschutzerklärung, die unten auf jeder Seite verlinkt ist.</p>
+    <h3>{% blocktrans %}Sind meine Daten sicher?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Alle Daten werden verschlüsselt übertragen (HTTPS). Du siehst ausschließlich Informationen zu deinem eigenen Unterricht. Daten anderer Schüler kannst du nicht einsehen. Einzelheiten stehen in der Datenschutzerklärung, die unten auf jeder Seite verlinkt ist.{% endblocktrans %}</p>
 
-    <h3>Wer sieht meine Nachrichten und Dokumente?</h3>
-    <p>Du und dein Nachhilfelehrer.</p>
+    <h3>{% blocktrans %}Wer sieht meine Nachrichten und Dokumente?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}Du und dein Nachhilfelehrer.{% endblocktrans %}</p>
 
-    <h3>An wen wende ich mich bei Fragen oder technischen Problemen?</h3>
-    <p>An deinen Nachhilfelehrer. Er kann das Problem an den Support von Preceptly weitergeben.</p>
+    <h3>{% blocktrans %}An wen wende ich mich bei Fragen oder technischen Problemen?{% endblocktrans %}</h3>
+    <p>{% blocktrans %}An deinen Nachhilfelehrer. Er kann das Problem an den Support von Preceptly weitergeben.{% endblocktrans %}</p>
 </div>
 {% endblock %}

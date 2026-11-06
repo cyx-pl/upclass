@@ -1,25 +1,27 @@
 {% extends "portal/base.html" %}
+{% load i18n %}
 
-{% block title %}{{ student.full_name }} – Preceptly Portal{% endblock %}
+
+{% block title %}{{ student.full_name }} {% blocktrans %}– Preceptly Portal{% endblocktrans %}{% endblock %}
 
 {% block content %}
 <div class="btn-group">
-    <a class="btn btn-secondary" href="{% url 'portal:parent_home' %}">&larr; Dashboard</a>
+    <a class="btn btn-secondary" href="{% url 'portal:parent_home' %}">{% blocktrans %}&larr; Dashboard{% endblocktrans %}</a>
 </div>
 
 <h1>{{ student.full_name }}</h1>
 
-<h2>Letzte Stunden</h2>
+<h2>{% blocktrans %}Letzte Stunden{% endblocktrans %}</h2>
 {% if lessons %}
 <table>
     <thead>
         <tr>
-            <th>Datum</th>
-            <th>Uhrzeit</th>
-            <th>Dauer</th>
-            <th>Status</th>
-            <th>Hausaufgaben</th>
-            <th>Meeting</th>
+            <th>{% blocktrans %}Datum{% endblocktrans %}</th>
+            <th>{% blocktrans %}Uhrzeit{% endblocktrans %}</th>
+            <th>{% blocktrans %}Dauer{% endblocktrans %}</th>
+            <th>{% blocktrans %}Status{% endblocktrans %}</th>
+            <th>{% blocktrans %}Hausaufgaben{% endblocktrans %}</th>
+            <th>{% blocktrans %}Meeting{% endblocktrans %}</th>
             <th></th>
         </tr>
     </thead>
@@ -28,7 +30,7 @@
     <tr>
         <td>{{ lesson.date|date:"d.m.Y" }}</td>
         <td>{{ lesson.start_time|time:"H:i" }}</td>
-        <td style="white-space:nowrap;">{{ lesson.duration_minutes }} Min.</td>
+        <td style="white-space:nowrap;">{{ lesson.duration_minutes }} {% blocktrans %}Min.{% endblocktrans %}</td>
         <td><span style="font-size:0.85em;">{{ lesson.get_status_display }}</span></td>
         <td>
             {% if lesson.homework %}
@@ -39,24 +41,24 @@
         </td>
         <td>
             {% if lesson.meeting_url %}
-            <a class="btn-sm btn-sm-primary" href="{{ lesson.meeting_url }}" target="_blank" rel="noopener">▶ Beitreten</a>
+            <a class="btn-sm btn-sm-primary" href="{{ lesson.meeting_url }}" target="_blank" rel="noopener">{% blocktrans %}▶ Beitreten{% endblocktrans %}</a>
             {% else %}
             <span style="color:var(--text-secondary);">–</span>
             {% endif %}
         </td>
         <td style="white-space:nowrap;">
             {% if lesson.status == 'planned' %}
-            <a href="{% url 'portal:session_reschedule' lesson.pk %}" class="btn-sm btn-sm-secondary">Verschieben</a>
+            <a href="{% url 'portal:session_reschedule' lesson.pk %}" class="btn-sm btn-sm-secondary">{% blocktrans %}Verschieben{% endblocktrans %}</a>
             {% if lesson.recurring_session_id %}
             <button type="button" class="btn-sm btn-sm-danger"
                     data-session-pk="{{ lesson.pk }}"
                     data-recurring-pk="{{ lesson.recurring_session_id }}"
-                    data-click="openCancelModal" data-click-args='["$el"]'>Absagen</button>
+                    data-click="openCancelModal" data-click-args='["$el"]'>{% blocktrans %}Absagen{% endblocktrans %}</button>
             {% else %}
             <form method="post" action="{% url 'portal:session_cancel' lesson.pk %}" style="display:inline"
                   data-confirm="Termin wirklich absagen?">
               {% csrf_token %}
-              <button type="submit" class="btn-sm btn-sm-danger">Absagen</button>
+              <button type="submit" class="btn-sm btn-sm-danger">{% blocktrans %}Absagen{% endblocktrans %}</button>
             </form>
             {% endif %}
             {% endif %}
@@ -66,10 +68,10 @@
     </tbody>
 </table>
 {% else %}
-<div class="empty-state"><p>Keine Stunden gefunden.</p></div>
+<div class="empty-state"><p>{% blocktrans %}Keine Stunden gefunden.{% endblocktrans %}</p></div>
 {% endif %}
 
-<h2>Lernfortschritt</h2>
+<h2>{% blocktrans %}Lernfortschritt{% endblocktrans %}</h2>
 {% if progress_notes %}
 {% for note in progress_notes %}
 <div class="box-section">
@@ -80,29 +82,29 @@
 </div>
 {% endfor %}
 {% else %}
-<div class="empty-state"><p>Noch keine Lernfortschrittsnotizen.</p></div>
+<div class="empty-state"><p>{% blocktrans %}Noch keine Lernfortschrittsnotizen.{% endblocktrans %}</p></div>
 {% endif %}
 
 <div style="margin-top:30px;">
-    <a class="btn-sm btn-sm-secondary" href="{% url 'portal:parent_calendar_week' student.pk %}" style="margin-right:8px;">📅 Kalender</a>
+    <a class="btn-sm btn-sm-secondary" href="{% url 'portal:parent_calendar_week' student.pk %}" style="margin-right:8px;">{% blocktrans %}📅 Kalender{% endblocktrans %}</a>
     <a class="btn-sm btn-sm-primary" href="{% url 'portal:messages' student.pk %}">
-        Nachrichten öffnen
+        {% blocktrans %}Nachrichten öffnen{% endblocktrans %}
     </a>
 </div>
 
 <dialog id="cancelModal" aria-modal="true" aria-labelledby="cancelModalTitle" style="border:1px solid var(--border-color); border-radius:8px; padding:24px; max-width:420px; width:90%; background:var(--card-bg); color:var(--text-primary);">
-  <h3 id="cancelModalTitle" style="margin-top:0; margin-bottom:8px;">Termin absagen</h3>
-  <p style="margin-bottom:20px; color:var(--text-secondary);">Möchtest du nur diesen Termin oder die gesamte Serie löschen?</p>
+  <h3 id="cancelModalTitle" style="margin-top:0; margin-bottom:8px;">{% blocktrans %}Termin absagen{% endblocktrans %}</h3>
+  <p style="margin-bottom:20px; color:var(--text-secondary);">{% blocktrans %}Möchtest du nur diesen Termin oder die gesamte Serie löschen?{% endblocktrans %}</p>
   <div style="display:flex; gap:8px; flex-wrap:wrap;">
     <form id="cancelSingleForm" method="post" style="display:inline">
       {% csrf_token %}
-      <button type="submit" class="btn btn-sm-danger">Nur diesen Termin</button>
+      <button type="submit" class="btn btn-sm-danger">{% blocktrans %}Nur diesen Termin{% endblocktrans %}</button>
     </form>
     <form id="cancelSeriesForm" method="post" style="display:inline">
       {% csrf_token %}
-      <button type="submit" class="btn btn-sm-danger">Gesamte Serie</button>
+      <button type="submit" class="btn btn-sm-danger">{% blocktrans %}Gesamte Serie{% endblocktrans %}</button>
     </form>
-    <button type="button" class="btn btn-secondary" data-close-dialog="cancelModal">Abbrechen</button>
+    <button type="button" class="btn btn-secondary" data-close-dialog="cancelModal">{% blocktrans %}Abbrechen{% endblocktrans %}</button>
   </div>
 </dialog>
 <script nonce="{{ csp_nonce }}">

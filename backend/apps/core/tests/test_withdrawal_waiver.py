@@ -60,6 +60,7 @@ class WaiverRecordedAtCheckoutTest(TestCase):
     STRIPE_SECRET_KEY="sk_test_fake",
     STRIPE_PRICE_ID_PRO="price_pro",
 )
+@override_settings(LANGUAGE_CODE="de")
 class SubscriptionConfirmationEmailTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(

@@ -1,10 +1,10 @@
 """Push webhook view for e-recht24 legal text updates."""
-
 import json
 import logging
 
 from django.http import JsonResponse
 from django.utils.decorators import method_decorator
+from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django_ratelimit.decorators import ratelimit
@@ -30,7 +30,7 @@ class Erecht24PushView(View):
         if content_length is not None:
             try:
                 if int(content_length) > MAX_WEBHOOK_BYTES:
-                    return JsonResponse({"code": 413, "message": "payload too large"}, status=413)
+                    return JsonResponse({"code": 413, "message": _('payload too large')}, status=413)
             except (ValueError, TypeError):
                 # Malformed Content-Length header - fall through to the real
                 # body-length check below instead of trusting the header.
@@ -38,16 +38,16 @@ class Erecht24PushView(View):
 
         body = request.body
         if len(body) > MAX_WEBHOOK_BYTES:
-            return JsonResponse({"code": 413, "message": "payload too large"}, status=413)
+            return JsonResponse({"code": 413, "message": _('payload too large')}, status=413)
 
         content_type = request.content_type or ""
         if "application/json" in content_type:
             try:
                 payload = json.loads(body.decode("utf-8"))
             except (ValueError, UnicodeDecodeError):
-                return JsonResponse({"code": 400, "message": "invalid json"}, status=400)
+                return JsonResponse({"code": 400, "message": _('invalid json')}, status=400)
             if not isinstance(payload, dict):
-                return JsonResponse({"code": 400, "message": "invalid payload"}, status=400)
+                return JsonResponse({"code": 400, "message": _('invalid payload')}, status=400)
         else:
             payload = request.POST.dict()
             if not payload:

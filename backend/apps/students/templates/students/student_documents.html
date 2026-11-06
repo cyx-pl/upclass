@@ -1,43 +1,42 @@
 {% extends "core/base.html" %}
 {% load i18n %}
 
-{% block title %}Dokumente – {{ student.full_name }}{% endblock %}
+{% block title %}{% blocktrans %}Dokumente –{% endblocktrans %} {{ student.full_name }}{% endblock %}
 
 {% block content %}
 <div class="box-section">
   <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:20px;">
-    <h2 style="margin:0;">Dokumente: {{ student.full_name }}</h2>
-    <a href="{% url 'contracts:detail' student.pk %}" class="btn-sm btn-sm-secondary">&larr; Zum Schüler</a>
+    <h2 style="margin:0;">{% blocktrans %}Dokumente:{% endblocktrans %} {{ student.full_name }}</h2>
+    <a href="{% url 'contracts:detail' student.pk %}" class="btn-sm btn-sm-secondary">{% blocktrans %}&larr; Zum Schüler{% endblocktrans %}</a>
   </div>
 
   {% if document_limit == 0 %}
   <div class="alert-warning" style="margin-bottom:24px;">
-    Dokumente gibt es ab dem Starter-Tarif.
-    <a href="{% url 'core:settings' %}#subscription">Tarife ansehen</a>
+    {% blocktrans %}Dokumente gibt es ab dem Starter-Tarif.{% endblocktrans %}
+    <a href="{% url 'core:settings' %}#subscription">{% blocktrans %}Tarife ansehen{% endblocktrans %}</a>
   </div>
   {% elif document_limit_reached %}
   <div class="alert-warning" style="margin-bottom:24px;">
-    Für diesen Schüler sind alle {{ document_limit }} Dokumente des Starter-Tarifs belegt.
-    Lösche ein Dokument oder wechsle zu Pro — dort sind es unbegrenzt viele.
-    <a href="{% url 'core:settings' %}#subscription">Tarife ansehen</a>
+    {% blocktrans %}Für diesen Schüler sind alle{% endblocktrans %} {{ document_limit }} {% blocktrans %}Dokumente des Starter-Tarifs belegt. Lösche ein Dokument oder wechsle zu Pro — dort sind es unbegrenzt viele.{% endblocktrans %}
+    <a href="{% url 'core:settings' %}#subscription">{% blocktrans %}Tarife ansehen{% endblocktrans %}</a>
   </div>
   {% else %}
   {% if document_limit %}
   <p style="color:var(--text-secondary); font-size:0.88em; margin:0 0 8px 0;">
-    {{ documents|length }} von {{ document_limit }} Dokumenten im Starter-Tarif belegt.
+    {{ documents|length }} {% blocktrans %}von{% endblocktrans %} {{ document_limit }} {% blocktrans %}Dokumenten im Starter-Tarif belegt.{% endblocktrans %}
   </p>
   {% endif %}
   <form method="post" enctype="multipart/form-data" style="display:flex; gap:10px; flex-wrap:wrap; align-items:flex-end; margin-bottom:24px;">
     {% csrf_token %}
     <div style="flex:1; min-width:160px;">
-      <label for="id_name" style="display:block; font-size:0.88em; color:var(--text-secondary); margin-bottom:4px;">Bezeichnung (optional)</label>
-      <input type="text" id="id_name" name="name" class="form-control" placeholder="z. B. Hausaufgaben KW23">
+      <label for="id_name" style="display:block; font-size:0.88em; color:var(--text-secondary); margin-bottom:4px;">{% blocktrans %}Bezeichnung (optional){% endblocktrans %}</label>
+      <input type="text" id="id_name" name="name" class="form-control" placeholder="{% blocktrans %}z. B. Hausaufgaben KW23{% endblocktrans %}">
     </div>
     <div style="flex:2; min-width:200px;">
-      <label for="id_file" style="display:block; font-size:0.88em; color:var(--text-secondary); margin-bottom:4px;">Datei (max. 50 MB)</label>
+      <label for="id_file" style="display:block; font-size:0.88em; color:var(--text-secondary); margin-bottom:4px;">{% blocktrans %}Datei (max. 50 MB){% endblocktrans %}</label>
       <input type="file" id="id_file" name="file" required class="form-control">
     </div>
-    <button type="submit" class="btn-sm btn-sm-primary" style="white-space:nowrap;">Hochladen</button>
+    <button type="submit" class="btn-sm btn-sm-primary" style="white-space:nowrap;">{% blocktrans %}Hochladen{% endblocktrans %}</button>
   </form>
   {% endif %}
 
@@ -45,9 +44,9 @@
   <table style="width:100%; border-collapse:collapse;">
     <thead>
       <tr style="border-bottom:1px solid var(--border-color);">
-        <th style="text-align:left; padding:8px 0; color:var(--text-secondary); font-weight:500;">Datei</th>
-        <th style="text-align:left; padding:8px 0; color:var(--text-secondary); font-weight:500;">Hochgeladen von</th>
-        <th style="text-align:left; padding:8px 0; color:var(--text-secondary); font-weight:500;">Datum</th>
+        <th style="text-align:left; padding:8px 0; color:var(--text-secondary); font-weight:500;">{% blocktrans %}Datei{% endblocktrans %}</th>
+        <th style="text-align:left; padding:8px 0; color:var(--text-secondary); font-weight:500;">{% blocktrans %}Hochgeladen von{% endblocktrans %}</th>
+        <th style="text-align:left; padding:8px 0; color:var(--text-secondary); font-weight:500;">{% blocktrans %}Datum{% endblocktrans %}</th>
         <th></th>
       </tr>
     </thead>
@@ -57,11 +56,11 @@
       <td style="padding:8px 0;">
         {{ doc.display_name }}
         {% if not doc.file_exists %}
-          <span style="font-size:0.78em; color:var(--danger,#dc3545); margin-left:6px;">⚠ nicht verfügbar</span>
+          <span style="font-size:0.78em; color:var(--danger,#dc3545); margin-left:6px;">{% blocktrans %}⚠ nicht verfügbar{% endblocktrans %}</span>
         {% endif %}
       </td>
       <td style="padding:8px 0; font-size:0.88em; color:var(--text-secondary);">
-        {% if doc.uploaded_by_tutor %}Du (Tutor){% else %}{{ doc.uploaded_by_portal_user.user.username }}{% endif %}
+        {% if doc.uploaded_by_tutor %}{% blocktrans %}Du (Tutor){% endblocktrans %}{% else %}{{ doc.uploaded_by_portal_user.user.username }}{% endif %}
       </td>
       <td style="padding:8px 0; font-size:0.88em; color:var(--text-secondary);">{{ doc.uploaded_at|date:"d.m.Y H:i" }}</td>
       <td style="padding:8px 0; text-align:right; white-space:nowrap;">
@@ -79,7 +78,7 @@
     </tbody>
   </table>
   {% else %}
-  <p style="color:var(--text-secondary);">Noch keine Dokumente.</p>
+  <p style="color:var(--text-secondary);">{% blocktrans %}Noch keine Dokumente.{% endblocktrans %}</p>
   {% endif %}
 </div>
 {% endblock %}

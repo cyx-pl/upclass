@@ -1,9 +1,11 @@
 {% extends "core/email/_base.html" %}
-{% block title %}E-Mail-Adresse bestätigen{% endblock %}
-{% block heading %}✉️ E-Mail-Adresse bestätigen{% endblock %}
+{% load i18n %}
+
+{% block title %}{% blocktrans %}E-Mail-Adresse bestätigen{% endblocktrans %}{% endblock %}
+{% block heading %}{% blocktrans %}✉️ E-Mail-Adresse bestätigen{% endblocktrans %}{% endblock %}
 {% block body %}
-              <p style="margin:0 0 24px;">Bitte bestätige, dass diese Adresse zu deinem Preceptly-Konto gehört.</p>
+              <p style="margin:0 0 24px;">{% blocktrans %}Bitte bestätige, dass diese Adresse zu deinem Preceptly-Konto gehört.{% endblocktrans %}</p>
 {% include "core/email/_account_card.html" %}
 {% include "core/email/_button.html" with url=verify_url label="Adresse bestätigen" validity="Der Link ist 7 Tage gültig." %}
-              <p style="margin:16px 0 0; color:#6b7280; font-size:13px;">Wenn du kein Preceptly-Konto angelegt hast, kannst du diese E-Mail ignorieren.</p>
+              <p style="margin:16px 0 0; color:#6b7280; font-size:13px;">{% blocktrans %}Wenn du kein Preceptly-Konto angelegt hast, kannst du diese E-Mail ignorieren.{% endblocktrans %}</p>
 {% endblock %}

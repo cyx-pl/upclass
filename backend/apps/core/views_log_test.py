@@ -2,12 +2,12 @@
 Simple test endpoint to verify logging works.
 Only available when DEBUG=True. Returns 404 in production.
 """
-
 import logging
 import sys
 
 from django.conf import settings
 from django.http import HttpResponseNotFound, JsonResponse
+from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_http_methods
 
 logger = logging.getLogger(__name__)
@@ -37,7 +37,7 @@ def test_logs(request):
     return JsonResponse(
         {
             "success": True,
-            "message": "Log test completed. Check server logs for output.",
+            "message": _('Log test completed. Check server logs for output.'),
             "logs_sent": [
                 "logger.info",
                 "logger.warning",

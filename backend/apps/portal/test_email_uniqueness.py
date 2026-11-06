@@ -9,7 +9,7 @@ from datetime import date
 from decimal import Decimal
 
 from django.contrib.auth.models import User
-from django.test import Client, TestCase
+from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 
 from apps.contracts.models import Contract
@@ -125,6 +125,7 @@ class PortalProfileEmailChangeTest(TestCase):
         self.assertEqual(self.contract.email, "neu@example.com")
 
 
+@override_settings(LANGUAGE_CODE="de")
 class PortalInviteEmailConflictTest(TestCase):
     def setUp(self):
         self.tutor = User.objects.create_user(username="tutor", password="pass")

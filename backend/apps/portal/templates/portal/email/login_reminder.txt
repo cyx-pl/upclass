@@ -1,16 +1,16 @@
-Preceptly — Portal-Zugang
+{% load i18n %}{% blocktrans %}Preceptly — Portal-Zugang{% endblocktrans %}
 ==========================
 
-{{ tutor_name }} hat dir deine Zugangsdaten für das Preceptly-Portal geschickt.
+{{ tutor_name }} {% blocktrans %}hat dir deine Zugangsdaten für das Preceptly-Portal geschickt.{% endblocktrans %}
 
-E-Mail: {{ recipient_email }}
-Passwort: dein selbst gewähltes Passwort
+{% blocktrans %}E-Mail:{% endblocktrans %} {{ recipient_email }}
+{% blocktrans %}Passwort: dein selbst gewähltes Passwort{% endblocktrans %}
 
-Zum Portal-Login:
+{% blocktrans %}Zum Portal-Login:{% endblocktrans %}
 {{ login_url }}
 
-Passwort vergessen? Hier zurücksetzen:
+{% blocktrans %}Passwort vergessen? Hier zurücksetzen:{% endblocktrans %}
 {{ password_reset_url }}
 
 ---
-Preceptly — {{ site_url }}
+{% blocktrans %}Preceptly —{% endblocktrans %} {{ site_url }}

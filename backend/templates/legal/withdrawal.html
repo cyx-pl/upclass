@@ -1,76 +1,76 @@
 {% extends "core/base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Withdrawal Notice" %} - Preceptly{% endblock %}
+{% block title %}{% trans "Withdrawal Notice" %} {% blocktrans %}- Preceptly{% endblocktrans %}{% endblock %}
 
 {% block content %}
 {% include "legal/_style.html" %}
 {% get_current_language as LANGUAGE_CODE %}
 <div class="legal-page">
 {% if LANGUAGE_CODE == "de" %}
-<h1>Widerrufsbelehrung</h1>
-<h2>Widerrufsrecht für Verbraucher</h2>
-<p><em>Verbraucher ist jede natürliche Person, die ein Rechtsgeschäft zu Zwecken abschließt, die überwiegend weder ihrer gewerblichen noch ihrer selbständigen beruflichen Tätigkeit zugerechnet werden können.</em></p>
-<p>Sie haben das Recht, binnen 14 Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen. Die Widerrufsfrist beträgt 14 Tage ab dem Tag des Vertragsabschlusses.</p>
-<p>Um Ihr Widerrufsrecht auszuüben, müssen Sie uns (andicode, Preceptly, Birkenweg 7, 49577 Ankum, Telefon: 01771963614, E-Mail: info@preceptly.de) mittels einer eindeutigen Erklärung (z. B. ein mit der Post versandter Brief oder eine E-Mail) über Ihren Entschluss, diesen Vertrag zu widerrufen, informieren. Sie können dafür das beigefügte Muster-Widerrufsformular verwenden, das jedoch nicht vorgeschrieben ist.</p>
-<p>Zur Wahrung der Widerrufsfrist reicht es aus, dass Sie die Mitteilung über die Ausübung des Widerrufsrechts vor Ablauf der Widerrufsfrist absenden.</p>
-<h2>Erlöschen des Widerrufsrechts bei digitalen Inhalten</h2>
-<p>Bei Verträgen über die Bereitstellung digitaler Inhalte, die nicht auf einem körperlichen Datenträger geliefert werden (hier: Zugang zur Software Preceptly als SaaS), erlischt das Widerrufsrecht vorzeitig, wenn wir mit der Ausführung des Vertrags begonnen haben, nachdem Sie</p>
+<h1>{% blocktrans %}Widerrufsbelehrung{% endblocktrans %}</h1>
+<h2>{% blocktrans %}Widerrufsrecht für Verbraucher{% endblocktrans %}</h2>
+<p><em>{% blocktrans %}Verbraucher ist jede natürliche Person, die ein Rechtsgeschäft zu Zwecken abschließt, die überwiegend weder ihrer gewerblichen noch ihrer selbständigen beruflichen Tätigkeit zugerechnet werden können.{% endblocktrans %}</em></p>
+<p>{% blocktrans %}Sie haben das Recht, binnen 14 Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen. Die Widerrufsfrist beträgt 14 Tage ab dem Tag des Vertragsabschlusses.{% endblocktrans %}</p>
+<p>{% blocktrans %}Um Ihr Widerrufsrecht auszuüben, müssen Sie uns (andicode, Preceptly, Birkenweg 7, 49577 Ankum, Telefon: 01771963614, E-Mail: info@preceptly.de) mittels einer eindeutigen Erklärung (z. B. ein mit der Post versandter Brief oder eine E-Mail) über Ihren Entschluss, diesen Vertrag zu widerrufen, informieren. Sie können dafür das beigefügte Muster-Widerrufsformular verwenden, das jedoch nicht vorgeschrieben ist.{% endblocktrans %}</p>
+<p>{% blocktrans %}Zur Wahrung der Widerrufsfrist reicht es aus, dass Sie die Mitteilung über die Ausübung des Widerrufsrechts vor Ablauf der Widerrufsfrist absenden.{% endblocktrans %}</p>
+<h2>{% blocktrans %}Erlöschen des Widerrufsrechts bei digitalen Inhalten{% endblocktrans %}</h2>
+<p>{% blocktrans %}Bei Verträgen über die Bereitstellung digitaler Inhalte, die nicht auf einem körperlichen Datenträger geliefert werden (hier: Zugang zur Software Preceptly als SaaS), erlischt das Widerrufsrecht vorzeitig, wenn wir mit der Ausführung des Vertrags begonnen haben, nachdem Sie{% endblocktrans %}</p>
 <ul>
-    <li>ausdrücklich zugestimmt haben, dass wir vor Ablauf der Widerrufsfrist mit der Ausführung beginnen, und</li>
-    <li>Ihre Kenntnis davon bestätigt haben, dass Sie damit Ihr Widerrufsrecht verlieren.</li>
+    <li>{% blocktrans %}ausdrücklich zugestimmt haben, dass wir vor Ablauf der Widerrufsfrist mit der Ausführung beginnen, und{% endblocktrans %}</li>
+    <li>{% blocktrans %}Ihre Kenntnis davon bestätigt haben, dass Sie damit Ihr Widerrufsrecht verlieren.{% endblocktrans %}</li>
 </ul>
-<p>Diese Bestätigung erfolgt beim Abschluss des Abonnements (Checkout) über folgende Pflicht-Checkbox:</p>
-<blockquote><p>&#8222;Ich stimme der Ausführung des Vertrages vor Ablauf der Widerrufsfrist ausdrücklich zu. Ich nehme zur Kenntnis, dass mein Widerrufsrecht mit Beginn der Ausführung erlischt.&#8220;</p></blockquote>
-<h2>Folgen des Widerrufs</h2>
-<p>Wenn Sie diesen Vertrag widerrufen, haben wir Ihnen alle Zahlungen, die wir von Ihnen erhalten haben, einschließlich der Lieferkosten (mit Ausnahme der zusätzlichen Kosten, die sich daraus ergeben, dass Sie eine andere Art der Lieferung als die von uns angebotene, günstigste Standardlieferung gewählt haben), unverzüglich und spätestens binnen vierzehn Tagen ab dem Tag zurückzuzahlen, an dem die Mitteilung über Ihren Widerruf dieses Vertrags bei uns eingegangen ist. Für diese Rückzahlung verwenden wir dasselbe Zahlungsmittel, das Sie bei der ursprünglichen Transaktion eingesetzt haben, es sei denn, mit Ihnen wurde ausdrücklich etwas anderes vereinbart; in keinem Fall werden Ihnen wegen dieser Rückzahlung Entgelte berechnet.</p>
-<h2>Muster-Widerrufsformular</h2>
-<p>Wenn Sie den Vertrag widerrufen wollen, dann füllen Sie bitte dieses Formular aus und senden Sie es zurück.</p>
-<p>An<br>andicode, Preceptly<br>Birkenweg 7<br>49577 Ankum<br>E-Mail: info@preceptly.de</p>
-<p>Hiermit widerrufe(n) ich/wir den von mir/uns abgeschlossenen Vertrag über die Bereitstellung des Zugangs zu folgenden digitalen Inhalten (Bezeichnung, ggf. Bestellnummer und Preis):</p>
+<p>{% blocktrans %}Diese Bestätigung erfolgt beim Abschluss des Abonnements (Checkout) über folgende Pflicht-Checkbox:{% endblocktrans %}</p>
+<blockquote><p>{% blocktrans %}&#8222;Ich stimme der Ausführung des Vertrages vor Ablauf der Widerrufsfrist ausdrücklich zu. Ich nehme zur Kenntnis, dass mein Widerrufsrecht mit Beginn der Ausführung erlischt.&#8220;{% endblocktrans %}</p></blockquote>
+<h2>{% blocktrans %}Folgen des Widerrufs{% endblocktrans %}</h2>
+<p>{% blocktrans %}Wenn Sie diesen Vertrag widerrufen, haben wir Ihnen alle Zahlungen, die wir von Ihnen erhalten haben, einschließlich der Lieferkosten (mit Ausnahme der zusätzlichen Kosten, die sich daraus ergeben, dass Sie eine andere Art der Lieferung als die von uns angebotene, günstigste Standardlieferung gewählt haben), unverzüglich und spätestens binnen vierzehn Tagen ab dem Tag zurückzuzahlen, an dem die Mitteilung über Ihren Widerruf dieses Vertrags bei uns eingegangen ist. Für diese Rückzahlung verwenden wir dasselbe Zahlungsmittel, das Sie bei der ursprünglichen Transaktion eingesetzt haben, es sei denn, mit Ihnen wurde ausdrücklich etwas anderes vereinbart; in keinem Fall werden Ihnen wegen dieser Rückzahlung Entgelte berechnet.{% endblocktrans %}</p>
+<h2>{% blocktrans %}Muster-Widerrufsformular{% endblocktrans %}</h2>
+<p>{% blocktrans %}Wenn Sie den Vertrag widerrufen wollen, dann füllen Sie bitte dieses Formular aus und senden Sie es zurück.{% endblocktrans %}</p>
+<p>{% blocktrans %}An{% endblocktrans %}<br>{% blocktrans %}andicode, Preceptly{% endblocktrans %}<br>{% blocktrans %}Birkenweg 7{% endblocktrans %}<br>{% blocktrans %}49577 Ankum{% endblocktrans %}<br>{% blocktrans %}E-Mail: info@preceptly.de{% endblocktrans %}</p>
+<p>{% blocktrans %}Hiermit widerrufe(n) ich/wir den von mir/uns abgeschlossenen Vertrag über die Bereitstellung des Zugangs zu folgenden digitalen Inhalten (Bezeichnung, ggf. Bestellnummer und Preis):{% endblocktrans %}</p>
 <p>..............................................................................</p>
 <p>..............................................................................</p>
-<p>Bestellt am (Datum): .............................</p>
-<p>Erhalten am (Datum): .............................</p>
-<p>Name und Anschrift des Verbrauchers:</p>
+<p>{% blocktrans %}Bestellt am (Datum): .............................{% endblocktrans %}</p>
+<p>{% blocktrans %}Erhalten am (Datum): .............................{% endblocktrans %}</p>
+<p>{% blocktrans %}Name und Anschrift des Verbrauchers:{% endblocktrans %}</p>
 <p>.............................<br>.............................<br>.............................<br>.............................</p>
-<p>Datum: ....................................................</p>
-<p>Unterschrift Kunde (nur bei schriftlichem Widerruf): ....................................................</p>
-<h2>Widerrufsbutton</h2>
-<p>Zusätzlich zu den oben genannten Wegen (Brief, E-Mail) bieten wir auf unserer Website einen Widerrufsbutton an, über den Sie Ihren Widerruf bequem und digital einreichen können. Der Button befindet sich im Footer jeder Seite. Nähere Informationen zum Widerrufsbutton und den dabei eingesetzten Diensten finden Sie in unserer <a href="{% url 'core:legal_privacy' %}">Datenschutzerklärung</a>.</p>
+<p>{% blocktrans %}Datum: ....................................................{% endblocktrans %}</p>
+<p>{% blocktrans %}Unterschrift Kunde (nur bei schriftlichem Widerruf): ....................................................{% endblocktrans %}</p>
+<h2>{% blocktrans %}Widerrufsbutton{% endblocktrans %}</h2>
+<p>{% blocktrans %}Zusätzlich zu den oben genannten Wegen (Brief, E-Mail) bieten wir auf unserer Website einen Widerrufsbutton an, über den Sie Ihren Widerruf bequem und digital einreichen können. Der Button befindet sich im Footer jeder Seite. Nähere Informationen zum Widerrufsbutton und den dabei eingesetzten Diensten finden Sie in unserer{% endblocktrans %} <a href="{% url 'core:legal_privacy' %}">{% blocktrans %}Datenschutzerklärung{% endblocktrans %}</a>.</p>
 
 {% else %}
-<h1>Right of Withdrawal</h1>
-<h2>Withdrawal Right for Consumers</h2>
-<p><em>A consumer is any natural person who concludes a legal transaction for purposes that are predominantly neither commercial nor self-employed in nature.</em></p>
-<p>You have the right to withdraw from this contract within 14 days without giving any reason. The withdrawal period is 14 days from the date of conclusion of the contract.</p>
-<p>To exercise your right of withdrawal, you must inform us (andicode, Preceptly, Birkenweg 7, 49577 Ankum, Germany, Phone: +49 177 1963614, E-Mail: info@preceptly.de) by means of a clear declaration (e.g. a letter sent by post or an e-mail) of your decision to withdraw from this contract. You may use the attached model withdrawal form, but this is not mandatory.</p>
-<p>To meet the withdrawal deadline, it is sufficient for you to send your communication concerning your exercise of the right of withdrawal before the withdrawal period has expired.</p>
-<h2>Expiry of the Right of Withdrawal for Digital Content</h2>
-<p>For contracts for the supply of digital content not supplied on a tangible medium (here: access to the Preceptly software as a SaaS), the right of withdrawal expires prematurely once we have begun performance of the contract, provided you have</p>
+<h1>{% blocktrans %}Right of Withdrawal{% endblocktrans %}</h1>
+<h2>{% blocktrans %}Withdrawal Right for Consumers{% endblocktrans %}</h2>
+<p><em>{% blocktrans %}A consumer is any natural person who concludes a legal transaction for purposes that are predominantly neither commercial nor self-employed in nature.{% endblocktrans %}</em></p>
+<p>{% blocktrans %}You have the right to withdraw from this contract within 14 days without giving any reason. The withdrawal period is 14 days from the date of conclusion of the contract.{% endblocktrans %}</p>
+<p>{% blocktrans %}To exercise your right of withdrawal, you must inform us (andicode, Preceptly, Birkenweg 7, 49577 Ankum, Germany, Phone: +49 177 1963614, E-Mail: info@preceptly.de) by means of a clear declaration (e.g. a letter sent by post or an e-mail) of your decision to withdraw from this contract. You may use the attached model withdrawal form, but this is not mandatory.{% endblocktrans %}</p>
+<p>{% blocktrans %}To meet the withdrawal deadline, it is sufficient for you to send your communication concerning your exercise of the right of withdrawal before the withdrawal period has expired.{% endblocktrans %}</p>
+<h2>{% blocktrans %}Expiry of the Right of Withdrawal for Digital Content{% endblocktrans %}</h2>
+<p>{% blocktrans %}For contracts for the supply of digital content not supplied on a tangible medium (here: access to the Preceptly software as a SaaS), the right of withdrawal expires prematurely once we have begun performance of the contract, provided you have{% endblocktrans %}</p>
 <ul>
-    <li>expressly consented to us beginning performance before the end of the withdrawal period, and</li>
-    <li>acknowledged that you thereby lose your right of withdrawal.</li>
+    <li>{% blocktrans %}expressly consented to us beginning performance before the end of the withdrawal period, and{% endblocktrans %}</li>
+    <li>{% blocktrans %}acknowledged that you thereby lose your right of withdrawal.{% endblocktrans %}</li>
 </ul>
-<p>This confirmation is given during the subscription checkout via the following mandatory checkbox:</p>
-<blockquote><p>"I expressly agree to the performance of the contract before the end of the withdrawal period. I acknowledge that my right of withdrawal expires upon commencement of performance."</p></blockquote>
-<h2>Consequences of Withdrawal</h2>
-<p>If you withdraw from this contract, we shall reimburse to you all payments received from you, including the costs of delivery (with the exception of the supplementary costs resulting from your choice of a type of delivery other than the least expensive type of standard delivery offered by us), without undue delay and not later than 14 days from the day on which we are informed about your decision to withdraw from this contract. We will carry out such reimbursement using the same means of payment as you used for the initial transaction, unless you have expressly agreed otherwise; in any event, you will not incur any fees as a result of such reimbursement.</p>
-<h2>Model Withdrawal Form</h2>
-<p>If you want to withdraw from this contract, please complete and return this form.</p>
-<p>To<br>andicode, Preceptly<br>Birkenweg 7<br>49577 Ankum, Germany<br>E-Mail: info@preceptly.de</p>
-<p>I/We (*) hereby give notice that I/we (*) withdraw from my/our (*) contract for the provision of access to the following digital content:</p>
+<p>{% blocktrans %}This confirmation is given during the subscription checkout via the following mandatory checkbox:{% endblocktrans %}</p>
+<blockquote><p>{% blocktrans %}"I expressly agree to the performance of the contract before the end of the withdrawal period. I acknowledge that my right of withdrawal expires upon commencement of performance."{% endblocktrans %}</p></blockquote>
+<h2>{% blocktrans %}Consequences of Withdrawal{% endblocktrans %}</h2>
+<p>{% blocktrans %}If you withdraw from this contract, we shall reimburse to you all payments received from you, including the costs of delivery (with the exception of the supplementary costs resulting from your choice of a type of delivery other than the least expensive type of standard delivery offered by us), without undue delay and not later than 14 days from the day on which we are informed about your decision to withdraw from this contract. We will carry out such reimbursement using the same means of payment as you used for the initial transaction, unless you have expressly agreed otherwise; in any event, you will not incur any fees as a result of such reimbursement.{% endblocktrans %}</p>
+<h2>{% blocktrans %}Model Withdrawal Form{% endblocktrans %}</h2>
+<p>{% blocktrans %}If you want to withdraw from this contract, please complete and return this form.{% endblocktrans %}</p>
+<p>{% blocktrans %}To{% endblocktrans %}<br>{% blocktrans %}andicode, Preceptly{% endblocktrans %}<br>{% blocktrans %}Birkenweg 7{% endblocktrans %}<br>{% blocktrans %}49577 Ankum, Germany{% endblocktrans %}<br>{% blocktrans %}E-Mail: info@preceptly.de{% endblocktrans %}</p>
+<p>{% blocktrans %}I/We (*) hereby give notice that I/we (*) withdraw from my/our (*) contract for the provision of access to the following digital content:{% endblocktrans %}</p>
 <p>..............................................................................</p>
 <p>..............................................................................</p>
-<p>Ordered on (*): .............................</p>
-<p>Received on (*): .............................</p>
-<p>Name of consumer(s):</p>
+<p>{% blocktrans %}Ordered on (*): .............................{% endblocktrans %}</p>
+<p>{% blocktrans %}Received on (*): .............................{% endblocktrans %}</p>
+<p>{% blocktrans %}Name of consumer(s):{% endblocktrans %}</p>
 <p>.............................<br>.............................<br>.............................<br>.............................</p>
-<p>Date: ....................................................</p>
-<p>Signature of consumer(s) (only if this form is notified on paper): ....................................................</p>
-<p><em>(*) Delete as appropriate.</em></p>
-<h2>Revocation Button</h2>
-<p>In addition to the methods described above (post, email), we also offer a revocation button on our website that allows you to submit your withdrawal conveniently and digitally. The button is located in the footer of every page. For further information about the revocation button and the services used, please refer to our <a href="{% url 'core:legal_privacy' %}">Privacy Policy</a>.</p>
+<p>{% blocktrans %}Date: ....................................................{% endblocktrans %}</p>
+<p>{% blocktrans %}Signature of consumer(s) (only if this form is notified on paper): ....................................................{% endblocktrans %}</p>
+<p><em>{% blocktrans %}(*) Delete as appropriate.{% endblocktrans %}</em></p>
+<h2>{% blocktrans %}Revocation Button{% endblocktrans %}</h2>
+<p>{% blocktrans %}In addition to the methods described above (post, email), we also offer a revocation button on our website that allows you to submit your withdrawal conveniently and digitally. The button is located in the footer of every page. For further information about the revocation button and the services used, please refer to our{% endblocktrans %} <a href="{% url 'core:legal_privacy' %}">{% blocktrans %}Privacy Policy{% endblocktrans %}</a>.</p>
 {% endif %}
 </div>
 {% endblock %}

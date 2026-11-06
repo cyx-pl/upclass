@@ -10,7 +10,7 @@ from decimal import Decimal
 
 from django.contrib.auth.models import User
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
 
@@ -110,6 +110,7 @@ class TierFixture(TestCase):
         return Session.objects.filter(contract=self.contract, start_time=time(16, 0)).count()
 
 
+@override_settings(LANGUAGE_CODE="de")
 class FreeTierTest(TierFixture):
     tier = "free"
 
@@ -135,6 +136,7 @@ class FreeTierTest(TierFixture):
         self.assertEqual(self._new_bookings(), 0)
 
 
+@override_settings(LANGUAGE_CODE="de")
 class StarterTierTest(TierFixture):
     tier = "starter"
 
@@ -260,6 +262,7 @@ class ProTierTest(TierFixture):
         self.assertEqual(self.client.get(create).status_code, 200)
 
 
+@override_settings(LANGUAGE_CODE="de")
 class PricingConsistencyTest(TestCase):
     """Preisseite und Abo-Karten in der App versprechen dasselbe."""
 

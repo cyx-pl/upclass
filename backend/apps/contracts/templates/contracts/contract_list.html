@@ -1,31 +1,31 @@
 {% extends 'core/base.html' %}
 {% load i18n %}
 
-{% block title %}Verträge – Preceptly{% endblock %}
+{% block title %}{% blocktrans %}Verträge – Preceptly{% endblocktrans %}{% endblock %}
 
 {% block content %}
-<h1>Schüler</h1>
-<a href="{% url 'contracts:create' %}" class="btn">Neuer Schüler</a>
+<h1>{% blocktrans %}Schüler{% endblocktrans %}</h1>
+<a href="{% url 'contracts:create' %}" class="btn">{% blocktrans %}Neuer Schüler{% endblocktrans %}</a>
 
 {% if family_suggestions and plan.family_access %}
 <div class="box-section" style="margin-top: 1em; margin-bottom: 1.5em;">
-  <h3 style="margin-top: 0;">Mögliche Familien erkannt</h3>
+  <h3 style="margin-top: 0;">{% blocktrans %}Mögliche Familien erkannt{% endblocktrans %}</h3>
   {% for s in family_suggestions %}
   <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px;">
     <span>
-      <strong>{{ s.a.full_name }}</strong> und <strong>{{ s.b.full_name }}</strong>
-      {% if s.reason == "email" %}(gleiche Kontakt-E-Mail){% else %}(gleicher Nachname){% endif %}
+      <strong>{{ s.a.full_name }}</strong> {% blocktrans %}und{% endblocktrans %} <strong>{{ s.b.full_name }}</strong>
+      {% if s.reason == "email" %}{% blocktrans %}(gleiche Kontakt-E-Mail){% endblocktrans %}{% else %}{% blocktrans %}(gleicher Nachname){% endblocktrans %}{% endif %}
     </span>
     <form method="post" action="{% url 'students:link_family' s.a.pk s.b.pk %}" style="display: inline;">
       {% csrf_token %}
-      <button type="submit" class="btn-sm btn-sm-primary">Als Familie verknüpfen</button>
+      <button type="submit" class="btn-sm btn-sm-primary">{% blocktrans %}Als Familie verknüpfen{% endblocktrans %}</button>
     </form>
   </div>
   {% endfor %}
 </div>
 {% endif %}
 
-<table aria-label="Schülerliste">
+<table aria-label="{% blocktrans %}Schülerliste{% endblocktrans %}">
     <thead>
         <tr>
             <th scope="col">{% trans "Student" %}</th>
@@ -77,7 +77,7 @@
         </tr>
         {% endwith %}
         {% empty %}
-        <tr><td colspan="9">Keine Schüler vorhanden.</td></tr>
+        <tr><td colspan="9">{% blocktrans %}Keine Schüler vorhanden.{% endblocktrans %}</td></tr>
         {% endfor %}
     </tbody>
 </table>

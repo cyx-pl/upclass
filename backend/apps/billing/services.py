@@ -74,9 +74,9 @@ class InvoiceService:
         from django.core.exceptions import ValidationError
 
         if period_start > period_end:
-            raise ValidationError("period_start muss vor period_end liegen.")
+            raise ValidationError(_('period_start muss vor period_end liegen.'))
         if (period_end - period_start).days > 366:
-            raise ValidationError("Zeitraum darf maximal 1 Jahr betragen.")
+            raise ValidationError(_('Zeitraum darf maximal 1 Jahr betragen.'))
 
         queryset = (
             Lesson.objects.filter(
@@ -139,9 +139,9 @@ class InvoiceService:
         from django.core.exceptions import ValidationError
 
         if period_start > period_end:
-            raise ValidationError("period_start muss vor period_end liegen.")
+            raise ValidationError(_('period_start muss vor period_end liegen.'))
         if (period_end - period_start).days > 366:
-            raise ValidationError("Zeitraum darf maximal 1 Jahr betragen.")
+            raise ValidationError(_('Zeitraum darf maximal 1 Jahr betragen.'))
 
         contract_id = contract.id if contract else None
         logger.info(

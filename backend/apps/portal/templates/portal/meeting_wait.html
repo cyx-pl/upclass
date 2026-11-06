@@ -1,6 +1,8 @@
 {% extends "portal/base.html" %}
+{% load i18n %}
 
-{% block title %}Warteraum – {{ lesson.date|date:"d.m.Y" }} – Preceptly Portal{% endblock %}
+
+{% block title %}{% blocktrans %}Warteraum –{% endblocktrans %} {{ lesson.date|date:"d.m.Y" }} {% blocktrans %}– Preceptly Portal{% endblocktrans %}{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -47,25 +49,24 @@
 {% block content %}
 <div class="wait-card card">
     <span class="wait-icon">📹</span>
-    <h2 style="margin-top:0;">Warteraum</h2>
+    <h2 style="margin-top:0;">{% blocktrans %}Warteraum{% endblocktrans %}</h2>
     <p style="color:var(--text-secondary); margin-bottom:0;">
-        Warte darauf, dass dein Tutor das Meeting startet …
+        {% blocktrans %}Warte darauf, dass dein Tutor das Meeting startet …{% endblocktrans %}
     </p>
 
     <div class="wait-spinner" id="spinner"></div>
 
     <div class="wait-info">
-        <strong>Stunde:</strong> {{ lesson.date|date:"d.m.Y" }},
-        {{ lesson.start_time|time:"H:i" }} Uhr
-        ({{ lesson.duration_minutes }} Min.)<br>
-        <strong>Fach:</strong> {{ lesson.contract.subject|default:"–" }}<br>
-        <strong>Tutor:</strong> {{ lesson.contract.user.get_full_name|default:lesson.contract.user.username }}
+        <strong>{% blocktrans %}Stunde:{% endblocktrans %}</strong> {{ lesson.date|date:"d.m.Y" }},
+        {{ lesson.start_time|time:"H:i" }} {% blocktrans %}Uhr ({% endblocktrans %}{{ lesson.duration_minutes }} {% blocktrans %}Min.){% endblocktrans %}<br>
+        <strong>{% blocktrans %}Fach:{% endblocktrans %}</strong> {{ lesson.contract.subject|default:"–" }}<br>
+        <strong>{% blocktrans %}Tutor:{% endblocktrans %}</strong> {{ lesson.contract.user.get_full_name|default:lesson.contract.user.username }}
     </div>
 
-    <p id="wait-status">Verbinde …</p>
+    <p id="wait-status">{% blocktrans %}Verbinde …{% endblocktrans %}</p>
 
     <a href="{% url 'portal:home' %}" class="btn btn-secondary" style="margin-top:8px;">
-        ← Zurück zum Dashboard
+        {% blocktrans %}← Zurück zum Dashboard{% endblocktrans %}
     </a>
 </div>
 
@@ -82,7 +83,7 @@ async function poll() {
         const resp = await fetch(STATUS_URL);
         const data = await resp.json();
         if (data.active && data.token) {
-            statusEl.textContent = "Meeting gefunden! Leite weiter …";
+            statusEl.textContent = "{% filter escapejs %}{% blocktrans %}Meeting gefunden! Leite weiter …{% endblocktrans %}{% endfilter %}";
             statusEl.className = "active";
             document.getElementById("spinner").style.borderTopColor = "#27ae60";
             setTimeout(() => {
@@ -93,7 +94,7 @@ async function poll() {
         const dots = ".".repeat((pollCount % 3) + 1);
         statusEl.textContent = `Warte auf Tutor${dots}`;
     } catch (e) {
-        statusEl.textContent = "Verbindungsproblem – versuche erneut …";
+        statusEl.textContent = "{% filter escapejs %}{% blocktrans %}Verbindungsproblem – versuche erneut …{% endblocktrans %}{% endfilter %}";
     }
     setTimeout(poll, 3000);
 }

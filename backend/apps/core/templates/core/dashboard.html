@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load currency %}
 
-{% block title %}Dashboard – Preceptly{% endblock %}
+{% block title %}{% blocktrans %}Dashboard – Preceptly{% endblocktrans %}{% endblock %}
 
 {% block content %}
 <h1>{% trans "Dashboard" %}{% if is_premium %} <span class="premium-badge">{% trans "Premium" %}</span>{% endif %}</h1>
@@ -16,7 +16,7 @@
 
 <h2>{% trans "Today's Lessons" %}</h2>
 {% if today_lessons %}
-<table aria-label="Heutige Stunden">
+<table aria-label="{% blocktrans %}Heutige Stunden{% endblocktrans %}">
     <thead>
         <tr>
             <th scope="col">{% trans "Time" %}</th>
@@ -48,7 +48,7 @@
 
 <h2>{% trans "Upcoming Lessons (7 days)" %}</h2>
 {% if upcoming_lessons %}
-<table aria-label="Kommende Stunden">
+<table aria-label="{% blocktrans %}Kommende Stunden{% endblocktrans %}">
     <thead>
         <tr>
             <th scope="col">{% trans "Date" %}</th>

@@ -1,6 +1,8 @@
 {% extends "portal/base.html" %}
+{% load i18n %}
 
-{% block title %}Elternportal – Preceptly{% endblock %}
+
+{% block title %}{% blocktrans %}Elternportal – Preceptly{% endblocktrans %}{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -201,8 +203,8 @@
 {% endblock %}
 
 {% block content %}
-<h1 style="margin-bottom: 16px;">Ihre Kinder</h1>
-<div style="margin-bottom:20px;"><a class="btn btn-secondary" href="{% url 'portal:profile' %}">⚙ Profil bearbeiten</a></div>
+<h1 style="margin-bottom: 16px;">{% blocktrans %}Ihre Kinder{% endblocktrans %}</h1>
+<div style="margin-bottom:20px;"><a class="btn btn-secondary" href="{% url 'portal:profile' %}">{% blocktrans %}⚙ Profil bearbeiten{% endblocktrans %}</a></div>
 
 {% if students_data %}
 <div class="student-grid">
@@ -225,18 +227,18 @@
     <div class="card-body">
 
         {% if sd.next_lesson %}
-        <div class="lesson-row" aria-label="Nächste Stunde">
+        <div class="lesson-row" aria-label="{% blocktrans %}Nächste Stunde{% endblocktrans %}">
             <div class="lesson-icon" aria-hidden="true">📅</div>
             <div>
-                <p class="lesson-meta">Nächste Stunde</p>
-                <p class="lesson-time">{{ sd.next_lesson.date|date:"d.m.Y" }}, {{ sd.next_lesson.start_time|time:"H:i" }} Uhr</p>
+                <p class="lesson-meta">{% blocktrans %}Nächste Stunde{% endblocktrans %}</p>
+                <p class="lesson-time">{{ sd.next_lesson.date|date:"d.m.Y" }}, {{ sd.next_lesson.start_time|time:"H:i" }} {% blocktrans %}Uhr{% endblocktrans %}</p>
             </div>
         </div>
 
         {% if sd.meeting_room %}
         <a class="meeting-banner" href="{% url 'portal:meeting_wait' sd.next_lesson.pk %}">
             <span class="meeting-dot" aria-hidden="true"></span>
-            <span>Meeting läuft – Jetzt beitreten</span>
+            <span>{% blocktrans %}Meeting läuft – Jetzt beitreten{% endblocktrans %}</span>
             <span class="meeting-join-arrow" aria-hidden="true">→</span>
         </a>
         {% endif %}
@@ -245,29 +247,29 @@
         <div class="lesson-row" style="opacity:0.55;">
             <div class="lesson-icon" aria-hidden="true">📅</div>
             <div>
-                <p class="lesson-meta">Nächste Stunde</p>
-                <p class="lesson-time" style="font-weight:400; color:var(--text-secondary);">Keine geplant</p>
+                <p class="lesson-meta">{% blocktrans %}Nächste Stunde{% endblocktrans %}</p>
+                <p class="lesson-time" style="font-weight:400; color:var(--text-secondary);">{% blocktrans %}Keine geplant{% endblocktrans %}</p>
             </div>
         </div>
         {% endif %}
 
         <div class="action-grid">
             <a class="action-btn primary" href="{% url 'portal:book' sd.student.pk %}">
-                ＋ Termin buchen
+                {% blocktrans %}＋ Termin buchen{% endblocktrans %}
             </a>
             <a class="action-btn" href="{% url 'portal:parent_student_detail' sd.student.pk %}">
-                ⓘ Details
+                {% blocktrans %}ⓘ Details{% endblocktrans %}
             </a>
             <a class="action-btn" href="{% url 'portal:parent_calendar_week' sd.student.pk %}">
-                📅 Kalender
+                {% blocktrans %}📅 Kalender{% endblocktrans %}
             </a>
             <a class="action-btn" href="{% url 'portal:documents' sd.student.pk %}">
-                📄 Dokumente
+                {% blocktrans %}📄 Dokumente{% endblocktrans %}
             </a>
             <a class="action-btn {% if sd.unread_messages > 0 %}unread-hint{% endif %}"
                href="{% url 'portal:messages' sd.student.pk %}"
                style="grid-column: 1 / -1;">
-                💬 Nachrichten
+                {% blocktrans %}💬 Nachrichten{% endblocktrans %}
                 {% if sd.unread_messages > 0 %}
                 <span class="btn-badge" aria-label="{{ sd.unread_messages }} ungelesene Nachrichten">{{ sd.unread_messages }}</span>
                 {% endif %}
@@ -281,6 +283,6 @@
 </div>
 
 {% else %}
-<div class="empty-state"><p>Keine Schüler mit Ihrem Konto verknüpft.</p></div>
+<div class="empty-state"><p>{% blocktrans %}Keine Schüler mit Ihrem Konto verknüpft.{% endblocktrans %}</p></div>
 {% endif %}
 {% endblock %}

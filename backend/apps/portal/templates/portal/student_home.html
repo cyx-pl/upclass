@@ -1,6 +1,8 @@
 {% extends "portal/base.html" %}
+{% load i18n %}
 
-{% block title %}Mein Portal – Preceptly{% endblock %}
+
+{% block title %}{% blocktrans %}Mein Portal – Preceptly{% endblocktrans %}{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -21,20 +23,20 @@
 .lesson-row:hover td, .lesson-row:focus-within td { background: var(--bg-primary); }
 .lesson-link { color: inherit; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
 </style>
-<h1>Hallo, {{ student.full_name }}!</h1>
+<h1>{% blocktrans %}Hallo,{% endblocktrans %} {{ student.full_name }}!</h1>
 
 <div class="btn-group" style="margin-bottom:28px;">
-    <a class="btn" href="{% url 'portal:calendar_week' %}">📅 Kalender</a>
-    <a class="btn" href="{% url 'portal:book' student.pk %}">+ Termin buchen</a>
-    <a class="btn btn-secondary" href="{% url 'portal:student_lessons' %}">Alle Stunden</a>
-    <a class="btn btn-secondary" href="{% url 'portal:recurring_manage' student.pk %}">Serientermine</a>
-    <a class="btn btn-secondary" href="{% url 'portal:documents' student.pk %}">Dokumente</a>
-    <a class="btn btn-secondary" href="{% url 'portal:messages' student.pk %}">Nachrichten</a>
-    <a class="btn btn-secondary" href="{% url 'portal:profile' %}">⚙ Profil</a>
+    <a class="btn" href="{% url 'portal:calendar_week' %}">{% blocktrans %}📅 Kalender{% endblocktrans %}</a>
+    <a class="btn" href="{% url 'portal:book' student.pk %}">{% blocktrans %}+ Termin buchen{% endblocktrans %}</a>
+    <a class="btn btn-secondary" href="{% url 'portal:student_lessons' %}">{% blocktrans %}Alle Stunden{% endblocktrans %}</a>
+    <a class="btn btn-secondary" href="{% url 'portal:recurring_manage' student.pk %}">{% blocktrans %}Serientermine{% endblocktrans %}</a>
+    <a class="btn btn-secondary" href="{% url 'portal:documents' student.pk %}">{% blocktrans %}Dokumente{% endblocktrans %}</a>
+    <a class="btn btn-secondary" href="{% url 'portal:messages' student.pk %}">{% blocktrans %}Nachrichten{% endblocktrans %}</a>
+    <a class="btn btn-secondary" href="{% url 'portal:profile' %}">{% blocktrans %}⚙ Profil{% endblocktrans %}</a>
 </div>
 
 <div class="card">
-<h2 style="margin-top:0; border-bottom:2px solid var(--border-color); padding-bottom:8px;">Nächste Stunden</h2>
+<h2 style="margin-top:0; border-bottom:2px solid var(--border-color); padding-bottom:8px;">{% blocktrans %}Nächste Stunden{% endblocktrans %}</h2>
 {% if upcoming_with_meeting %}
 {% for entry in upcoming_with_meeting %}
 {% if entry.meeting_room %}
@@ -45,21 +47,21 @@
           padding:12px 16px; margin-bottom:12px; text-decoration:none; color:inherit;
           animation:pulse 2s infinite;">
     <span style="font-weight:600; color:#1e8449;">
-        📹 Meeting läuft – {{ entry.lesson.date|date:"d.m.Y" }}, {{ entry.lesson.start_time|time:"H:i" }} Uhr
+        {% blocktrans %}📹 Meeting läuft –{% endblocktrans %} {{ entry.lesson.date|date:"d.m.Y" }}, {{ entry.lesson.start_time|time:"H:i" }} {% blocktrans %}Uhr{% endblocktrans %}
     </span>
     <span class="btn" style="background:#27ae60; font-weight:700; padding:6px 18px; font-size:0.95em;">
-        Jetzt beitreten →
+        {% blocktrans %}Jetzt beitreten →{% endblocktrans %}
     </span>
 </a>
 {% endif %}
 {% endfor %}
-<table aria-label="Nächste Stunden">
+<table aria-label="{% blocktrans %}Nächste Stunden{% endblocktrans %}">
     <thead>
         <tr>
-            <th scope="col">Datum</th>
-            <th scope="col">Uhrzeit</th>
-            <th scope="col">Dauer</th>
-            <th scope="col"><span class="sr-only">Aktion</span></th>
+            <th scope="col">{% blocktrans %}Datum{% endblocktrans %}</th>
+            <th scope="col">{% blocktrans %}Uhrzeit{% endblocktrans %}</th>
+            <th scope="col">{% blocktrans %}Dauer{% endblocktrans %}</th>
+            <th scope="col"><span class="sr-only">{% blocktrans %}Aktion{% endblocktrans %}</span></th>
         </tr>
     </thead>
     <tbody>
@@ -68,44 +70,44 @@
     <tr class="lesson-row" data-href="{{ lesson_url }}">
         <td><a class="lesson-link" href="{{ lesson_url }}">{{ entry.lesson.date|date:"d.m.Y" }}</a></td>
         <td>{{ entry.lesson.start_time|time:"H:i" }}</td>
-        <td>{{ entry.lesson.duration_minutes }} min</td>
+        <td>{{ entry.lesson.duration_minutes }} {% blocktrans %}min{% endblocktrans %}</td>
         <td data-stop-propagation>
             {% if entry.meeting_room %}
-            <a class="btn-sm btn-sm-primary" href="{% url 'portal:meeting_wait' entry.lesson.pk %}">📹 Meeting</a>
+            <a class="btn-sm btn-sm-primary" href="{% url 'portal:meeting_wait' entry.lesson.pk %}">{% blocktrans %}📹 Meeting{% endblocktrans %}</a>
             {% endif %}
             <a class="btn-sm btn-sm-secondary" href="{% url 'portal:session_reschedule' entry.lesson.pk %}"
-               aria-label="Stunde am {{ entry.lesson.date|date:'d.m.Y' }} um {{ entry.lesson.start_time|time:'H:i' }} Uhr verschieben">Verschieben</a>
+               aria-label="Stunde am {{ entry.lesson.date|date:'d.m.Y' }} um {{ entry.lesson.start_time|time:'H:i' }} Uhr verschieben">{% blocktrans %}Verschieben{% endblocktrans %}</a>
         </td>
     </tr>
     {% endfor %}
     </tbody>
 </table>
 {% else %}
-<div class="empty-state"><p>Keine kommenden Stunden geplant.</p></div>
+<div class="empty-state"><p>{% blocktrans %}Keine kommenden Stunden geplant.{% endblocktrans %}</p></div>
 {% endif %}
 </div>
 
 <div class="card">
-<h2 style="margin-top:0; border-bottom:2px solid var(--border-color); padding-bottom:8px;">Letzte Stunden</h2>
+<h2 style="margin-top:0; border-bottom:2px solid var(--border-color); padding-bottom:8px;">{% blocktrans %}Letzte Stunden{% endblocktrans %}</h2>
 {% if recent %}
 {% for lesson in recent %}
 <div class="box-section">
     <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
         <div>
             <strong>{{ lesson.date|date:"d.m.Y" }}</strong>
-            <span style="color:var(--text-secondary); font-size:0.88em; margin-left:10px;">{{ lesson.start_time|time:"H:i" }} Uhr</span>
+            <span style="color:var(--text-secondary); font-size:0.88em; margin-left:10px;">{{ lesson.start_time|time:"H:i" }} {% blocktrans %}Uhr{% endblocktrans %}</span>
         </div>
         <span style="font-size:0.82em; color:var(--text-secondary);" aria-label="Status: {{ lesson.get_status_display }}">{{ lesson.get_status_display }}</span>
     </div>
     {% if lesson.homework %}
     <div class="alert-info" style="margin-top:12px; margin-bottom:0;">
-        <strong>Hausaufgaben:</strong> {{ lesson.homework }}
+        <strong>{% blocktrans %}Hausaufgaben:{% endblocktrans %}</strong> {{ lesson.homework }}
     </div>
     {% endif %}
 </div>
 {% endfor %}
 {% else %}
-<div class="empty-state"><p>Noch keine vergangenen Stunden.</p></div>
+<div class="empty-state"><p>{% blocktrans %}Noch keine vergangenen Stunden.{% endblocktrans %}</p></div>
 {% endif %}
 </div>
 {% endblock %}

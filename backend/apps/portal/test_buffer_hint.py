@@ -1,8 +1,9 @@
+
 from datetime import date, time, timedelta
 from decimal import Decimal
 
 from django.contrib.auth.models import User
-from django.test import Client, TestCase
+from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 
 from apps.contracts.models import Contract
@@ -13,6 +14,7 @@ from apps.portal.models import ParentStudentLink, PortalUser
 HINT = "etwa eine halbe Stunde Puffer"
 
 
+@override_settings(LANGUAGE_CODE="de")
 class PortalBufferHintTest(TestCase):
     def setUp(self):
         self.tutor = User.objects.create_user(username="tutor_bh", password="pass")

@@ -7,7 +7,7 @@ from unittest.mock import patch
 from django.contrib.auth.models import User
 from django.core import mail
 from django.core.cache import cache
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.urls import reverse
 
 from apps.core.models import UserProfile
@@ -86,6 +86,7 @@ class EmailRequiredTest(TestCase):
         self.assertFalse(response["Location"].startswith(reverse("core:email_required")))
 
 
+@override_settings(LANGUAGE_CODE="de")
 class EmailChangeTest(TestCase):
     def setUp(self):
         cache.clear()

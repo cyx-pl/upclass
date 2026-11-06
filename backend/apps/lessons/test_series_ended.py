@@ -9,7 +9,7 @@ from datetime import date, time, timedelta
 from decimal import Decimal
 
 from django.contrib.auth.models import User
-from django.test import Client, TestCase
+from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
 
@@ -56,6 +56,7 @@ class RecurringSeriesHasEndedTest(TestCase):
         self.assertTrue(series.has_ended)
 
 
+@override_settings(LANGUAGE_CODE="de")
 class PortalRecurringManageEndedTest(TestCase):
     def setUp(self):
         self.tutor = User.objects.create_user(username="tutor_rm", password="pass")

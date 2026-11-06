@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}
 {% load i18n static %}
 
-{% block title %}Wiederkehrende Lektion – Preceptly{% endblock %}
+{% block title %}{% blocktrans %}Wiederkehrende Lektion – Preceptly{% endblocktrans %}{% endblock %}
 
 {% block content %}
 <h1>{% if object %}{% trans "Edit Recurring Lesson" %}{% else %}{% trans "New Recurring Lesson" %}{% endif %}</h1>
@@ -35,7 +35,7 @@
             {% endif %}
             {% if field.name == 'recurrence_weekdays' %}
                 <fieldset style="border: none; padding: 0; margin: 0;">
-                    <legend class="sr-only">Wochentage</legend>
+                    <legend class="sr-only">{% blocktrans %}Wochentage{% endblocktrans %}</legend>
                 </fieldset>
             {% endif %}
         </div>

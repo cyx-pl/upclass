@@ -6,7 +6,7 @@ from datetime import date, time
 from decimal import Decimal
 
 from django.contrib.auth.models import User
-from django.test import Client, TestCase
+from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 
 from apps.contracts.models import Contract
@@ -14,6 +14,7 @@ from apps.core.models import UserProfile
 from apps.lessons.models import Lesson
 
 
+@override_settings(LANGUAGE_CODE="de")
 class PremiumFeatureVisibilityTest(TestCase):
     """Tests for premium feature visibility in UI."""
 

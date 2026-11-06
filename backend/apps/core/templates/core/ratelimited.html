@@ -1,9 +1,12 @@
+{% load i18n %}{% get_current_language as CURRENT_LANGUAGE %}
+
+{% load i18n %}
 {% load static %}<!DOCTYPE html>
-<html lang="de">
+<html lang="{{ CURRENT_LANGUAGE }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zu viele Anfragen - Preceptly</title>
+    <title>{% blocktrans %}Zu viele Anfragen - Preceptly{% endblocktrans %}</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -42,10 +45,10 @@
 </head>
 <body>
     <main class="box">
-        <h1>⏳ Zu viele Anfragen</h1>
-        <p>Von deinem Gerät kamen in kurzer Zeit sehr viele Anfragen. Zum Schutz vor Missbrauch ist diese Aktion deshalb kurz gesperrt.</p>
-        <p>Bitte warte etwa eine Minute und versuche es dann erneut.</p>
-        <a class="btn" href="/" data-history-back>Zurück</a>
+        <h1>{% blocktrans %}⏳ Zu viele Anfragen{% endblocktrans %}</h1>
+        <p>{% blocktrans %}Von deinem Gerät kamen in kurzer Zeit sehr viele Anfragen. Zum Schutz vor Missbrauch ist diese Aktion deshalb kurz gesperrt.{% endblocktrans %}</p>
+        <p>{% blocktrans %}Bitte warte etwa eine Minute und versuche es dann erneut.{% endblocktrans %}</p>
+        <a class="btn" href="/" data-history-back>{% blocktrans %}Zurück{% endblocktrans %}</a>
     </main>
 </body>
 </html>

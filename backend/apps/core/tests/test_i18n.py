@@ -21,18 +21,18 @@ class I18nTestCase(TestCase):
         self.client = Client()
         self.user = User.objects.create_user(username="testuser_i18n", password="password")
 
-    def test_default_language_is_german(self):
-        """Test that default language is German."""
+    def test_default_language_is_polish(self):
+        """Test that default language is Polish."""
         from django.conf import settings
 
-        self.assertEqual(settings.LANGUAGE_CODE, "de")
+        self.assertEqual(settings.LANGUAGE_CODE, "pl")
 
     def test_language_switching(self):
         """Test that language switching works."""
         self.client.force_login(self.user)
         # Test English (default)
         activate("en")
-        response = self.client.get(reverse("core:dashboard"))
+        response = self.client.get(reverse("core:dashboard"), HTTP_ACCEPT_LANGUAGE="en")
         self.assertEqual(response.status_code, 200)
         self.assertIn(b"Dashboard", response.content)
 
@@ -240,11 +240,11 @@ class AcceptLanguageDetectionTestCase(TestCase):
             kwargs["HTTP_ACCEPT_LANGUAGE"] = accept_language
         return client.get(reverse("core:login"), **kwargs)
 
-    def test_no_accept_language_header_yields_german(self):
-        """Request with no Accept-Language falls back to LANGUAGE_CODE=de."""
+    def test_no_accept_language_header_yields_polish(self):
+        """Request with no Accept-Language falls back to LANGUAGE_CODE=pl."""
         response = self._get_login()
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b"Benutzername", response.content)
+        self.assertIn("Nazwa użytkownika".encode(), response.content)
         self.assertNotIn(b"Username", response.content)
 
     def test_accept_language_en_yields_english(self):

@@ -119,9 +119,9 @@ class LessonPlanService:
         """
         # [HIGH] user ist PFLICHT – kein opt-in Ownership-Check
         if user is None:
-            raise PermissionDenied("User is required for lesson plan generation.")
+            raise PermissionDenied(_('User is required for lesson plan generation.'))
         if session.contract.user_id != user.id:
-            raise PermissionDenied("Session does not belong to user.")
+            raise PermissionDenied(_('Session does not belong to user.'))
 
         # [MEDIUM] Rate-Limiting: max. 10 Generierungen pro User pro Stunde
         rate_key = f"llm_gen_rate:{user.id}"

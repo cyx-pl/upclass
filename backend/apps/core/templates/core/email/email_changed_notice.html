@@ -1,11 +1,13 @@
 {% extends "core/email/_base.html" %}
-{% block title %}E-Mail-Adresse geändert{% endblock %}
-{% block heading %}🔔 E-Mail-Adresse geändert{% endblock %}
+{% load i18n %}
+
+{% block title %}{% blocktrans %}E-Mail-Adresse geändert{% endblocktrans %}{% endblock %}
+{% block heading %}{% blocktrans %}🔔 E-Mail-Adresse geändert{% endblocktrans %}{% endblock %}
 {% block body %}
-              <p style="margin:0 0 24px;">Die E-Mail-Adresse deines Preceptly-Kontos wurde gerade geändert. An diese Adresse schicken wir ab jetzt nichts mehr.</p>
+              <p style="margin:0 0 24px;">{% blocktrans %}Die E-Mail-Adresse deines Preceptly-Kontos wurde gerade geändert. An diese Adresse schicken wir ab jetzt nichts mehr.{% endblocktrans %}</p>
 {% include "core/email/_account_card.html" with second_label="Neue Adresse" second_value=new_email %}
               <div style="margin-top:24px; padding:14px 18px; background:#fef3c7; border:1px solid #fcd34d; border-radius:8px; color:#92400e; font-size:14px;">
-                <strong>Das warst du nicht?</strong> Dann schreib bitte sofort an
-                <a href="mailto:info@preceptly.de" style="color:#92400e;">info@preceptly.de</a>, damit wir dein Konto sichern können.
+                <strong>{% blocktrans %}Das warst du nicht?{% endblocktrans %}</strong> {% blocktrans %}Dann schreib bitte sofort an{% endblocktrans %}
+                <a href="mailto:info@preceptly.de" style="color:#92400e;">info@preceptly.de</a>{% blocktrans %}, damit wir dein Konto sichern können.{% endblocktrans %}
               </div>
 {% endblock %}

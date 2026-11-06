@@ -15,7 +15,7 @@ from unittest import mock
 import django.utils.timezone as tz
 from django.contrib.auth import get_user_model
 from django.db import connection
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.test.utils import CaptureQueriesContext
 from django.urls import reverse
 
@@ -187,6 +187,7 @@ class PastTimesTodayTest(NowFixture):
             self.assertEqual((lesson.date, lesson.start_time), (self.today, dt.time(17, 0)))
 
 
+@override_settings(LANGUAGE_CODE="de")
 class FirstWeekWithFreeTimesTest(NowFixture):
     def test_an_empty_current_week_shows_the_first_week_with_free_times(self):
         with self.at(self.this_sunday, 20, 0):  # Sonntagabend: diese Woche ist durch

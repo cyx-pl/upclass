@@ -1,10 +1,10 @@
-Neue Registrierung — Preceptly
+{% load i18n %}{% blocktrans %}Neue Registrierung — Preceptly{% endblocktrans %}
 
-{{ username }} hat sich soeben bei Preceptly registriert.
+{{ username }} {% blocktrans %}hat sich soeben bei Preceptly registriert.{% endblocktrans %}
 
-Benutzername:  {{ username }}
-E-Mail:        {{ email }}
+{% blocktrans %}Benutzername:{% endblocktrans %}  {{ username }}
+{% blocktrans %}E-Mail:{% endblocktrans %}        {{ email }}
 
 ---
-Preceptly — Nachhilfe-Management
+{% blocktrans %}Preceptly — Nachhilfe-Management{% endblocktrans %}
 {{ site_url }}

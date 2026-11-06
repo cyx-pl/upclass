@@ -10,7 +10,7 @@ import re
 from django.contrib.auth.models import User
 from django.core import mail
 from django.core.cache import cache
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.urls import reverse
 
 from apps.core.forms import HONEYPOT_FIELD, RegisterForm
@@ -62,6 +62,7 @@ class FormTest(HoneypotFixture):
         self.assertFalse(RegisterForm().fields["homepage"].required)
 
 
+@override_settings(LANGUAGE_CODE="de")
 class RegistrationFlowTest(HoneypotFixture):
     def test_a_normal_registration_still_works(self):
         response = self.register()
@@ -117,6 +118,7 @@ class RegistrationFlowTest(HoneypotFixture):
         self.assertEqual(response.status_code, 429)
 
 
+@override_settings(LANGUAGE_CODE="de")
 class PageTest(HoneypotFixture):
     def field_tag(self):
         html = self.client.get(self.url).content.decode()

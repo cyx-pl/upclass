@@ -1,4 +1,6 @@
 {% extends "core/email/_base.html" %}
+{% load i18n %}
+
 {% block title %}{{ heading }}{% endblock %}
 {% block heading %}{{ heading }}{% endblock %}
 {% block body %}
@@ -15,11 +17,11 @@
               <div style="margin-top:28px; text-align:center;">
                 <a href="{{ dashboard_url }}"
                    style="background:#1a56db; color:#ffffff; text-decoration:none; padding:13px 28px; border-radius:7px; font-size:15px; font-weight:600; display:inline-block;">
-                  Schüler ansehen →
+                  {% blocktrans %}Schüler ansehen →{% endblocktrans %}
                 </a>
               </div>
               {% endif %}
               <p style="margin:24px 0 0; color:#6b7280; font-size:13px;">
-                Diese Nachrichten stellst du in den Einstellungen unter „Benachrichtigungen“ ein.
+                {% blocktrans %}Diese Nachrichten stellst du in den Einstellungen unter „Benachrichtigungen“ ein.{% endblocktrans %}
               </p>
 {% endblock %}

@@ -12,7 +12,7 @@ from unittest.mock import patch
 from django.contrib.auth.models import User
 from django.core.cache import cache
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.test import Client, TestCase
+from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 from reportlab.pdfgen import canvas
 
@@ -30,6 +30,7 @@ def _make_pdf(text: str) -> bytes:
     return buffer.getvalue()
 
 
+@override_settings(LANGUAGE_CODE="de")
 class GenerateLessonPlanExtraContextTest(TestCase):
     def setUp(self):
         cache.clear()

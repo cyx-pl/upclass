@@ -2,12 +2,12 @@
 Test endpoint for email functionality.
 Only available when DEBUG=True. Returns 404 in production.
 """
-
 import logging
 
 from django.conf import settings
 from django.core.mail import send_mail
 from django.http import HttpResponseNotFound, JsonResponse
+from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_http_methods
 
 logger = logging.getLogger(__name__)
@@ -70,7 +70,7 @@ def test_email(request):
         return JsonResponse(
             {
                 "success": False,
-                "error": "No notification email configured. Set NOTIFICATION_EMAIL environment variable.",
+                "error": _('No notification email configured. Set NOTIFICATION_EMAIL environment variable.'),
             },
             status=400,
         )
@@ -81,7 +81,7 @@ def test_email(request):
 
     try:
         send_mail(
-            subject="Preceptly Test Email",
+            subject=_('Preceptly Test Email'),
             message="This is a test email from Preceptly. If you receive this, email configuration is working correctly.",
             from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=[notification_email],
@@ -91,7 +91,7 @@ def test_email(request):
         return JsonResponse(
             {
                 "success": True,
-                "message": f"Test email sent successfully to {notification_email}",
+                "message": _('Test email sent successfully to {value0}').format(value0=notification_email),
                 "email_backend": email_backend,
             }
         )
@@ -102,7 +102,7 @@ def test_email(request):
         return JsonResponse(
             {
                 "success": False,
-                "error": "Failed to send test email. Check server logs for details.",
+                "error": _('Failed to send test email. Check server logs for details.'),
                 "email_backend": email_backend,
             },
             status=500,

@@ -16,7 +16,7 @@ from decimal import Decimal
 from channels.testing import WebsocketCommunicator
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AnonymousUser
-from django.test import TestCase, TransactionTestCase
+from django.test import TestCase, TransactionTestCase, override_settings
 from django.urls import reverse
 
 from apps.contracts.models import Contract
@@ -172,6 +172,7 @@ class DiagMessageTest(TransactionTestCase):
         await student.disconnect()
 
 
+@override_settings(LANGUAGE_CODE="de")
 class RoomPageFixesTest(TestCase):
     """Die Korrekturen stehen in der ausgelieferten Seite (Tutor und Schüler)."""
 

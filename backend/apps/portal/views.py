@@ -286,8 +286,8 @@ class StudentLessonListView(View):
 
         from apps.lessons.booking_origin import PORTAL, cancelled_overview
 
-        # Das Portal ist nur deutsch - auch bei englischem Browser.
-        with translation.override("de"):
+        # Use the active language for booking details in the portal.
+        with translation.override(translation.get_language()):
             cancelled = cancelled_overview(student, viewer=PORTAL, portal_user=portal_user)
         return render(
             request,
@@ -513,7 +513,7 @@ class PortalActivateView(View):
                 {
                     "token": token,
                     "student": link.contract,
-                    "error": "Die Passwörter stimmen nicht überein.",
+                    "error": _('Die Passwörter stimmen nicht überein.'),
                 },
             )
         try:
@@ -586,7 +586,7 @@ class PortalPasswordResetRequestView(View):
                     run_in_background(
                         "Portal-Passwort-Reset",
                         send_mail,
-                        subject="Neues Passwort für dein Preceptly-Portal",
+                        subject=_('Neues Passwort für dein Preceptly-Portal'),
                         message=plain,
                         from_email=settings.DEFAULT_FROM_EMAIL,
                         recipient_list=[recipient],
@@ -646,7 +646,7 @@ class PortalPasswordResetConfirmView(View):
                 {
                     "token": token,
                     "student": link.contract,
-                    "error": "Die Passwörter stimmen nicht überein.",
+                    "error": _('Die Passwörter stimmen nicht überein.'),
                 },
             )
         try:
@@ -694,8 +694,8 @@ class StudentLessonDetailView(View):
 
         from apps.lessons.booking_origin import PORTAL, booking_origin
 
-        # Das Portal ist nur deutsch - auch bei englischem Browser.
-        with translation.override("de"):
+        # Use the active language for booking details in the portal.
+        with translation.override(translation.get_language()):
             booking = booking_origin(lesson, viewer=PORTAL, portal_user=portal_user)
 
         return render(
@@ -903,10 +903,10 @@ class PortalAvailabilityView(View):
     def get(self, request, student_pk):
         portal_user = get_portal_user(request)
         if not portal_user:
-            return JsonResponse({"error": "Nicht angemeldet"}, status=401)
+            return JsonResponse({"error": _('Nicht angemeldet')}, status=401)
         student = _get_portal_student(portal_user, student_pk)
         if not student:
-            return JsonResponse({"error": "Kein Zugriff"}, status=403)
+            return JsonResponse({"error": _('Kein Zugriff')}, status=403)
         contract = _get_active_contract(student)
         duration = contract.unit_duration_minutes if contract else 60
 
@@ -914,7 +914,7 @@ class PortalAvailabilityView(View):
         try:
             date = _dt.date.fromisoformat(date_str)
         except ValueError:
-            return JsonResponse({"error": "Ungültiges Datum"}, status=400)
+            return JsonResponse({"error": _('Ungültiges Datum')}, status=400)
 
         slots = _get_available_slots(
             student.user,
@@ -1084,7 +1084,7 @@ class PortalSessionCancelView(View):
             return HttpResponseForbidden()
 
         if session.status != "planned":
-            messages.warning(request, "Nur geplante Termine können abgesagt werden.")
+            messages.warning(request, _('Nur geplante Termine können abgesagt werden.'))
         else:
             from django.db import transaction
 
@@ -1103,7 +1103,7 @@ class PortalSessionCancelView(View):
                 archive_cancelled([session], portal_user.user, CancelledSession.VIA_PORTAL)
                 session.delete()
             run_in_background("Portal-Absage", send_change_notification_portal, tutor, notice)
-            messages.success(request, f"Termin am {date_str} wurde abgesagt.")
+            messages.success(request, _('Termin am {value0} wurde abgesagt.').format(value0=date_str))
 
         # Zurück zur richtigen Übersicht
         return _portal_redirect_after_action(portal_user, student)
@@ -1166,7 +1166,7 @@ class PortalSessionRescheduleView(View):
         if not student:
             return HttpResponseForbidden()
         if session.status != "planned":
-            messages.warning(request, "Nur geplante Termine können verschoben werden.")
+            messages.warning(request, _('Nur geplante Termine können verschoben werden.'))
             return _portal_redirect_after_action(portal_user, student)
 
         date_str = request.POST.get("date", "").strip()
@@ -1235,7 +1235,7 @@ class PortalSessionRescheduleView(View):
         )
         messages.success(
             request,
-            f"Termin vom {old_date.strftime('%d.%m.%Y')} auf {new_date.strftime('%d.%m.%Y')} um {new_time.strftime('%H:%M')} Uhr verschoben.",
+            _('Termin vom {value0} auf {value1} um {value2} Uhr verschoben.').format(value0=old_date.strftime('%d.%m.%Y'), value1=new_date.strftime('%d.%m.%Y'), value2=new_time.strftime('%H:%M')),
         )
         return _portal_redirect_after_action(portal_user, student)
 
@@ -1377,7 +1377,7 @@ class PortalRecurringCreateView(View):
             return redirect("portal:recurring_manage", student_pk=student_pk)
         contract = _get_active_contract(student)
         if not contract:
-            messages.warning(request, "Kein aktiver Vertrag vorhanden.")
+            messages.warning(request, _('Kein aktiver Vertrag vorhanden.'))
             return redirect("portal:recurring_manage", student_pk=student_pk)
 
         time_str = request.POST.get("start_time", "").strip()
@@ -1390,7 +1390,7 @@ class PortalRecurringCreateView(View):
             start_time = _dt.time.fromisoformat(time_str)
             start_date = _dt.date.fromisoformat(start_str)
         except ValueError:
-            messages.warning(request, "Ungültige Zeit oder Startdatum.")
+            messages.warning(request, _('Ungültige Zeit oder Startdatum.'))
             return redirect("portal:recurring_create", student_pk=student_pk)
 
         end_date = None
@@ -1402,7 +1402,7 @@ class PortalRecurringCreateView(View):
 
         weekdays = {f: (f in request.POST) for f in self.WEEKDAY_FIELDS}
         if not any(weekdays.values()):
-            messages.warning(request, "Bitte mindestens einen Wochentag auswählen.")
+            messages.warning(request, _('Bitte mindestens einen Wochentag auswählen.'))
             return redirect("portal:recurring_create", student_pk=student_pk)
 
         rs = RecurringSession.objects.create(
@@ -1453,12 +1453,12 @@ class PortalRecurringCreateView(View):
                     "An allen gewünschten Tagen ist dein Tutor zu dieser Zeit nicht frei "
                     "(schon belegt oder außerhalb seiner Arbeitszeiten)."
                 )
-            messages.warning(request, f"{reason} Es wurde keine Serie angelegt. {advice}")
+            messages.warning(request, _('{value0} Es wurde keine Serie angelegt. {value1}').format(value0=reason, value1=advice))
             return redirect("portal:recurring_create", student_pk=student_pk)
         booked = result["created"]
         messages.success(
             request,
-            f"Serientermin erstellt. {booked} {'Termin' if booked == 1 else 'Termine'} gebucht.",
+            _('Serientermin erstellt. {value0} {value1} gebucht.').format(value0=booked, value1='Termin' if booked == 1 else 'Termine'),
         )
         if busy:
             messages.info(request, _busy_days_message(busy))
@@ -1509,7 +1509,7 @@ class PortalRecurringCancelView(View):
             "Portal-Serienende", send_change_notification_portal, rs.contract.user, notice
         )
         messages.success(
-            request, f"Serientermin beendet. {len(dropped)} zukünftige Termine abgesagt."
+            request, _('Serientermin beendet. {value0} zukünftige Termine abgesagt.').format(value0=len(dropped))
         )
         return redirect("portal:recurring_manage", student_pk=student.pk)
 
@@ -1556,24 +1556,24 @@ class PortalDocumentsView(View):
 
         uploaded_file = request.FILES.get("file")
         if not uploaded_file:
-            messages.warning(request, "Keine Datei ausgewählt.")
+            messages.warning(request, _('Keine Datei ausgewählt.'))
             return redirect("portal:documents", student_pk=student_pk)
 
         ext = os.path.splitext(uploaded_file.name)[1].lower()
         if ext not in _ALLOWED_UPLOAD_EXTENSIONS:
             messages.error(
                 request,
-                "Dateityp nicht erlaubt. Erlaubte Formate: PDF, PNG, JPG, JPEG, DOCX, DOC, XLSX, XLS, TXT.",
+                _('Dateityp nicht erlaubt. Erlaubte Formate: PDF, PNG, JPG, JPEG, DOCX, DOC, XLSX, XLS, TXT.'),
             )
             return redirect("portal:documents", student_pk=student_pk)
 
         if uploaded_file.size > _MAX_UPLOAD_SIZE:
-            messages.error(request, "Die Datei ist zu groß. Maximale Dateigröße: 50 MB.")
+            messages.error(request, _('Die Datei ist zu groß. Maximale Dateigröße: 50 MB.'))
             return redirect("portal:documents", student_pk=student_pk)
 
         if not validate_file_magic(uploaded_file, ext):
             messages.error(
-                request, "Dateityp nicht erlaubt (Inhalt stimmt nicht mit Dateiendung überein)."
+                request, _('Dateityp nicht erlaubt (Inhalt stimmt nicht mit Dateiendung überein).')
             )
             return redirect("portal:documents", student_pk=student_pk)
 
@@ -1585,7 +1585,7 @@ class PortalDocumentsView(View):
             uploaded_by_portal_user=portal_user,
             uploaded_by_tutor=False,
         )
-        messages.success(request, "Datei erfolgreich hochgeladen.")
+        messages.success(request, _('Datei erfolgreich hochgeladen.'))
         return redirect("portal:documents", student_pk=student_pk)
 
 
@@ -2096,8 +2096,7 @@ class PortalIcalFeedRenewView(View):
         portal_user.save(update_fields=["ical_feed_token"])
         messages.success(
             request,
-            "Neuer Kalender-Link erstellt. Der alte Link funktioniert ab sofort nicht mehr – "
-            "trage den neuen Link in deinem Kalender ein.",
+            _('Neuer Kalender-Link erstellt. Der alte Link funktioniert ab sofort nicht mehr – trage den neuen Link in deinem Kalender ein.'),
         )
         return redirect("portal:profile")
 
@@ -2259,7 +2258,7 @@ class PortalPushSubscribeView(View):
 
         portal_user = get_portal_user(request)
         if not portal_user:
-            return HttpResponseForbidden("Not logged in")
+            return HttpResponseForbidden(_('Not logged in'))
 
         try:
             data = json.loads(request.body)
@@ -2268,7 +2267,7 @@ class PortalPushSubscribeView(View):
             p256dh = keys["p256dh"]
             auth = keys["auth"]
         except (json.JSONDecodeError, KeyError, TypeError):
-            return HttpResponseBadRequest("Invalid subscription payload")
+            return HttpResponseBadRequest(_('Invalid subscription payload'))
 
         save_push_subscription(portal_user.user, endpoint, p256dh, auth)
         return JsonResponse({"status": "ok"})
@@ -2287,13 +2286,13 @@ class PortalPushUnsubscribeView(View):
 
         portal_user = get_portal_user(request)
         if not portal_user:
-            return HttpResponseForbidden("Not logged in")
+            return HttpResponseForbidden(_('Not logged in'))
 
         try:
             data = json.loads(request.body)
             endpoint = data["endpoint"]
         except (json.JSONDecodeError, KeyError, TypeError):
-            return HttpResponseBadRequest("Invalid payload")
+            return HttpResponseBadRequest(_('Invalid payload'))
 
         delete_push_subscription(portal_user.user, endpoint)
         return JsonResponse({"status": "ok"})

@@ -1,9 +1,12 @@
+{% load i18n %}{% get_current_language as CURRENT_LANGUAGE %}
+
+{% load i18n %}
 <!DOCTYPE html>
-<html lang="de">
+<html lang="{{ CURRENT_LANGUAGE }}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Entwickler-Statistiken – Anmeldung</title>
+<title>{% blocktrans %}Entwickler-Statistiken – Anmeldung{% endblocktrans %}</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -38,18 +41,18 @@
 <body>
 <div class="card">
   <div class="logo">
-    <h1>Entwickler-Statistiken</h1>
-    <p>Nur für autorisierte Personen</p>
+    <h1>{% blocktrans %}Entwickler-Statistiken{% endblocktrans %}</h1>
+    <p>{% blocktrans %}Nur für autorisierte Personen{% endblocktrans %}</p>
   </div>
   <form method="post">
     {% csrf_token %}
     <input type="hidden" name="action" value="login">
-    <label for="password">Passwort</label>
+    <label for="password">{% blocktrans %}Passwort{% endblocktrans %}</label>
     <input type="password" id="password" name="password" autofocus autocomplete="current-password" required>
     {% if error %}
-    <div class="error-msg" role="alert">Falsches Passwort.</div>
+    <div class="error-msg" role="alert">{% blocktrans %}Falsches Passwort.{% endblocktrans %}</div>
     {% endif %}
-    <button type="submit" class="btn">Anmelden</button>
+    <button type="submit" class="btn">{% blocktrans %}Anmelden{% endblocktrans %}</button>
   </form>
 </div>
 </body>

@@ -1,11 +1,11 @@
-{% autoescape off %}Preceptly — E-Mail-Adresse bestätigen
+{% load i18n %}{% autoescape off %}{% blocktrans %}Preceptly — E-Mail-Adresse bestätigen{% endblocktrans %}
 =====================================
 
-Bitte bestätige, dass diese Adresse zu deinem Preceptly-Konto „{{ username }}“ gehört:
+{% blocktrans %}Bitte bestätige, dass diese Adresse zu deinem Preceptly-Konto „{% endblocktrans %}{{ username }}{% blocktrans %}“ gehört:{% endblocktrans %}
 {{ verify_url }}
 
-Der Link ist 7 Tage gültig. Wenn du kein Preceptly-Konto angelegt hast, kannst du diese E-Mail ignorieren.
+{% blocktrans %}Der Link ist 7 Tage gültig. Wenn du kein Preceptly-Konto angelegt hast, kannst du diese E-Mail ignorieren.{% endblocktrans %}
 
 ---
-Preceptly — {{ site_url }}
+{% blocktrans %}Preceptly —{% endblocktrans %} {{ site_url }}
 {% endautoescape %}

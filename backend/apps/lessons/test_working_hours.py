@@ -13,7 +13,7 @@ from decimal import Decimal
 import django.utils.timezone as tz
 from django.contrib.auth import get_user_model
 from django.db import connection
-from django.test import SimpleTestCase, TestCase
+from django.test import SimpleTestCase, TestCase, override_settings
 from django.test.utils import CaptureQueriesContext
 from django.urls import reverse
 
@@ -243,6 +243,7 @@ class PortalBookingWorkingHoursTest(HoursFixture):
         self.assertEqual(lesson.start_time, dt.time(17, 0))
 
 
+@override_settings(LANGUAGE_CODE="de")
 class PortalSeriesWorkingHoursTest(HoursFixture):
     def setUp(self):
         super().setUp()
@@ -347,6 +348,7 @@ class PortalSeriesWorkingHoursTest(HoursFixture):
         self.assertContains(faq, "dann erscheinen darunter die freien Uhrzeiten zum Anklicken")
 
 
+@override_settings(LANGUAGE_CODE="de")
 class TutorSeriesSkipBusyTest(HoursFixture):
     """Serien, die der Tutor selbst anlegt, buchen nur die freien Tage."""
 

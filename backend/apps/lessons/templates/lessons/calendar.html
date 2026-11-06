@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load lesson_filters %}
 
-{% block title %}{% blocktrans with month=month_label year=year %}Calendar {{ month }} {{ year }}{% endblocktrans %} - Preceptly{% endblock %}
+{% block title %}{% blocktrans with month=month_label year=year %}Calendar {{ month }} {{ year }}{% endblocktrans %} {% blocktrans %}- Preceptly{% endblocktrans %}{% endblock %}
 
 {% block content %}
 <h1>{% blocktrans with month=month_label year=year %}Calendar {{ month }} {{ year }}{% endblocktrans %}</h1>

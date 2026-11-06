@@ -1,10 +1,10 @@
 {% extends 'core/base.html' %}
 {% load i18n %}
 
-{% block title %}Vertrag bearbeiten – Preceptly{% endblock %}
+{% block title %}{% blocktrans %}Vertrag bearbeiten – Preceptly{% endblocktrans %}{% endblock %}
 
 {% block content %}
-<h1>{% if object %}Schüler bearbeiten{% else %}Neuer Schüler{% endif %}</h1>
+<h1>{% if object %}{% blocktrans %}Schüler bearbeiten{% endblocktrans %}{% else %}{% blocktrans %}Neuer Schüler{% endblocktrans %}{% endif %}</h1>
 
 <form method="post">
     {% csrf_token %}
@@ -27,7 +27,7 @@
     <p>{% trans "Enter the planned units for each month in the contract period." %}</p>
     
     {{ formset.management_form }}
-    <table aria-label="Monatsplanung">
+    <table aria-label="{% blocktrans %}Monatsplanung{% endblocktrans %}">
         <thead>
             <tr>
                 <th scope="col">{% trans "Year" %}</th>

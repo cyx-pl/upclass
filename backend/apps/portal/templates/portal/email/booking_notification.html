@@ -1,9 +1,12 @@
+{% load i18n %}{% get_current_language as CURRENT_LANGUAGE %}
+
+{% load i18n %}
 <!DOCTYPE html>
-<html lang="de">
+<html lang="{{ CURRENT_LANGUAGE }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Neue Portal-Buchung</title>
+  <title>{% blocktrans %}Neue Portal-Buchung{% endblocktrans %}</title>
 </head>
 <body style="margin:0; padding:0; background:#f4f6f9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f6f9; padding: 32px 16px;">
@@ -15,7 +18,7 @@
           <tr>
             <td style="background:#1a56db; border-radius:10px 10px 0 0; padding: 24px 32px; text-align:center;">
               <p style="margin:0; color:rgba(255,255,255,0.85); font-size:13px; letter-spacing:0.5px; text-transform:uppercase;">Preceptly</p>
-              <h1 style="margin:8px 0 0; color:#ffffff; font-size:22px; font-weight:600;">📅 Neue Buchung</h1>
+              <h1 style="margin:8px 0 0; color:#ffffff; font-size:22px; font-weight:600;">{% blocktrans %}📅 Neue Buchung{% endblocktrans %}</h1>
             </td>
           </tr>
 
@@ -23,7 +26,7 @@
           <tr>
             <td style="background:#ffffff; padding: 32px 32px 24px;">
               <p style="margin:0 0 24px; color:#374151; font-size:16px; line-height:1.5;">
-                <strong>{{ student_name }}</strong> hat soeben einen Termin über das Portal gebucht.
+                <strong>{{ student_name }}</strong> {% blocktrans %}hat soeben einen Termin über das Portal gebucht.{% endblocktrans %}
               </p>
 
               <!-- Details card -->
@@ -34,7 +37,7 @@
 
                       <tr>
                         <td style="padding:14px 20px; border-bottom:1px solid #e5e7eb; width:36%;">
-                          <span style="color:#6b7280; font-size:13px; font-weight:500;">Schüler</span>
+                          <span style="color:#6b7280; font-size:13px; font-weight:500;">{% blocktrans %}Schüler{% endblocktrans %}</span>
                         </td>
                         <td style="padding:14px 20px; border-bottom:1px solid #e5e7eb;">
                           <span style="color:#111827; font-size:14px; font-weight:600;">{{ student_name }}</span>
@@ -43,7 +46,7 @@
 
                       <tr>
                         <td style="padding:14px 20px; border-bottom:1px solid #e5e7eb;">
-                          <span style="color:#6b7280; font-size:13px; font-weight:500;">Datum</span>
+                          <span style="color:#6b7280; font-size:13px; font-weight:500;">{% blocktrans %}Datum{% endblocktrans %}</span>
                         </td>
                         <td style="padding:14px 20px; border-bottom:1px solid #e5e7eb;">
                           <span style="color:#111827; font-size:14px;">{{ date_str }}</span>
@@ -52,17 +55,17 @@
 
                       <tr>
                         <td style="padding:14px 20px; border-bottom:1px solid #e5e7eb;">
-                          <span style="color:#6b7280; font-size:13px; font-weight:500;">Uhrzeit</span>
+                          <span style="color:#6b7280; font-size:13px; font-weight:500;">{% blocktrans %}Uhrzeit{% endblocktrans %}</span>
                         </td>
                         <td style="padding:14px 20px; border-bottom:1px solid #e5e7eb;">
-                          <span style="color:#111827; font-size:14px;">{{ time_str }} Uhr</span>
+                          <span style="color:#111827; font-size:14px;">{{ time_str }} {% blocktrans %}Uhr{% endblocktrans %}</span>
                         </td>
                       </tr>
 
                       {% if topic and topic != "-" %}
                       <tr>
                         <td style="padding:14px 20px; border-bottom:1px solid #e5e7eb;">
-                          <span style="color:#6b7280; font-size:13px; font-weight:500;">Thema</span>
+                          <span style="color:#6b7280; font-size:13px; font-weight:500;">{% blocktrans %}Thema{% endblocktrans %}</span>
                         </td>
                         <td style="padding:14px 20px; border-bottom:1px solid #e5e7eb;">
                           <span style="color:#111827; font-size:14px;">{{ topic }}</span>
@@ -72,7 +75,7 @@
 
                       <tr>
                         <td style="padding:14px 20px;">
-                          <span style="color:#6b7280; font-size:13px; font-weight:500;">Tutor</span>
+                          <span style="color:#6b7280; font-size:13px; font-weight:500;">{% blocktrans %}Tutor{% endblocktrans %}</span>
                         </td>
                         <td style="padding:14px 20px;">
                           <span style="color:#111827; font-size:14px;">{{ tutor_name }}</span>
@@ -88,7 +91,7 @@
               <div style="margin-top:28px; text-align:center;">
                 <a href="{{ dashboard_url }}"
                    style="background:#1a56db; color:#ffffff; text-decoration:none; padding:13px 28px; border-radius:7px; font-size:15px; font-weight:600; display:inline-block;">
-                  Im Dashboard ansehen →
+                  {% blocktrans %}Im Dashboard ansehen →{% endblocktrans %}
                 </a>
               </div>
             </td>
@@ -98,7 +101,7 @@
           <tr>
             <td style="background:#f4f6f9; border-radius:0 0 10px 10px; padding:20px 32px; text-align:center; border-top:1px solid #e5e7eb;">
               <p style="margin:0; color:#6b7280; font-size:12px;">
-                Preceptly — Nachhilfe-Management<br>
+                {% blocktrans %}Preceptly — Nachhilfe-Management{% endblocktrans %}<br>
                 <a href="{{ site_url }}" style="color:#6b7280;">{{ site_url }}</a>
               </p>
             </td>

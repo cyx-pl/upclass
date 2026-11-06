@@ -285,10 +285,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = "de"
+LANGUAGE_CODE = "pl"
 
-# Supported languages (de first = default fallback)
+# Supported languages (Polish is the default fallback)
 LANGUAGES = [
+    ("pl", "Polski"),
     ("de", "Deutsch"),
     ("en", "English"),
 ]

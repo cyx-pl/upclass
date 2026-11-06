@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}
 {% load i18n %}
 
-{% block title %}{% trans "About Preceptly" %} - Preceptly{% endblock %}
+{% block title %}{% trans "About Preceptly" %} {% blocktrans %}- Preceptly{% endblocktrans %}{% endblock %}
 
 {% block content %}
 {% include 'legal/_style.html' %}
@@ -10,11 +10,11 @@
     <p class="legal-meta">{% blocktrans with date=last_updated %}Last updated: {{ date }}{% endblocktrans %}</p>
 
     <div class="legal-placeholder-box">
-        <strong>andicode · Preceptly</strong>
+        <strong>{% blocktrans %}andicode · Preceptly{% endblocktrans %}</strong>
         <p>{% trans "Operated by Andreas Eirich · Birkenweg 7, 49577 Ankum, Germany" %}</p>
         <p>
-            <a href="https://andicode.de" rel="noopener noreferrer" target="_blank">andicode.de</a>
-            &nbsp;·&nbsp;
+            <a href="https://andicode.de" rel="noopener noreferrer" target="_blank">{% blocktrans %}andicode.de{% endblocktrans %}</a>
+            {% blocktrans %}&nbsp;·&nbsp;{% endblocktrans %}
             <a href="mailto:info@preceptly.de">info@preceptly.de</a>
         </p>
     </div>

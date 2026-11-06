@@ -539,7 +539,7 @@ class LegalImprintView(LegalPageView):
         lang = getattr(self.request, "LANGUAGE_CODE", "de")[:2]
         if lang not in ALLOWED_LANGS:
             lang = "de"
-        context["erecht24_html"] = get_imprint(lang)
+        context["erecht24_html"] = "" if self.request.LANGUAGE_CODE.startswith("pl") else get_imprint(lang)
         return context
 
 
@@ -556,7 +556,7 @@ class LegalPrivacyView(LegalPageView):
         lang = getattr(self.request, "LANGUAGE_CODE", "de")[:2]
         if lang not in ALLOWED_LANGS:
             lang = "de"
-        context["erecht24_html"] = get_privacy_policy(lang)
+        context["erecht24_html"] = "" if self.request.LANGUAGE_CODE.startswith("pl") else get_privacy_policy(lang)
         return context
 
 
@@ -943,11 +943,11 @@ class AutoDetectTimezoneView(LoginRequiredMixin, View):
 
         tz_value = request.POST.get("timezone", "").strip()
         if not tz_value:
-            return JsonResponse({"ok": False, "error": "missing"}, status=400)
+            return JsonResponse({"ok": False, "error": 'missing'}, status=400)
         try:
             zoneinfo.ZoneInfo(tz_value)
         except (KeyError, zoneinfo.ZoneInfoNotFoundError):
-            return JsonResponse({"ok": False, "error": "invalid"}, status=400)
+            return JsonResponse({"ok": False, "error": 'invalid'}, status=400)
         profile, _ = UserProfile.objects.get_or_create(user=request.user)
         if profile.timezone != tz_value:
             profile.timezone = tz_value

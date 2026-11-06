@@ -11,7 +11,7 @@ from unittest import mock
 from django.contrib.auth.models import User
 from django.core.cache import cache
 from django.db import IntegrityError, transaction
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
 
@@ -72,6 +72,7 @@ class CounterTest(TestCase):
         self.assertEqual(fields, {"id", "name", "day", "count"})
 
 
+@override_settings(LANGUAGE_CODE="de")
 class RegistrationCountingTest(TestCase):
     def setUp(self):
         cache.clear()
@@ -135,6 +136,7 @@ class RegistrationCountingTest(TestCase):
         self.assertIn("Honeypot counter", "\n".join(logs.output))
 
 
+@override_settings(LANGUAGE_CODE="de")
 class StatsPageTest(TestCase):
     def setUp(self):
         session = self.client.session

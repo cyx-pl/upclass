@@ -239,6 +239,7 @@ class RevocationWebhookTest(TestCase):
 
 
 @override_settings(**COMMON_SETTINGS)
+@override_settings(LANGUAGE_CODE="de")
 class RevocationConfirmTest(TestCase):
     def setUp(self):
         self.client = Client()

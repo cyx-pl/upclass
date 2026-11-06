@@ -1,7 +1,7 @@
 {% extends "portal/base.html" %}
 {% load i18n %}
 
-{% block title %}Nachrichten – Preceptly{% endblock %}
+{% block title %}{% blocktrans %}Nachrichten – Preceptly{% endblocktrans %}{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -105,27 +105,27 @@
 
 {% block content %}
 <a class="btn-sm btn-sm-secondary" href="{% url 'portal:home' %}" data-history-back style="margin-bottom:20px; display:inline-block;">
-    &larr; Zurück
+    {% blocktrans %}&larr; Zurück{% endblocktrans %}
 </a>
 
-<h1>Nachrichten{% if student %}: {{ student.full_name }}{% endif %}</h1>
+<h1>{% blocktrans %}Nachrichten{% endblocktrans %}{% if student %}: {{ student.full_name }}{% endif %}</h1>
 
-<ul class="chat-wrapper" id="chat-wrapper" role="list" aria-label="Nachrichtenverlauf">
+<ul class="chat-wrapper" id="chat-wrapper" role="list" aria-label="{% blocktrans %}Nachrichtenverlauf{% endblocktrans %}">
 {% if chat_messages %}
     {% for msg in chat_messages %}
     <li class="chat-msg {% if msg.sender_is_tutor %}from-tutor{% else %}from-me{% endif %}">
         <div class="chat-bubble">
-            {% if msg.sender_is_tutor %}<span class="sr-only">Empfangen:</span>{% else %}<span class="sr-only">Gesendet:</span>{% endif %}
+            {% if msg.sender_is_tutor %}<span class="sr-only">{% blocktrans %}Empfangen:{% endblocktrans %}</span>{% else %}<span class="sr-only">{% blocktrans %}Gesendet:{% endblocktrans %}</span>{% endif %}
             {{ msg.text }}
         </div>
         <div class="chat-meta">
-            {% if msg.sender_is_tutor %}Nachhilfelehrer{% else %}Du{% endif %} &middot; {{ msg.created_at|date:"d.m.Y" }}, {{ msg.created_at|time:"H:i" }} Uhr
+            {% if msg.sender_is_tutor %}{% blocktrans %}Nachhilfelehrer{% endblocktrans %}{% else %}{% blocktrans %}Du{% endblocktrans %}{% endif %} &middot; {{ msg.created_at|date:"d.m.Y" }}, {{ msg.created_at|time:"H:i" }} {% blocktrans %}Uhr{% endblocktrans %}
         </div>
     </li>
     {% endfor %}
 {% else %}
     <li class="empty-state" style="border:none; padding:40px 0; list-style:none;">
-        <p>Noch keine Nachrichten. Schreibe die erste!</p>
+        <p>{% blocktrans %}Noch keine Nachrichten. Schreibe die erste!{% endblocktrans %}</p>
     </li>
 {% endif %}
 </ul>
@@ -133,9 +133,9 @@
 <div class="compose-box">
     <form method="post">
         {% csrf_token %}
-        <label for="id_text">Neue Nachricht</label>
-        <textarea id="id_text" name="text" placeholder="Nachricht eingeben …" required aria-required="true" aria-label="Nachricht schreiben"></textarea>
-        <button type="submit" class="btn-send">Senden</button>
+        <label for="id_text">{% blocktrans %}Neue Nachricht{% endblocktrans %}</label>
+        <textarea id="id_text" name="text" placeholder="{% blocktrans %}Nachricht eingeben …{% endblocktrans %}" required aria-required="true" aria-label="{% blocktrans %}Nachricht schreiben{% endblocktrans %}"></textarea>
+        <button type="submit" class="btn-send">{% blocktrans %}Senden{% endblocktrans %}</button>
     </form>
 </div>
 {% endblock %}

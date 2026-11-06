@@ -70,7 +70,7 @@ def send_booking_notification_portal(session, tutor):
 
     recipient = (tutor.email or "").strip()
     if recipient and is_channel_enabled(tutor, "portal_booking", "email"):
-        subject = f"Neue Buchung: {student_name} — {date_str}".replace("\n", " ").replace("\r", " ")
+        subject = _('Neue Buchung: {value0} — {value1}').format(value0=student_name, value1=date_str).replace("\n", " ").replace("\r", " ")
         context = {
             "student_name": student_name,
             "date_str": date_str,
@@ -104,8 +104,8 @@ def send_booking_notification_portal(session, tutor):
     send_push_notification(
         tutor,
         "portal_booking",
-        title=f"Neue Buchung: {student_name}",
-        body=f"{date_str} um {time_str} Uhr",
+        title=_('Neue Buchung: {value0}').format(value0=student_name),
+        body=_('{value0} um {value1} Uhr').format(value0=date_str, value1=time_str),
         url=dashboard_url or None,
     )
 
@@ -119,14 +119,11 @@ def send_activation_notification(portal_user, contract):
         )
         return
     student_name = contract.full_name
-    role_display = "Schüler" if portal_user.role == "student" else "Elternteil"
+    role_display = _('Schüler') if portal_user.role == "student" else _('Elternteil')
     timestamp = timezone.now().strftime("%d.%m.%Y %H:%M")
-    subject = f"Portal-Zugang aktiviert: {student_name}".replace("\n", " ").replace("\r", " ")
+    subject = _('Portal-Zugang aktiviert: {value0}').format(value0=student_name).replace("\n", " ").replace("\r", " ")
     message = (
-        f"Ein Portal-Zugang wurde aktiviert.\n\n"
-        f"Schüler: {student_name}\n"
-        f"Rolle: {role_display}\n"
-        f"Zeitpunkt: {timestamp}\n"
+        _('Ein Portal-Zugang wurde aktiviert.\n\nSchüler: {value0}\nRolle: {value1}\nZeitpunkt: {value2}\n').format(value0=student_name, value1=role_display, value2=timestamp)
     )
     try:
         send_mail(
@@ -172,8 +169,8 @@ def send_login_reminder(contract, recipient_email, tutor_name, role="student", r
         send_push_notification(
             recipient_user,
             "login_reminder",
-            title="Dein Preceptly Portal-Zugang",
-            body=f"Erinnerung von {tutor_name}: Logg dich in dein Portal ein.",
+            title=_('Dein Preceptly Portal-Zugang'),
+            body=_('Erinnerung von {value0}: Logg dich in dein Portal ein.').format(value0=tutor_name),
             url=login_url,
         )
 

@@ -1,65 +1,64 @@
 {% extends "portal/base.html" %}
+{% load i18n %}
 
-{% block title %}Serientermine – Preceptly Portal{% endblock %}
+
+{% block title %}{% blocktrans %}Serientermine – Preceptly Portal{% endblocktrans %}{% endblock %}
 
 {% block content %}
 <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:20px;">
-  <h1 style="margin:0;">Serientermine</h1>
-  {% if can_create_series %}<a href="{% url 'portal:recurring_create' student.pk %}" class="btn-sm btn-sm-primary">+ Neue Serie</a>{% endif %}
+  <h1 style="margin:0;">{% blocktrans %}Serientermine{% endblocktrans %}</h1>
+  {% if can_create_series %}<a href="{% url 'portal:recurring_create' student.pk %}" class="btn-sm btn-sm-primary">{% blocktrans %}+ Neue Serie{% endblocktrans %}</a>{% endif %}
 </div>
-<p style="color:var(--text-secondary);">Schüler: <strong>{{ student.full_name }}</strong></p>
+<p style="color:var(--text-secondary);">{% blocktrans %}Schüler:{% endblocktrans %} <strong>{{ student.full_name }}</strong></p>
 
 {% if series %}
 {% for rs in series %}
 <div class="box-section" style="margin-bottom:12px;">
   <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
     <div>
-      <strong>{{ rs.start_time|time:"H:i" }} Uhr</strong>
-      &middot; {{ rs.duration_minutes }} Min.
-      &middot; <span style="color:var(--text-secondary); font-size:0.88em;">
-        {% if rs.recurrence_type == "weekly" %}Wöchentlich
-        {% elif rs.recurrence_type == "biweekly" %}Zweiwöchentlich
-        {% else %}Monatlich{% endif %}
+      <strong>{{ rs.start_time|time:"H:i" }} {% blocktrans %}Uhr{% endblocktrans %}</strong>
+      &middot; {{ rs.duration_minutes }} {% blocktrans %}Min. &middot;{% endblocktrans %} <span style="color:var(--text-secondary); font-size:0.88em;">
+        {% if rs.recurrence_type == "weekly" %}{% blocktrans %}Wöchentlich{% endblocktrans %}
+        {% elif rs.recurrence_type == "biweekly" %}{% blocktrans %}Zweiwöchentlich{% endblocktrans %}
+        {% else %}{% blocktrans %}Monatlich{% endblocktrans %}{% endif %}
       </span><br>
       <small style="color:var(--text-secondary);">
         {{ rs.get_active_weekdays_display }}
-        &middot; ab {{ rs.start_date|date:"d.m.Y" }}
-        {% if rs.end_date %} bis {{ rs.end_date|date:"d.m.Y" }}{% endif %}
+        {% blocktrans %}&middot; ab{% endblocktrans %} {{ rs.start_date|date:"d.m.Y" }}
+        {% if rs.end_date %} {% blocktrans %}bis{% endblocktrans %} {{ rs.end_date|date:"d.m.Y" }}{% endif %}
       </small>
       {% if rs.notes %}<p style="margin:6px 0 0; font-size:0.88em;">{{ rs.notes }}</p>{% endif %}
     </div>
     <form method="post" action="{% url 'portal:recurring_cancel' rs.pk %}"
       data-confirm="Serientermin wirklich beenden und alle zukünftigen Termine absagen?">
       {% csrf_token %}
-      <button type="submit" class="btn-sm btn-sm-danger">Serie beenden</button>
+      <button type="submit" class="btn-sm btn-sm-danger">{% blocktrans %}Serie beenden{% endblocktrans %}</button>
     </form>
   </div>
 </div>
 {% endfor %}
 {% else %}
-<div class="empty-state"><p>Aktuell läuft keine Serie.</p></div>
+<div class="empty-state"><p>{% blocktrans %}Aktuell läuft keine Serie.{% endblocktrans %}</p></div>
 {% endif %}
 
 {% if ended_series %}
-<h2 style="margin-top:28px;">Beendete Serien</h2>
+<h2 style="margin-top:28px;">{% blocktrans %}Beendete Serien{% endblocktrans %}</h2>
 {% for rs in ended_series %}
 <div class="box-section" style="margin-bottom:12px; opacity:0.75;">
-  <strong>{{ rs.start_time|time:"H:i" }} Uhr</strong>
-  &middot; {{ rs.duration_minutes }} Min.
-  &middot; <span style="color:var(--text-secondary); font-size:0.88em;">{{ rs.get_active_weekdays_display }}</span><br>
+  <strong>{{ rs.start_time|time:"H:i" }} {% blocktrans %}Uhr{% endblocktrans %}</strong>
+  &middot; {{ rs.duration_minutes }} {% blocktrans %}Min. &middot;{% endblocktrans %} <span style="color:var(--text-secondary); font-size:0.88em;">{{ rs.get_active_weekdays_display }}</span><br>
   <small style="color:var(--text-secondary);">
-    {% if rs.end_date %}Ausgelaufen am {{ rs.end_date|date:"d.m.Y" }}{% else %}Ausgelaufen (Vertragsende){% endif %}
-    &middot; lief ab {{ rs.start_date|date:"d.m.Y" }}
+    {% if rs.end_date %}{% blocktrans %}Ausgelaufen am{% endblocktrans %} {{ rs.end_date|date:"d.m.Y" }}{% else %}{% blocktrans %}Ausgelaufen (Vertragsende){% endblocktrans %}{% endif %}
+    {% blocktrans %}&middot; lief ab{% endblocktrans %} {{ rs.start_date|date:"d.m.Y" }}
   </small>
 </div>
 {% endfor %}
 <p style="color:var(--text-secondary); font-size:0.9em;">
-  Für diese Zeiten werden keine Termine mehr angelegt. Buche einen Einzeltermin oder lege eine neue Serie an –
-  bereits vergebene Zeiten stehen dabei möglicherweise nicht mehr zur Verfügung.
+  {% blocktrans %}Für diese Zeiten werden keine Termine mehr angelegt. Buche einen Einzeltermin oder lege eine neue Serie an – bereits vergebene Zeiten stehen dabei möglicherweise nicht mehr zur Verfügung.{% endblocktrans %}
 </p>
 {% endif %}
 
 <div style="margin-top:20px;">
-  <a href="{% url 'portal:book' student.pk %}" class="btn-sm btn-sm-secondary">&larr; Einzeltermin buchen</a>
+  <a href="{% url 'portal:book' student.pk %}" class="btn-sm btn-sm-secondary">{% blocktrans %}&larr; Einzeltermin buchen{% endblocktrans %}</a>
 </div>
 {% endblock %}

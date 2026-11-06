@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}
 {% load i18n %}
 
-{% block title %}{% if object %}{% trans "Edit institute" %}{% else %}{% trans "New institute" %}{% endif %} - Preceptly{% endblock %}
+{% block title %}{% if object %}{% trans "Edit institute" %}{% else %}{% trans "New institute" %}{% endif %} {% blocktrans %}- Preceptly{% endblocktrans %}{% endblock %}
 
 {% block content %}
 <h1>{% if object %}{% trans "Edit institute" %}{% else %}{% trans "New institute" %}{% endif %}</h1>

@@ -1,13 +1,13 @@
-{{ heading }} — Preceptly
+{% load i18n %}{{ heading }} {% blocktrans %}— Preceptly{% endblocktrans %}
 
 {{ intro }}
 
 {% for label, value in rows %}{{ label }}: {{ value }}
 {% endfor %}{% if dashboard_url %}
-Schüler ansehen: {{ dashboard_url }}
+{% blocktrans %}Schüler ansehen:{% endblocktrans %} {{ dashboard_url }}
 {% endif %}
-Diese Nachrichten stellst du in den Einstellungen unter „Benachrichtigungen“ ein.
+{% blocktrans %}Diese Nachrichten stellst du in den Einstellungen unter „Benachrichtigungen“ ein.{% endblocktrans %}
 
 ---
-Preceptly — Nachhilfe-Management
+{% blocktrans %}Preceptly — Nachhilfe-Management{% endblocktrans %}
 {{ site_url }}

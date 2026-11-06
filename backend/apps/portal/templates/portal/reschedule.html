@@ -1,7 +1,9 @@
 {% extends "portal/base.html" %}
+{% load i18n %}
+
 {% load static %}
 
-{% block title %}Termin verschieben – Preceptly{% endblock %}
+{% block title %}{% blocktrans %}Termin verschieben – Preceptly{% endblocktrans %}{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/week-picker.css' %}">
@@ -15,16 +17,16 @@
 {% endblock %}
 
 {% block content %}
-<h1>Termin verschieben</h1>
+<h1>{% blocktrans %}Termin verschieben{% endblocktrans %}</h1>
 <p style="color:var(--text-secondary);">
-  Aktuell: <strong>{{ session.date|date:"d.m.Y" }}</strong> um <strong>{{ session.start_time|time:"H:i" }} Uhr</strong>
-  ({{ session.duration_minutes }} Min.)
+  {% blocktrans %}Aktuell:{% endblocktrans %} <strong>{{ session.date|date:"d.m.Y" }}</strong> {% blocktrans %}um{% endblocktrans %} <strong>{{ session.start_time|time:"H:i" }} {% blocktrans %}Uhr{% endblocktrans %}</strong>
+  ({{ session.duration_minutes }} {% blocktrans %}Min.){% endblocktrans %}
 </p>
 
 {% if error %}<div class="alert-danger" role="alert">{{ error }}</div>{% endif %}
 
-<h2 style="margin-top:0;">Tag wählen</h2>
-<p style="color:var(--text-secondary); font-size:0.9em; margin-top:-8px;">Tippe auf einen Tag. Darunter erscheinen die freien Uhrzeiten zum Anklicken.</p>
+<h2 style="margin-top:0;">{% blocktrans %}Tag wählen{% endblocktrans %}</h2>
+<p style="color:var(--text-secondary); font-size:0.9em; margin-top:-8px;">{% blocktrans %}Tippe auf einen Tag. Darunter erscheinen die freien Uhrzeiten zum Anklicken.{% endblocktrans %}</p>
 {% include "portal/_buffer_hint.html" %}
 {% include "portal/_week_calendar_widget.html" with nav_url_name="portal:session_reschedule" nav_pk=session.pk %}
 
@@ -32,26 +34,26 @@
   <form method="post">
     {% csrf_token %}
     <div style="margin-bottom:16px;">
-      <label for="id_date" style="display:block; margin-bottom:4px; color:var(--text-secondary); font-size:0.88em;">Neues Datum</label>
+      <label for="id_date" style="display:block; margin-bottom:4px; color:var(--text-secondary); font-size:0.88em;">{% blocktrans %}Neues Datum{% endblocktrans %}</label>
       <input type="date" id="id_date" name="date" min="{{ today }}" required aria-required="true"
         style="padding:8px 12px; border:1px solid var(--border-color); border-radius:4px; background:var(--bg-primary); color:var(--text-primary); font-size:0.95em;">
     </div>
     <div style="margin-bottom:20px;">
-      <label for="id_start_time" style="display:block; margin-bottom:4px; color:var(--text-secondary); font-size:0.88em;">Neue Uhrzeit</label>
+      <label for="id_start_time" style="display:block; margin-bottom:4px; color:var(--text-secondary); font-size:0.88em;">{% blocktrans %}Neue Uhrzeit{% endblocktrans %}</label>
       {% include "portal/_buffer_hint.html" with compact=True %}
-      <div class="slot-grid" id="slot-grid" role="group" aria-live="polite" aria-label="Verfügbare Uhrzeiten">
-        <span class="slot-empty">Bitte zuerst einen Tag auswählen.</span>
+      <div class="slot-grid" id="slot-grid" role="group" aria-live="polite" aria-label="{% blocktrans %}Verfügbare Uhrzeiten{% endblocktrans %}">
+        <span class="slot-empty">{% blocktrans %}Bitte zuerst einen Tag auswählen.{% endblocktrans %}</span>
       </div>
       <input type="hidden" id="id_start_time" name="start_time" required aria-required="true">
     </div>
     <div style="display:flex; gap:10px; flex-wrap:wrap;">
       <button type="submit" id="submit-btn" aria-describedby="submit-hint" disabled
         style="padding:9px 24px; background:var(--accent); color:var(--on-accent, #fff); border:none; border-radius:4px; font-size:0.95em; font-weight:600; cursor:pointer;">
-        Termin verschieben
+        {% blocktrans %}Termin verschieben{% endblocktrans %}
       </button>
-      <a href="{% url 'portal:home' %}" data-history-back class="btn-sm btn-sm-secondary" style="padding:9px 16px;">Abbrechen</a>
+      <a href="{% url 'portal:home' %}" data-history-back class="btn-sm btn-sm-secondary" style="padding:9px 16px;">{% blocktrans %}Abbrechen{% endblocktrans %}</a>
     </div>
-    <p id="submit-hint" class="slot-empty" style="margin:8px 0 0;">Wähle zuerst einen Tag und eine Uhrzeit, dann kannst du verschieben.</p>
+    <p id="submit-hint" class="slot-empty" style="margin:8px 0 0;">{% blocktrans %}Wähle zuerst einen Tag und eine Uhrzeit, dann kannst du verschieben.{% endblocktrans %}</p>
   </form>
 </div>
 {% endblock %}
@@ -76,7 +78,7 @@
       .then(function(data) {
         slotGrid.innerHTML = '';
         if (!data.slots || !data.slots.length) {
-          slotGrid.innerHTML = '<span class="slot-empty">An diesem Tag ist nichts mehr frei. Wähle einen anderen Tag – mit „Nächste Woche“ in der Übersicht oben auch später.</span>';
+          slotGrid.innerHTML = '{% filter escapejs %}{% blocktrans %}<span class="slot-empty">An diesem Tag ist nichts mehr frei. Wähle einen anderen Tag – mit „Nächste Woche“ in der Übersicht oben auch später.</span>{% endblocktrans %}{% endfilter %}';
           return;
         }
         data.slots.forEach(function(slot) {

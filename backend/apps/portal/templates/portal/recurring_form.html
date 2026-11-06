@@ -1,13 +1,15 @@
 {% extends "portal/base.html" %}
+{% load i18n %}
 
-{% block title %}Wiederkehrende Buchung – Preceptly{% endblock %}
+
+{% block title %}{% blocktrans %}Wiederkehrende Buchung – Preceptly{% endblocktrans %}{% endblock %}
 
 {% block content %}
-<h1>Neuen Serientermin erstellen</h1>
-<p style="color:var(--text-secondary);">Schüler: <strong>{{ student.full_name }}</strong></p>
+<h1>{% blocktrans %}Neuen Serientermin erstellen{% endblocktrans %}</h1>
+<p style="color:var(--text-secondary);">{% blocktrans %}Schüler:{% endblocktrans %} <strong>{{ student.full_name }}</strong></p>
 
 {% if not contract %}
-<div class="alert-warning" role="alert">Kein aktiver Vertrag vorhanden.</div>
+<div class="alert-warning" role="alert">{% blocktrans %}Kein aktiver Vertrag vorhanden.{% endblocktrans %}</div>
 {% else %}
 {% include "portal/_buffer_hint.html" %}
 <div class="box-section">
@@ -15,7 +17,7 @@
     {% csrf_token %}
 
     <fieldset style="border:none; padding:0; margin:0 0 16px;">
-      <legend style="display:block; margin-bottom:6px; color:var(--text-secondary); font-size:0.88em; font-weight:500;">Wochentage</legend>
+      <legend style="display:block; margin-bottom:6px; color:var(--text-secondary); font-size:0.88em; font-weight:500;">{% blocktrans %}Wochentage{% endblocktrans %}</legend>
       <div style="display:flex; gap:10px; flex-wrap:wrap;">
         {% for field, label in weekday_fields %}
         <label style="display:flex; align-items:center; gap:5px; cursor:pointer; font-size:0.95em;">
@@ -28,57 +30,54 @@
 
     <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-bottom:16px;">
       <div>
-        <label for="id_start_time" style="display:block; margin-bottom:4px; color:var(--text-secondary); font-size:0.88em;">Uhrzeit</label>
+        <label for="id_start_time" style="display:block; margin-bottom:4px; color:var(--text-secondary); font-size:0.88em;">{% blocktrans %}Uhrzeit{% endblocktrans %}</label>
         <input type="time" id="id_start_time" name="start_time" required aria-required="true"
           style="width:100%; padding:8px 12px; border:1px solid var(--border-color); border-radius:4px; background:var(--bg-primary); color:var(--text-primary);">
       </div>
       <div>
-        <label for="id_recurrence_type" style="display:block; margin-bottom:4px; color:var(--text-secondary); font-size:0.88em;">Wiederholung</label>
+        <label for="id_recurrence_type" style="display:block; margin-bottom:4px; color:var(--text-secondary); font-size:0.88em;">{% blocktrans %}Wiederholung{% endblocktrans %}</label>
         <select id="id_recurrence_type" name="recurrence_type"
           style="width:100%; padding:8px 12px; border:1px solid var(--border-color); border-radius:4px; background:var(--bg-primary); color:var(--text-primary);">
-          <option value="weekly">Wöchentlich</option>
-          <option value="biweekly">Zweiwöchentlich</option>
-          <option value="monthly">Monatlich</option>
+          <option value="weekly">{% blocktrans %}Wöchentlich{% endblocktrans %}</option>
+          <option value="biweekly">{% blocktrans %}Zweiwöchentlich{% endblocktrans %}</option>
+          <option value="monthly">{% blocktrans %}Monatlich{% endblocktrans %}</option>
         </select>
       </div>
     </div>
 
     <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-bottom:16px;">
       <div>
-        <label for="id_start_date" style="display:block; margin-bottom:4px; color:var(--text-secondary); font-size:0.88em;">Startdatum</label>
+        <label for="id_start_date" style="display:block; margin-bottom:4px; color:var(--text-secondary); font-size:0.88em;">{% blocktrans %}Startdatum{% endblocktrans %}</label>
         <input type="date" id="id_start_date" name="start_date" min="{{ today }}" required aria-required="true"
           style="width:100%; padding:8px 12px; border:1px solid var(--border-color); border-radius:4px; background:var(--bg-primary); color:var(--text-primary);">
       </div>
       <div>
-        <label for="id_end_date" style="display:block; margin-bottom:4px; color:var(--text-secondary); font-size:0.88em;">Enddatum (optional)</label>
+        <label for="id_end_date" style="display:block; margin-bottom:4px; color:var(--text-secondary); font-size:0.88em;">{% blocktrans %}Enddatum (optional){% endblocktrans %}</label>
         <input type="date" id="id_end_date" name="end_date" min="{{ today }}"
           style="width:100%; padding:8px 12px; border:1px solid var(--border-color); border-radius:4px; background:var(--bg-primary); color:var(--text-primary);">
       </div>
     </div>
 
     <div style="margin-bottom:20px;">
-      <label for="id_topic" style="display:block; margin-bottom:4px; color:var(--text-secondary); font-size:0.88em;">Thema / Notizen (optional)</label>
-      <input type="text" id="id_topic" name="topic" placeholder="z. B. Mathematik"
+      <label for="id_topic" style="display:block; margin-bottom:4px; color:var(--text-secondary); font-size:0.88em;">{% blocktrans %}Thema / Notizen (optional){% endblocktrans %}</label>
+      <input type="text" id="id_topic" name="topic" placeholder="{% blocktrans %}z. B. Mathematik{% endblocktrans %}"
         style="width:100%; padding:8px 12px; border:1px solid var(--border-color); border-radius:4px; background:var(--bg-primary); color:var(--text-primary);">
     </div>
 
     <div style="font-size:0.88em; color:var(--text-secondary); margin-bottom:16px;">
-      Dauer je Termin: <strong>{{ contract.unit_duration_minutes }} Min.</strong>
+      {% blocktrans %}Dauer je Termin:{% endblocktrans %} <strong>{{ contract.unit_duration_minutes }} {% blocktrans %}Min.{% endblocktrans %}</strong>
     </div>
 
     <p style="font-size:0.88em; color:var(--text-secondary); margin:0 0 16px;">
-      Tage, an denen dein Tutor zu dieser Zeit schon einen Termin oder eine Blockzeit hat oder an denen die
-      Uhrzeit außerhalb seiner Arbeitszeiten liegt, sowie Termine, die schon vorbei sind, werden ausgelassen.
-      Alle anderen Tage werden gebucht.
-      Nach dem Anlegen siehst du, welche Tage das waren.
+      {% blocktrans %}Tage, an denen dein Tutor zu dieser Zeit schon einen Termin oder eine Blockzeit hat oder an denen die Uhrzeit außerhalb seiner Arbeitszeiten liegt, sowie Termine, die schon vorbei sind, werden ausgelassen. Alle anderen Tage werden gebucht. Nach dem Anlegen siehst du, welche Tage das waren.{% endblocktrans %}
     </p>
 
     <div style="display:flex; gap:10px; flex-wrap:wrap;">
       <button type="submit"
         style="padding:9px 24px; background:var(--accent); color:var(--on-accent, #fff); border:none; border-radius:4px; font-size:0.95em; font-weight:600; cursor:pointer;">
-        Serie erstellen
+        {% blocktrans %}Serie erstellen{% endblocktrans %}
       </button>
-      <a href="{% url 'portal:recurring_manage' student.pk %}" class="btn-sm btn-sm-secondary" style="padding:9px 16px;">Abbrechen</a>
+      <a href="{% url 'portal:recurring_manage' student.pk %}" class="btn-sm btn-sm-secondary" style="padding:9px 16px;">{% blocktrans %}Abbrechen{% endblocktrans %}</a>
     </div>
   </form>
 </div>

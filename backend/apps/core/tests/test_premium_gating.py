@@ -3,7 +3,7 @@ Tests for Premium feature gating and Reports page.
 """
 
 from django.contrib.auth.models import User
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.urls import reverse
 
 from apps.core.feature_flags import (
@@ -13,6 +13,7 @@ from apps.core.feature_flags import (
 from apps.core.models import UserProfile
 
 
+@override_settings(LANGUAGE_CODE="de")
 class FeatureFlagsTest(TestCase):
     """Tests for feature flag helpers."""
 

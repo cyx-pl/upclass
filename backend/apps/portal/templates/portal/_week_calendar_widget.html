@@ -1,27 +1,28 @@
-{# Tag-Auswahl für Termin buchen und verschieben. Braucht _build_week_calendar(..., with_free_slots=True). #}
-{# Stylesheet: css/week-picker.css (die einbindende Seite lädt es). #}
+
+{% load i18n %}
+{# Tag-Auswahl für Termin buchen und verschieben. Braucht _build_week_calendar(..., with_free_slots=True). #} {# Stylesheet: css/week-picker.css (die einbindende Seite lädt es). #}
 <div class="week-picker">
     <div class="week-picker-nav">
-        <a href="{% url nav_url_name nav_pk %}?year={{ prev_week.year }}&month={{ prev_week.month }}&day={{ prev_week.day }}" class="btn-sm btn-sm-secondary week-nav">← Vorige Woche</a>
+        <a href="{% url nav_url_name nav_pk %}?year={{ prev_week.year }}&month={{ prev_week.month }}&day={{ prev_week.day }}" class="btn-sm btn-sm-secondary week-nav">{% blocktrans %}← Vorige Woche{% endblocktrans %}</a>
         <span class="week-picker-range">{{ week_start|date:"d.m." }} – {{ week_end|date:"d.m.Y" }}</span>
-        <a href="{% url nav_url_name nav_pk %}?year={{ next_week.year }}&month={{ next_week.month }}&day={{ next_week.day }}" class="btn-sm btn-sm-secondary week-nav">Nächste Woche →</a>
+        <a href="{% url nav_url_name nav_pk %}?year={{ next_week.year }}&month={{ next_week.month }}&day={{ next_week.day }}" class="btn-sm btn-sm-secondary week-nav">{% blocktrans %}Nächste Woche →{% endblocktrans %}</a>
     </div>
 
     {% if week_jumped %}
-    <p class="week-picker-empty" role="status">Diese Woche ist nichts mehr frei. Wir zeigen dir deshalb die erste Woche mit freien Zeiten.</p>
+    <p class="week-picker-empty" role="status">{% blocktrans %}Diese Woche ist nichts mehr frei. Wir zeigen dir deshalb die erste Woche mit freien Zeiten.{% endblocktrans %}</p>
     {% endif %}
 
     {% if week_free_total == 0 %}
-    <p class="week-picker-empty" role="status">In dieser Woche ist nichts mehr frei. Wechsle mit „Nächste Woche“ zur folgenden Woche.</p>
+    <p class="week-picker-empty" role="status">{% blocktrans %}In dieser Woche ist nichts mehr frei. Wechsle mit „Nächste Woche“ zur folgenden Woche.{% endblocktrans %}</p>
     {% endif %}
 
-    <ul class="week-picker-days" role="list" aria-label="Tage der Woche">
+    <ul class="week-picker-days" role="list" aria-label="{% blocktrans %}Tage der Woche{% endblocktrans %}">
         {% for weekday in weekdays %}
         <li>
             <button type="button" class="week-day-pick{% if weekday.free_count %} has-free{% endif %}" data-date="{{ weekday.date|date:'Y-m-d' }}" aria-pressed="false"{% if weekday.is_past %} disabled{% endif %}>
-                <span class="wd-day">{{ weekday.name }}{% if weekday.is_today %} (heute){% endif %}</span>
+                <span class="wd-day">{{ weekday.name }}{% if weekday.is_today %} {% blocktrans %}(heute){% endblocktrans %}{% endif %}</span>
                 <span class="wd-date">{{ weekday.date|date:"j.n." }}</span>
-                <span class="wd-state">{% if weekday.is_past %}vorbei{% elif weekday.free_count == 1 %}1 freie Zeit{% elif weekday.free_count %}{{ weekday.free_count }} freie Zeiten{% else %}nichts frei{% endif %}</span>
+                <span class="wd-state">{% if weekday.is_past %}{% blocktrans %}vorbei{% endblocktrans %}{% elif weekday.free_count == 1 %}{% blocktrans %}1 freie Zeit{% endblocktrans %}{% elif weekday.free_count %}{{ weekday.free_count }} {% blocktrans %}freie Zeiten{% endblocktrans %}{% else %}{% blocktrans %}nichts frei{% endblocktrans %}{% endif %}</span>
             </button>
         </li>
         {% endfor %}

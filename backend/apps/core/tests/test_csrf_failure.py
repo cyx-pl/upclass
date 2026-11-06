@@ -5,9 +5,10 @@ portal users with a blocked/missing cookie (private browsing, iOS Screen
 Time restrictions, an in-app browser), not an actual attack.
 """
 
-from django.test import Client, TestCase
+from django.test import Client, TestCase, override_settings
 
 
+@override_settings(LANGUAGE_CODE="de")
 class CsrfFailurePageTest(TestCase):
     def test_csrf_failure_renders_friendly_german_page(self):
         client = Client(enforce_csrf_checks=True)

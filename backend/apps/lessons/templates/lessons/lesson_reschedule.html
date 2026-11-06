@@ -1,13 +1,13 @@
 {% extends 'core/base.html' %}
 {% load i18n %}
 
-{% block title %}Termin verschieben – Preceptly{% endblock %}
+{% block title %}{% blocktrans %}Termin verschieben – Preceptly{% endblocktrans %}{% endblock %}
 
 {% block content %}
-<h1>Termin verschieben</h1>
+<h1>{% blocktrans %}Termin verschieben{% endblocktrans %}</h1>
 <p>
-    <strong>Schüler:</strong> {{ lesson.contract.full_name }}<br>
-    <strong>Aktueller Termin:</strong> {{ lesson.date|date:"d.m.Y" }} um {{ lesson.start_time|time:"H:i" }} Uhr
+    <strong>{% blocktrans %}Schüler:{% endblocktrans %}</strong> {{ lesson.contract.full_name }}<br>
+    <strong>{% blocktrans %}Aktueller Termin:{% endblocktrans %}</strong> {{ lesson.date|date:"d.m.Y" }} {% blocktrans %}um{% endblocktrans %} {{ lesson.start_time|time:"H:i" }} {% blocktrans %}Uhr{% endblocktrans %}
 </p>
 
 {% if error %}
@@ -18,18 +18,18 @@
     {% csrf_token %}
     <div style="display:flex; flex-direction:column; gap:16px; max-width:420px;">
         <div>
-            <label for="id_date" class="form-label">Neues Datum</label>
+            <label for="id_date" class="form-label">{% blocktrans %}Neues Datum{% endblocktrans %}</label>
             <input type="date" id="id_date" name="date" class="form-control"
                    value="{{ lesson.date|date:'Y-m-d' }}" min="{{ today }}" required>
         </div>
         <div>
-            <label for="id_start_time" class="form-label">Neue Uhrzeit</label>
+            <label for="id_start_time" class="form-label">{% blocktrans %}Neue Uhrzeit{% endblocktrans %}</label>
             <input type="time" id="id_start_time" name="start_time" class="form-control"
                    value="{{ lesson.start_time|time:'H:i' }}" required>
         </div>
         <div style="display:flex; gap:10px; flex-wrap:wrap;">
-            <button type="submit" class="btn btn-primary">Verschieben</button>
-            <a href="{{ request.GET.next|default:'javascript:history.back()' }}" class="btn">Abbrechen</a>
+            <button type="submit" class="btn btn-primary">{% blocktrans %}Verschieben{% endblocktrans %}</button>
+            <a href="{{ request.GET.next|default:'javascript:history.back()' }}" class="btn">{% blocktrans %}Abbrechen{% endblocktrans %}</a>
         </div>
     </div>
 </form>

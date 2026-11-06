@@ -6,7 +6,6 @@ Flow:
   2. e-recht24 calls the push webhook at /erecht24/push/ whenever texts change.
   3. The service also pulls current texts on first cache miss.
 """
-
 import json
 import logging
 from urllib.error import URLError
@@ -14,6 +13,7 @@ from urllib.request import Request, urlopen
 
 from django.conf import settings
 from django.core.cache import cache
+from django.utils.translation import gettext_lazy as _
 
 logger = logging.getLogger(__name__)
 
@@ -205,13 +205,13 @@ def handle_push(payload: dict) -> dict:
         str(secret).encode(), expected_secret.encode()
     ):
         logger.warning("e-recht24 push: invalid secret")
-        return {"code": 403, "message": "forbidden"}
+        return {"code": 403, "message": 'forbidden'}
 
     if push_type not in VALID_PUSH_TYPES:
-        return {"code": 400, "message": "unknown type"}
+        return {"code": 400, "message": _('unknown type')}
 
     if push_type == PUSH_TYPE_PING:
-        return {"code": 200, "message": "pong"}
+        return {"code": 200, "message": 'pong'}
 
     if push_type == PUSH_TYPE_IMPRINT:
         pull_imprint()
@@ -220,4 +220,4 @@ def handle_push(payload: dict) -> dict:
         pull_privacy_policy()
         logger.info("e-recht24 push: privacy policy updated")
 
-    return {"code": 200, "message": "ok"}
+    return {"code": 200, "message": 'ok'}

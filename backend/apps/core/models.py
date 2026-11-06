@@ -441,13 +441,13 @@ class Review(models.Model):
     )
     rating = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(5)],
-        help_text="1 (schlecht) bis 5 (sehr gut)",
+        help_text=_('1 (schlecht) bis 5 (sehr gut)'),
     )
     comment = models.TextField(blank=True)
     is_approved = models.BooleanField(
         default=False,
         db_index=True,
-        help_text="Nur freigegebene Bewertungen erscheinen auf der öffentlichen Info-Seite.",
+        help_text=_('Nur freigegebene Bewertungen erscheinen auf der öffentlichen Info-Seite.'),
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

@@ -7,7 +7,7 @@ from datetime import date, time, timedelta
 from decimal import Decimal
 
 from django.contrib.auth.models import User
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
 
@@ -20,6 +20,7 @@ from apps.lessons.recurring_models import RecurringSession
 from apps.portal.models import ParentStudentLink, PortalUser
 
 
+@override_settings(LANGUAGE_CODE="de")
 class BookingOriginTest(TestCase):
     def setUp(self):
         self.tutor = User.objects.create_user(
@@ -127,7 +128,7 @@ class BookingOriginTest(TestCase):
         # Serien zählen weiterhin nicht als Einzelbuchungen fürs Monatslimit
         self.assertEqual(get_portal_booking_count_this_month(self.tutor), 0)
 
-    def test_portal_page_stays_german_for_english_browsers(self):
+    def test_portal_booking_origin_uses_browser_language(self):
         lesson = Session.objects.create(
             contract=self.contract,
             date=date.today() + timedelta(days=2),
@@ -140,7 +141,7 @@ class BookingOriginTest(TestCase):
 
         page = self._portal_page(lesson, HTTP_ACCEPT_LANGUAGE="en")
 
-        self.assertContains(page, "über das Portal von dir")
+        self.assertContains(page, "via the portal by you")
 
     # --- Tutor --------------------------------------------------------------------
 

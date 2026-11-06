@@ -1,7 +1,7 @@
 {% extends "core/base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Privacy Policy" %} - Preceptly{% endblock %}
+{% block title %}{% trans "Privacy Policy" %} {% blocktrans %}- Preceptly{% endblocktrans %}{% endblock %}
 
 {% block content %}
 {% include "legal/_style.html" %}
@@ -12,7 +12,7 @@
         <p class="legal-meta">{% blocktrans with date=last_updated %}Last updated: {{ date }}{% endblocktrans %}</p>
         <div class="legal-placeholder-box">
             <strong>{% trans "Controller" %}:</strong>
-            <p>andicode / Preceptly, Inhaber Andreas Eirich, Birkenweg 7, 49577 Ankum, <a href="mailto:info@preceptly.de">info@preceptly.de</a></p>
+            <p>{% blocktrans %}andicode / Preceptly, Inhaber Andreas Eirich, Birkenweg 7, 49577 Ankum,{% endblocktrans %} <a href="mailto:info@preceptly.de">info@preceptly.de</a></p>
         </div>
         <div class="legal-section">
             <h2>{% trans "1. General information" %}</h2>
@@ -36,7 +36,7 @@
     <div class="legal-section">
         <h2>{% trans "Hosting and infrastructure (Railway)" %}</h2>
         <p>{% trans "Preceptly is hosted on Railway (Railway Corp., 340 S Lemon Ave #4133, Walnut, CA 91789, USA). All application data and the database are processed on Railway servers." %}</p>
-        <p>{% trans "The legal basis is our legitimate interest in reliable and secure operation of the service (Art. 6 para. 1 lit. f GDPR). Data transfers to the USA are based on the standard contractual clauses of the EU Commission. Further information:" %} <a href="https://railway.app/legal/privacy" target="_blank" rel="noopener noreferrer">railway.app/legal/privacy</a></p>
+        <p>{% trans "The legal basis is our legitimate interest in reliable and secure operation of the service (Art. 6 para. 1 lit. f GDPR). Data transfers to the USA are based on the standard contractual clauses of the EU Commission. Further information:" %} <a href="https://railway.app/legal/privacy" target="_blank" rel="noopener noreferrer">{% blocktrans %}railway.app/legal/privacy{% endblocktrans %}</a></p>
     </div>
     <div class="legal-section">
         <h2>{% trans "Access logs" %}</h2>
@@ -81,8 +81,8 @@
         <h2>{% trans "Cookies and technical storage" %}</h2>
         <p>{% trans "Preceptly uses only technically necessary cookies:" %}</p>
         <ul>
-            <li><code>sessionid</code>: {% trans "Session cookie for managing the logged-in state. Deleted when you log out or close the browser." %}</li>
-            <li><code>csrftoken</code>: {% trans "Security cookie to protect against cross-site request forgery (CSRF) attacks." %}</li>
+            <li><code>{% blocktrans %}sessionid{% endblocktrans %}</code>: {% trans "Session cookie for managing the logged-in state. Deleted when you log out or close the browser." %}</li>
+            <li><code>{% blocktrans %}csrftoken{% endblocktrans %}</code>: {% trans "Security cookie to protect against cross-site request forgery (CSRF) attacks." %}</li>
         </ul>
         <p>{% trans "In addition, Preceptly stores the selected display theme (light/dark) in the browser's localStorage. This is not a cookie and the data does not leave your device." %} {% trans "Preceptly also stores in localStorage whether you have dismissed the hint about installing the app to your home screen, so it is not shown again. This data does not leave your device either." %}</p>
         <p>{% trans "No tracking, analytics, or advertising cookies are used. A cookie consent banner is therefore not required." %}</p>
@@ -100,9 +100,9 @@
         <p>{% trans "Our website includes a revocation button provided by e-Recht24 (eRecht24 GmbH &amp; Co. KG, Lietzenburger Str. 94, 10719 Berlin, Germany). Its purpose is to enable consumers to exercise their statutory right of withdrawal conveniently and in a documented manner." %}</p>
         <p>{% trans "When the revocation button is used, the following data processors and services are involved:" %}</p>
         <ul>
-            <li><strong>Friendly Captcha</strong> &ndash; {% trans "bot detection and abuse prevention (Friendly Captcha GmbH, Am Anger 3-5, 82237 Wörthsee, Germany)." %}</li>
-            <li><strong>MailPace</strong> &ndash; {% trans "transactional email delivery for withdrawal confirmation emails (MailPace Ltd., United Kingdom)." %}</li>
-            <li><strong>eRecht24</strong> &ndash; {% trans "data processor for handling the revocation form submission on our behalf (eRecht24 GmbH &amp; Co. KG, Berlin, Germany)." %}</li>
+            <li><strong>{% blocktrans %}Friendly Captcha{% endblocktrans %}</strong> &ndash; {% trans "bot detection and abuse prevention (Friendly Captcha GmbH, Am Anger 3-5, 82237 Wörthsee, Germany)." %}</li>
+            <li><strong>{% blocktrans %}MailPace{% endblocktrans %}</strong> &ndash; {% trans "transactional email delivery for withdrawal confirmation emails (MailPace Ltd., United Kingdom)." %}</li>
+            <li><strong>{% blocktrans %}eRecht24{% endblocktrans %}</strong> &ndash; {% trans "data processor for handling the revocation form submission on our behalf (eRecht24 GmbH &amp; Co. KG, Berlin, Germany)." %}</li>
         </ul>
         <p>{% trans "Legal basis: fulfilment of a legal obligation (Art. 6 para. 1 lit. c GDPR) with regard to enabling the right of withdrawal, and legitimate interest in preventing abuse (Art. 6 para. 1 lit. f GDPR) for the bot-detection service. All three providers were selected to allow GDPR-compliant use without a separate consent. A data processing agreement (Auftragsverarbeitungsvertrag) is in place with eRecht24." %}</p>
     </div>

@@ -20,10 +20,37 @@ from reportlab.platypus import (
 )
 
 from apps.billing.models import Invoice
+from apps.core.pdf_fonts import register_pdf_fonts
 
 _pdf_logger = _logging.getLogger(__name__)
 
 _LABELS = {
+    "pl": {
+        "title": "Faktura",
+        "cancellation_title": "Faktura anulująca",
+        "cancellation_note": "Ta faktura anuluje w całości fakturę {number} z dnia {date}.",
+        "issuer": "Wystawca",
+        "invoice_number": "Numer faktury",
+        "invoice_date": "Data wystawienia",
+        "period": "Okres rozliczeniowy",
+        "recipient": "Nabywca",
+        "date_col": "Data",
+        "description_col": "Opis",
+        "duration_col": "Czas trwania",
+        "amount_col": "Kwota",
+        "total": "Razem",
+        "iban": "IBAN",
+        "bic": "BIC",
+        "tax_number": "Numer podatkowy",
+        "contact": "Kontakt",
+        "address": "Adres",
+        "min": "min",
+        "no_profile_warning": "Dane do faktury są niepełne. Uzupełnij je w Ustawienia → Dane do faktur.",
+        "payment_info": "Informacje o płatności",
+        "bank_name": "Posiadacz rachunku",
+        "kleinunternehmer_notice": "Podatek VAT nie jest naliczany zgodnie z § 19 ust. 1 niemieckiej ustawy UStG.",
+        "pay_request": "Prosimy o przelew łącznej kwoty {amount} na poniższy rachunek:",
+    },
     "de": {
         "title": "Rechnung",
         "cancellation_title": "Stornorechnung",
@@ -105,7 +132,7 @@ def _get_styles():
             "InvTitle",
             parent=base["Normal"],
             fontSize=26,
-            fontName="Helvetica-Bold",
+            fontName="NotoSans-Bold",
             textColor=_COLOR_DARK,
             leading=30,
             spaceAfter=2,
@@ -114,7 +141,7 @@ def _get_styles():
             "InvSubtitle",
             parent=base["Normal"],
             fontSize=10,
-            fontName="Helvetica",
+            fontName="NotoSans",
             textColor=_COLOR_MUTED,
             leading=14,
         ),
@@ -122,7 +149,7 @@ def _get_styles():
             "InvIssuerName",
             parent=base["Normal"],
             fontSize=13,
-            fontName="Helvetica-Bold",
+            fontName="NotoSans-Bold",
             textColor=_COLOR_DARK,
             leading=17,
         ),
@@ -130,7 +157,7 @@ def _get_styles():
             "InvIssuerDetail",
             parent=base["Normal"],
             fontSize=9,
-            fontName="Helvetica",
+            fontName="NotoSans",
             textColor=_COLOR_MUTED,
             leading=13,
         ),
@@ -138,7 +165,7 @@ def _get_styles():
             "InvMetaLabel",
             parent=base["Normal"],
             fontSize=8,
-            fontName="Helvetica-Bold",
+            fontName="NotoSans-Bold",
             textColor=_COLOR_MUTED,
             leading=12,
             spaceAfter=1,
@@ -147,7 +174,7 @@ def _get_styles():
             "InvMetaValue",
             parent=base["Normal"],
             fontSize=10,
-            fontName="Helvetica",
+            fontName="NotoSans",
             textColor=_COLOR_DARK,
             leading=14,
             spaceAfter=6,
@@ -156,7 +183,7 @@ def _get_styles():
             "InvSectionHeading",
             parent=base["Normal"],
             fontSize=8,
-            fontName="Helvetica-Bold",
+            fontName="NotoSans-Bold",
             textColor=_COLOR_MUTED,
             leading=12,
             spaceBefore=4,
@@ -167,7 +194,7 @@ def _get_styles():
             "InvRecipientName",
             parent=base["Normal"],
             fontSize=11,
-            fontName="Helvetica-Bold",
+            fontName="NotoSans-Bold",
             textColor=_COLOR_DARK,
             leading=15,
         ),
@@ -175,7 +202,7 @@ def _get_styles():
             "InvRecipientDetail",
             parent=base["Normal"],
             fontSize=10,
-            fontName="Helvetica",
+            fontName="NotoSans",
             textColor=_COLOR_DARK,
             leading=14,
         ),
@@ -183,7 +210,7 @@ def _get_styles():
             "InvFooter",
             parent=base["Normal"],
             fontSize=8,
-            fontName="Helvetica",
+            fontName="NotoSans",
             textColor=_COLOR_MUTED,
             leading=12,
         ),
@@ -191,7 +218,7 @@ def _get_styles():
             "InvWarning",
             parent=base["Normal"],
             fontSize=9,
-            fontName="Helvetica",
+            fontName="NotoSans",
             textColor=_COLOR_WARNING,
             leading=13,
             leftIndent=8,
@@ -201,7 +228,7 @@ def _get_styles():
             "InvCell",
             parent=base["Normal"],
             fontSize=9,
-            fontName="Helvetica",
+            fontName="NotoSans",
             textColor=_COLOR_DARK,
             leading=13,
         ),
@@ -223,6 +250,7 @@ def generate_invoice_pdf(invoice: Invoice, language: str = "de") -> bytes:
     if lang not in _LABELS:
         lang = "de"
     L = _LABELS[lang]
+    register_pdf_fonts()
 
     buffer = BytesIO()
     try:
@@ -403,7 +431,7 @@ def generate_invoice_pdf(invoice: Invoice, language: str = "de") -> bytes:
         header_style = ParagraphStyle(
             "TblHdr",
             parent=styles["table_cell"],
-            fontName="Helvetica-Bold",
+            fontName="NotoSans-Bold",
             textColor=_COLOR_HEADER_TEXT,
             fontSize=9,
         )
@@ -430,7 +458,7 @@ def generate_invoice_pdf(invoice: Invoice, language: str = "de") -> bytes:
         total_label_style = ParagraphStyle(
             "TblTotal",
             parent=styles["table_cell"],
-            fontName="Helvetica-Bold",
+            fontName="NotoSans-Bold",
             fontSize=11,
             textColor=_COLOR_ACCENT,
         )
@@ -471,7 +499,7 @@ def generate_invoice_pdf(invoice: Invoice, language: str = "de") -> bytes:
                     ("LINEBELOW", (0, 0), (-1, -2), 0.4, _COLOR_BORDER),
                     ("LINEBELOW", (0, -1), (-1, -1), 0, _COLOR_BORDER),
                     # Bold total
-                    ("FONTNAME", (0, -1), (-1, -1), "Helvetica-Bold"),
+                    ("FONTNAME", (0, -1), (-1, -1), "NotoSans-Bold"),
                     ("FONTSIZE", (0, -1), (-1, -1), 11),
                 ]
             )
@@ -485,7 +513,7 @@ def generate_invoice_pdf(invoice: Invoice, language: str = "de") -> bytes:
                 "Notice19",
                 parent=styles["footer"],
                 fontSize=9,
-                fontName="Helvetica-Oblique",
+                fontName="NotoSans-Italic",
                 textColor=_COLOR_MUTED,
                 leading=13,
             )
@@ -510,7 +538,7 @@ def generate_invoice_pdf(invoice: Invoice, language: str = "de") -> bytes:
                 "PayReq",
                 parent=styles["meta_value"],
                 fontSize=9,
-                fontName="Helvetica-Bold",
+                fontName="NotoSans-Bold",
                 textColor=_COLOR_DARK,
                 spaceAfter=0,
                 leading=14,
@@ -518,7 +546,7 @@ def generate_invoice_pdf(invoice: Invoice, language: str = "de") -> bytes:
             pay_label_style = ParagraphStyle(
                 "PayLbl",
                 parent=styles["footer"],
-                fontName="Helvetica-Bold",
+                fontName="NotoSans-Bold",
                 textColor=_COLOR_DARK,
                 fontSize=9,
             )
@@ -539,7 +567,7 @@ def generate_invoice_pdf(invoice: Invoice, language: str = "de") -> bytes:
                 "PayTotVal",
                 parent=styles["meta_value"],
                 fontSize=14,
-                fontName="Helvetica-Bold",
+                fontName="NotoSans-Bold",
                 textColor=_COLOR_ACCENT,
                 alignment=2,
                 leading=17,

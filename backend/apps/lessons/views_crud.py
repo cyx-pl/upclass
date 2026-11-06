@@ -361,7 +361,7 @@ class LessonUpdateView(LoginRequiredMixin, UpdateView):
 
         # H8: Ownership check for recurring lesson series
         if matching_recurring and matching_recurring.contract.user != self.request.user:
-            raise PermissionDenied("Not your recurring lesson series.")
+            raise PermissionDenied(_('Not your recurring lesson series.'))
 
         if edit_scope == "series" and matching_recurring:
             try:
@@ -560,7 +560,7 @@ class LessonDeleteView(LoginRequiredMixin, DeleteView):
 
         # H8: Ownership check for recurring lesson series
         if matching_recurring and matching_recurring.contract.user != self.request.user:
-            raise PermissionDenied("Not your recurring lesson series.")
+            raise PermissionDenied(_('Not your recurring lesson series.'))
 
         delete_series = self.request.POST.get("delete_series", "false") == "true"
 
@@ -624,7 +624,7 @@ class LessonRescheduleView(LoginRequiredMixin, View):
                 {
                     "lesson": lesson,
                     "today": timezone.localdate().isoformat(),
-                    "error": "Ungültiges Datum oder Uhrzeit.",
+                    "error": _('Ungültiges Datum oder Uhrzeit.'),
                 },
             )
         if new_date < timezone.localdate():
@@ -634,7 +634,7 @@ class LessonRescheduleView(LoginRequiredMixin, View):
                 {
                     "lesson": lesson,
                     "today": timezone.localdate().isoformat(),
-                    "error": "Das Datum liegt in der Vergangenheit.",
+                    "error": _('Das Datum liegt in der Vergangenheit.'),
                 },
             )
         old_date = lesson.date
@@ -645,7 +645,7 @@ class LessonRescheduleView(LoginRequiredMixin, View):
         recalculate_conflicts_for_affected_lessons(lesson)
         messages.success(
             request,
-            f"Termin verschoben: {old_date.strftime('%d.%m.%Y')} → {new_date.strftime('%d.%m.%Y')} {new_time.strftime('%H:%M')} Uhr.",
+            _('Termin verschoben: {value0} → {value1} {value2} Uhr.').format(value0=old_date.strftime('%d.%m.%Y'), value1=new_date.strftime('%d.%m.%Y'), value2=new_time.strftime('%H:%M')),
         )
         next_url = request.GET.get("next") or get_last_calendar_url(request)
         if url_has_allowed_host_and_scheme(

@@ -13,6 +13,7 @@ from apps.portal.tests_portal import _make_portal_user
 RESET_PATH = re.compile(r"/password-reset/[^\s/\"]+/[^\s/\"]+/")
 
 
+@override_settings(LANGUAGE_CODE="de")
 class TutorPasswordResetTest(TestCase):
     def setUp(self):
         cache.clear()

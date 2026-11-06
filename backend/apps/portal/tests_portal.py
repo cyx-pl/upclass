@@ -62,6 +62,7 @@ def _make_parent_link(parent_portal_user, contract, active=True):
     )
 
 
+@override_settings(LANGUAGE_CODE="de")
 class PortalLoginViewTest(TestCase):
     def setUp(self):
         cache.clear()  # Ratelimit-Zähler vor jedem Test zurücksetzen
@@ -445,6 +446,7 @@ class PortalDispatchViewTest(TestCase):
         self.assertRedirects(resp, reverse("portal:login"), fetch_redirect_response=False)
 
 
+@override_settings(LANGUAGE_CODE="de")
 class PortalPasswordResetM1Test(TestCase):
     """M1 regression: password reset must not deactivate the portal link."""
 
@@ -578,6 +580,7 @@ class PortalLogoutViewTest(TestCase):
         self.assertRedirects(resp, reverse("portal:login"), fetch_redirect_response=False)
 
 
+@override_settings(LANGUAGE_CODE="de")
 class PortalActivateViewTest(TestCase):
     def setUp(self):
         self.client = Client()
@@ -637,6 +640,7 @@ class InactiveParentLinkAccessTest(TestCase):
         self.assertEqual(resp.status_code, 200)
 
 
+@override_settings(LANGUAGE_CODE="de")
 class PortalDocumentUploadMagicByteTest(TestCase):
     """Portal document upload must reject files whose magic bytes don't match the extension."""
 

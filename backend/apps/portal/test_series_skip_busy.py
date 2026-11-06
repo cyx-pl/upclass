@@ -10,7 +10,7 @@ from decimal import Decimal
 import django.utils.timezone as tz
 from django.contrib.auth import get_user_model
 from django.db import connection
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.test.utils import CaptureQueriesContext
 from django.urls import reverse
 
@@ -93,6 +93,7 @@ class SeriesFixture(TestCase):
         return day.strftime("%d.%m.%Y")
 
 
+@override_settings(LANGUAGE_CODE="de")
 class PortalSeriesSkipBusyTest(SeriesFixture):
     def test_all_free_days_are_booked(self):
         response = self.series()

@@ -2,12 +2,12 @@
 {% load i18n %}
 {% load currency %}
 
-{% block title %}Rechnung erstellen – Preceptly{% endblock %}
+{% block title %}{% blocktrans %}Rechnung erstellen – Preceptly{% endblocktrans %}{% endblock %}
 
 {% block content %}
 <h1>{% trans "Create New Invoice" %}</h1>
 
-<p style="font-size:0.875em;"><a href="/faq/#rechnungen">→ Wie funktioniert die Rechnungserstellung? (FAQ)</a></p>
+<p style="font-size:0.875em;"><a href="/faq/#rechnungen">{% blocktrans %}→ Wie funktioniert die Rechnungserstellung? (FAQ){% endblocktrans %}</a></p>
 
 <form method="post" id="invoice-form">
     {% csrf_token %}
@@ -79,7 +79,7 @@
     <h2>{% blocktrans count counter=billable_lessons|length %}Available Lesson ({{ counter }}){% plural %}Available Lessons ({{ counter }}){% endblocktrans %}</h2>
     <p>{% trans "These lessons will be automatically included in the invoice:" %}</p>
     
-    <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;" aria-label="Abrechnungsfähige Lektionen">
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;" aria-label="{% blocktrans %}Abrechnungsfähige Lektionen{% endblocktrans %}">
         <thead>
             <tr style="background: var(--table-header-bg);">
                 <th scope="col" style="padding: 8px; text-align: left; border: 1px solid var(--border-color);">{% trans "Date" %}</th>

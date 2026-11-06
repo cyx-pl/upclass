@@ -1,13 +1,13 @@
-{% autoescape off %}Preceptly — Neue E-Mail-Adresse bestätigen
+{% load i18n %}{% autoescape off %}{% blocktrans %}Preceptly — Neue E-Mail-Adresse bestätigen{% endblocktrans %}
 ==========================================
 
-Für dein Preceptly-Konto „{{ username }}“ soll diese Adresse die neue E-Mail-Adresse werden.
+{% blocktrans %}Für dein Preceptly-Konto „{% endblocktrans %}{{ username }}{% blocktrans %}“ soll diese Adresse die neue E-Mail-Adresse werden.{% endblocktrans %}
 
-Bestätige das hier. Der Link ist 24 Stunden gültig:
+{% blocktrans %}Bestätige das hier. Der Link ist 24 Stunden gültig:{% endblocktrans %}
 {{ confirm_url }}
 
-Wenn du das nicht warst, kannst du diese E-Mail ignorieren – dann ändert sich nichts.
+{% blocktrans %}Wenn du das nicht warst, kannst du diese E-Mail ignorieren – dann ändert sich nichts.{% endblocktrans %}
 
 ---
-Preceptly — {{ site_url }}
+{% blocktrans %}Preceptly —{% endblocktrans %} {{ site_url }}
 {% endautoescape %}

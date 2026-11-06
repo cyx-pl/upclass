@@ -19,6 +19,8 @@ from reportlab.platypus import (
     TableStyle,
 )
 
+from apps.core.pdf_fonts import register_pdf_fonts
+
 _logger = _logging.getLogger(__name__)
 
 # Farbkonstanten — identisch zu billing/pdf_service.py (bewusste Kopie, kein Cross-App-Import)
@@ -33,6 +35,22 @@ _COLOR_MUTED = colors.HexColor("#64748b")
 _COLOR_LOSS = colors.HexColor("#c0392b")
 
 _LABELS = {
+    "pl": {
+        "title": "Zestawienie przychodów i kosztów (EÜR)",
+        "subtitle": "zgodnie z § 4 ust. 3 niemieckiej ustawy o podatku dochodowym (EStG)",
+        "taxpayer": "Podatnik",
+        "tax_number": "Numer podatkowy",
+        "fiscal_year": "Rok podatkowy",
+        "income_section": "Przychody z działalności",
+        "income_invoices": "Opłacone faktury sprzedażowe (metoda kasowa)",
+        "income_total": "Łączne przychody z działalności",
+        "expenses_section": "Koszty działalności",
+        "expenses_no_entries": "Brak kosztów w tym roku podatkowym.",
+        "expenses_total": "Łączne koszty działalności",
+        "result_label": "Zysk / strata (§ 4 ust. 3 EStG)",
+        "col_category": "Kategoria",
+        "col_amount": "Kwota (EUR)",
+    },
     "de": {
         "title": "Einnahmenüberschussrechnung",
         "subtitle": "gemäß § 4 Abs. 3 EStG (Anlage EÜR)",
@@ -75,7 +93,7 @@ def _get_styles() -> dict:
             "EuerTitle",
             parent=base["Normal"],
             fontSize=22,
-            fontName="Helvetica-Bold",
+            fontName="NotoSans-Bold",
             textColor=_COLOR_DARK,
             leading=26,
             spaceAfter=2,
@@ -84,7 +102,7 @@ def _get_styles() -> dict:
             "EuerSubtitle",
             parent=base["Normal"],
             fontSize=10,
-            fontName="Helvetica",
+            fontName="NotoSans",
             textColor=_COLOR_MUTED,
             leading=14,
         ),
@@ -92,7 +110,7 @@ def _get_styles() -> dict:
             "EuerYearBadge",
             parent=base["Normal"],
             fontSize=16,
-            fontName="Helvetica-Bold",
+            fontName="NotoSans-Bold",
             textColor=_COLOR_ACCENT,
             leading=20,
             alignment=2,  # RIGHT
@@ -101,7 +119,7 @@ def _get_styles() -> dict:
             "EuerSectionHeading",
             parent=base["Normal"],
             fontSize=8,
-            fontName="Helvetica-Bold",
+            fontName="NotoSans-Bold",
             textColor=_COLOR_MUTED,
             leading=12,
             spaceBefore=4,
@@ -111,7 +129,7 @@ def _get_styles() -> dict:
             "EuerIssuerName",
             parent=base["Normal"],
             fontSize=11,
-            fontName="Helvetica-Bold",
+            fontName="NotoSans-Bold",
             textColor=_COLOR_DARK,
             leading=15,
         ),
@@ -119,7 +137,7 @@ def _get_styles() -> dict:
             "EuerIssuerDetail",
             parent=base["Normal"],
             fontSize=9,
-            fontName="Helvetica",
+            fontName="NotoSans",
             textColor=_COLOR_MUTED,
             leading=13,
         ),
@@ -127,7 +145,7 @@ def _get_styles() -> dict:
             "EuerCell",
             parent=base["Normal"],
             fontSize=9,
-            fontName="Helvetica",
+            fontName="NotoSans",
             textColor=_COLOR_DARK,
             leading=13,
         ),
@@ -135,7 +153,7 @@ def _get_styles() -> dict:
             "EuerFooter",
             parent=base["Normal"],
             fontSize=8,
-            fontName="Helvetica",
+            fontName="NotoSans",
             textColor=_COLOR_MUTED,
             leading=12,
         ),
@@ -190,7 +208,7 @@ def _header_table_style() -> list:
     return [
         ("BACKGROUND", (0, 0), (-1, 0), _COLOR_HEADER_BG),
         ("TEXTCOLOR", (0, 0), (-1, 0), _COLOR_HEADER_TEXT),
-        ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+        ("FONTNAME", (0, 0), (-1, 0), "NotoSans-Bold"),
         ("FONTSIZE", (0, 0), (-1, 0), 9),
         ("TOPPADDING", (0, 0), (-1, 0), 7),
         ("BOTTOMPADDING", (0, 0), (-1, 0), 7),
@@ -219,6 +237,7 @@ def generate_euer_pdf(
     if lang not in _LABELS:
         lang = "de"
     L = _LABELS[lang]
+    register_pdf_fonts()
 
     # --- Profil-Daten (optional, fehlen = leere Strings) ---
     billing_name = ""
@@ -386,7 +405,7 @@ def generate_euer_pdf(
                 ("BOTTOMPADDING", (0, 0), (-1, -1), 9),
                 ("LEFTPADDING", (0, 0), (-1, -1), 10),
                 ("RIGHTPADDING", (0, 0), (-1, -1), 10),
-                ("FONTNAME", (0, 0), (-1, -1), "Helvetica-Bold"),
+                ("FONTNAME", (0, 0), (-1, -1), "NotoSans-Bold"),
                 ("FONTSIZE", (0, 0), (-1, -1), 10),
             ]
         )

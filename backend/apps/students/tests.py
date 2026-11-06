@@ -1,9 +1,10 @@
+
 from datetime import date
 from decimal import Decimal
 
 from django.contrib.auth.models import User
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.test import Client, TestCase
+from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 
 from apps.contracts.models import Contract
@@ -33,6 +34,7 @@ class StudentModelTest(TestCase):
         self.assertIn("Max Mustermann", str(student))
 
 
+@override_settings(LANGUAGE_CODE="de")
 class TutorDocumentUploadMagicByteTest(TestCase):
     """L3: tutor document upload path must validate magic bytes, not only extension."""
 

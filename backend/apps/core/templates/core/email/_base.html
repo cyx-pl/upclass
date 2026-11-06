@@ -1,9 +1,12 @@
+{% load i18n %}{% get_current_language as CURRENT_LANGUAGE %}
+
+{% load i18n %}
 {% comment %}
 Grundlayout der Mails an Tutoren - wie die Buchungsbenachrichtigung
 (portal/email/booking_notification.html). Blöcke: title, heading, body.
 Kontraste nach WCAG AA: „Preceptly“ im Kopf 4,9:1, Fußzeile 4,6:1.
 {% endcomment %}<!DOCTYPE html>
-<html lang="de">
+<html lang="{{ CURRENT_LANGUAGE }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,7 +37,7 @@ Kontraste nach WCAG AA: „Preceptly“ im Kopf 4,9:1, Fußzeile 4,6:1.
           <tr>
             <td style="background:#f4f6f9; border-radius:0 0 10px 10px; padding:20px 32px; text-align:center; border-top:1px solid #e5e7eb;">
               <p style="margin:0; color:#6b7280; font-size:12px;">
-                Preceptly — Nachhilfe-Management<br>
+                {% blocktrans %}Preceptly — Nachhilfe-Management{% endblocktrans %}<br>
                 <a href="{{ site_url }}" style="color:#6b7280;">{{ site_url }}</a>
               </p>
             </td>

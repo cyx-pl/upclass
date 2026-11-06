@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load currency %}
 
-{% block title %}{% trans "Tax Year Overview" %} - Preceptly{% endblock %}
+{% block title %}{% trans "Tax Year Overview" %} {% blocktrans %}- Preceptly{% endblocktrans %}{% endblock %}
 
 {% block content %}
 <div style="display:flex;gap:8px;margin-bottom:20px;border-bottom:2px solid var(--border-color);padding-bottom:12px;">
@@ -26,7 +26,7 @@
 
 {% if is_premium %}
 
-<p style="font-size:0.875em;"><a href="/faq/#steuern">→ Wie funktioniert die EÜR? (FAQ)</a></p>
+<p style="font-size:0.875em;"><a href="/faq/#steuern">{% blocktrans %}→ Wie funktioniert die EÜR? (FAQ){% endblocktrans %}</a></p>
 <h2>{% trans "Monthly breakdown" %} {{ year }}</h2>
 <table class="table">
     <thead>

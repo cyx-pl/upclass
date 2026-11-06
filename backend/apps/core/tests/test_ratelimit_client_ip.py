@@ -40,6 +40,7 @@ class RatelimitClientIpTest(SimpleTestCase):
 
 
 @override_settings(TRUSTED_PROXIES=["100.64.0.0/10"])
+@override_settings(LANGUAGE_CODE="de")
 class PortalLoginRateLimitPerClientTest(TestCase):
     def setUp(self):
         cache.clear()

@@ -180,6 +180,7 @@ class SubscriptionPortalTest(TestCase):
     STRIPE_PRICE_ID_MONTHLY="price_premium_123",
     STRIPE_PREMIUM_CHECKOUT_ENABLED=True,
 )
+@override_settings(LANGUAGE_CODE="de")
 class StripeCheckoutPremiumTest(TestCase):
     """POST /stripe/checkout/: uses STRIPE_PRICE_ID_MONTHLY, metadata.user_id, no Customer.create when customer_id exists."""
 

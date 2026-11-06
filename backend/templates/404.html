@@ -1,11 +1,12 @@
+{% load i18n %}{% get_current_language as CURRENT_LANGUAGE %}
 {% load i18n %}
 {% load static %}
 <!DOCTYPE html>
-<html lang="{{ LANGUAGE_CODE|default:'en' }}">
+<html lang="{{ CURRENT_LANGUAGE }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seite nicht gefunden – Preceptly</title>
+    <title>{% blocktrans %}Seite nicht gefunden – Preceptly{% endblocktrans %}</title>
     <style>
         * { box-sizing: border-box; }
         body {

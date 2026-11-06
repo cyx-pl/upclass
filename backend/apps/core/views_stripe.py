@@ -535,22 +535,22 @@ def stripe_webhook_view(request):
     """
     # [MEDIUM] Payload-Größenlimit gegen DoS
     if len(request.body) > 1024 * 64:
-        return HttpResponseBadRequest("Payload too large")
+        return HttpResponseBadRequest(_('Payload too large'))
 
     payload = request.body
     sig_header = request.META.get("HTTP_STRIPE_SIGNATURE", "")
     webhook_secret = getattr(settings, "STRIPE_WEBHOOK_SECRET", None)
 
     if not webhook_secret:
-        return HttpResponseBadRequest("Webhook secret not configured")
+        return HttpResponseBadRequest(_('Webhook secret not configured'))
 
     try:
         # [MEDIUM] Expliziter tolerance-Parameter gegen Replay-Angriffe
         event = stripe.Webhook.construct_event(payload, sig_header, webhook_secret, tolerance=300)
     except ValueError:
-        return HttpResponseBadRequest("Invalid payload")
+        return HttpResponseBadRequest(_('Invalid payload'))
     except stripe.error.SignatureVerificationError:
-        return HttpResponseBadRequest("Invalid signature")
+        return HttpResponseBadRequest(_('Invalid signature'))
 
     event_id = event.get("id")
     event_type = event.get("type")
@@ -742,7 +742,7 @@ def _send_subscription_confirmation(profile: UserProfile, session: dict, sub) ->
                 if amount is not None
                 else ""
             ),
-            "interval": {"month": "Monat", "year": "Jahr"}.get(interval, interval or ""),
+            "interval": {"month": _("month"), "year": _("year")}.get(interval, interval or ""),
             "trial_end": (
                 timezone.localtime(datetime.fromtimestamp(trial_end, tz=UTC)) if trial_end else None
             ),
@@ -753,7 +753,7 @@ def _send_subscription_confirmation(profile: UserProfile, session: dict, sub) ->
             "site_url": getattr(settings, "SITE_URL", "https://preceptly.de").rstrip("/"),
         }
         send_mail(
-            subject="Ihr Preceptly-Abo – Vertragsbestätigung",
+            subject=_('Ihr Preceptly-Abo – Vertragsbestätigung'),
             message=render_to_string("core/email/subscription_confirmation.txt", context),
             from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=[recipient],

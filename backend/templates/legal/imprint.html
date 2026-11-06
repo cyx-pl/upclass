@@ -1,7 +1,7 @@
 {% extends "core/base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Imprint" %} - Preceptly{% endblock %}
+{% block title %}{% trans "Imprint" %} {% blocktrans %}- Preceptly{% endblocktrans %}{% endblock %}
 
 {% block content %}
 {% include "legal/_style.html" %}
@@ -12,19 +12,19 @@
         <p class="legal-meta">{% blocktrans with date=last_updated %}Last updated: {{ date }}{% endblocktrans %}</p>
         <div class="legal-section">
             <h2>{% trans "Responsible according to §5 TMG" %}</h2>
-            <p><strong>andicode / Preceptly, Inhaber Andreas Eirich</strong></p>
-            <p>Birkenweg 7</p>
-            <p>49577 Ankum</p>
-            <p>Steuernummer: 367/111/01956</p>
+            <p><strong>{% blocktrans %}andicode / Preceptly, Inhaber Andreas Eirich{% endblocktrans %}</strong></p>
+            <p>{% blocktrans %}Birkenweg 7{% endblocktrans %}</p>
+            <p>{% blocktrans %}49577 Ankum{% endblocktrans %}</p>
+            <p>{% blocktrans %}Steuernummer: 367/111/01956{% endblocktrans %}</p>
         </div>
         <div class="legal-section">
             <h2>{% trans "Contact" %}</h2>
-            <p>Website: <a href="https://andicode.de" rel="noopener">andicode.de</a></p>
-            <p>E-Mail: <a href="mailto:info@preceptly.de">info@preceptly.de</a></p>
+            <p>{% blocktrans %}Website:{% endblocktrans %} <a href="https://andicode.de" rel="noopener">{% blocktrans %}andicode.de{% endblocktrans %}</a></p>
+            <p>{% blocktrans %}E-Mail:{% endblocktrans %} <a href="mailto:info@preceptly.de">info@preceptly.de</a></p>
         </div>
         <div class="legal-section">
             <h2>{% trans "Editorial responsibility" %}</h2>
-            <p>Andreas Eirich</p>
+            <p>{% blocktrans %}Andreas Eirich{% endblocktrans %}</p>
         </div>
     {% endif %}
     <div class="legal-section" style="margin-top:2rem;">

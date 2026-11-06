@@ -1,17 +1,19 @@
 {% extends "portal/base.html" %}
+{% load i18n %}
 
-{% block title %}Mein Profil – Preceptly{% endblock %}
+
+{% block title %}{% blocktrans %}Mein Profil – Preceptly{% endblocktrans %}{% endblock %}
 
 {% block content %}
-<h1>Mein Profil</h1>
+<h1>{% blocktrans %}Mein Profil{% endblocktrans %}</h1>
 
 <a href="{% if portal_user.role == 'student' %}{% url 'portal:student_home' %}{% else %}{% url 'portal:parent_home' %}{% endif %}"
-   class="btn btn-secondary" style="margin-bottom:20px;">← Zurück</a>
+   class="btn btn-secondary" style="margin-bottom:20px;">{% blocktrans %}← Zurück{% endblocktrans %}</a>
 
 {% if errors %}
 <div class="error-block" role="alert" aria-live="assertive"
      style="background:#fdecea; border:1px solid #e74c3c; border-radius:6px; padding:12px 16px; margin-bottom:16px; color:#c0392b;">
-    <strong>Fehler:</strong>
+    <strong>{% blocktrans %}Fehler:{% endblocktrans %}</strong>
     <ul style="margin:6px 0 0 16px; padding:0;">
     {% for e in errors %}<li>{{ e }}</li>{% endfor %}
     </ul>
@@ -27,25 +29,25 @@
 
 <!-- Kontaktdaten -->
 <div class="card" style="margin-bottom:24px;">
-    <h2 style="margin-top:0; border-bottom:2px solid var(--border-color); padding-bottom:8px;">Kontaktdaten</h2>
+    <h2 style="margin-top:0; border-bottom:2px solid var(--border-color); padding-bottom:8px;">{% blocktrans %}Kontaktdaten{% endblocktrans %}</h2>
     <form method="post" novalidate>
         {% csrf_token %}
         <input type="hidden" name="action" value="contact">
 
         <div style="margin-bottom:16px;">
-            <label for="id_email" style="display:block; font-weight:600; margin-bottom:4px;">E-Mail-Adresse</label>
+            <label for="id_email" style="display:block; font-weight:600; margin-bottom:4px;">{% blocktrans %}E-Mail-Adresse{% endblocktrans %}</label>
             <input type="email" id="id_email" name="email"
                    value="{{ portal_user.user.email }}"
                    autocomplete="email"
                    style="width:100%; max-width:420px; padding:8px 10px; border:1px solid var(--input-border); border-radius:5px; background:var(--bg-secondary); color:var(--text-primary);">
             <div style="font-size:0.85em; color:var(--text-secondary); margin-top:4px;">
-                Wird für den Login und Benachrichtigungen verwendet.
+                {% blocktrans %}Wird für den Login und Benachrichtigungen verwendet.{% endblocktrans %}
             </div>
         </div>
 
         {% if contract %}
         <div style="margin-bottom:20px;">
-            <label for="id_phone" style="display:block; font-weight:600; margin-bottom:4px;">Telefonnummer</label>
+            <label for="id_phone" style="display:block; font-weight:600; margin-bottom:4px;">{% blocktrans %}Telefonnummer{% endblocktrans %}</label>
             <input type="tel" id="id_phone" name="phone"
                    value="{{ contract.phone|default:'' }}"
                    autocomplete="tel"
@@ -53,56 +55,56 @@
         </div>
         {% endif %}
 
-        <button type="submit" class="btn">Kontaktdaten speichern</button>
+        <button type="submit" class="btn">{% blocktrans %}Kontaktdaten speichern{% endblocktrans %}</button>
     </form>
 </div>
 
 <!-- Benachrichtigungen -->
 <div class="card" style="margin-bottom:24px;">
-    <h2 style="margin-top:0; border-bottom:2px solid var(--border-color); padding-bottom:8px;">Benachrichtigungen</h2>
-    <p style="color:var(--text-secondary); font-size:0.9em; margin-top:0;">Lege fest, wie du an eine ausstehende Anmeldung erinnert werden möchtest.</p>
+    <h2 style="margin-top:0; border-bottom:2px solid var(--border-color); padding-bottom:8px;">{% blocktrans %}Benachrichtigungen{% endblocktrans %}</h2>
+    <p style="color:var(--text-secondary); font-size:0.9em; margin-top:0;">{% blocktrans %}Lege fest, wie du an eine ausstehende Anmeldung erinnert werden möchtest.{% endblocktrans %}</p>
     <form method="post" novalidate>
         {% csrf_token %}
         <input type="hidden" name="action" value="notifications">
 
         <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px 14px; background:var(--bg-secondary); border:1px solid var(--border-color); border-radius:6px; margin-bottom:16px;">
-            <span>Login-Erinnerung</span>
+            <span>{% blocktrans %}Login-Erinnerung{% endblocktrans %}</span>
             <span style="display:flex; gap:14px;">
                 <label style="display:flex; align-items:center; gap:5px; font-size:0.9em;">
                     <input type="checkbox" name="notify_login_reminder_email" {% if notif_pref.notify_login_reminder_email %}checked{% endif %}>
-                    E-Mail
+                    {% blocktrans %}E-Mail{% endblocktrans %}
                 </label>
                 <label style="display:flex; align-items:center; gap:5px; font-size:0.9em;">
                     <input type="checkbox" name="notify_login_reminder_push" {% if notif_pref.notify_login_reminder_push %}checked{% endif %}>
-                    Push
+                    {% blocktrans %}Push{% endblocktrans %}
                 </label>
             </span>
         </div>
 
-        <button type="submit" class="btn">Einstellungen speichern</button>
+        <button type="submit" class="btn">{% blocktrans %}Einstellungen speichern{% endblocktrans %}</button>
     </form>
 
     <div style="margin-top:16px;">
-        <span id="pushEnabledText" style="display:none; color:var(--text-secondary); font-size:0.9em;">✓ Push-Benachrichtigungen sind auf diesem Gerät aktiviert.</span>
-        <button type="button" class="btn btn-secondary" id="pushSubscribeBtn" style="display:none;">🔔 Push-Benachrichtigungen auf diesem Gerät aktivieren</button>
-        <span id="pushUnsupportedText" style="display:none; color:var(--text-secondary); font-size:0.9em;">Push-Benachrichtigungen werden von diesem Browser nicht unterstützt.</span>
+        <span id="pushEnabledText" style="display:none; color:var(--text-secondary); font-size:0.9em;">{% blocktrans %}✓ Push-Benachrichtigungen sind auf diesem Gerät aktiviert.{% endblocktrans %}</span>
+        <button type="button" class="btn btn-secondary" id="pushSubscribeBtn" style="display:none;">{% blocktrans %}🔔 Push-Benachrichtigungen auf diesem Gerät aktivieren{% endblocktrans %}</button>
+        <span id="pushUnsupportedText" style="display:none; color:var(--text-secondary); font-size:0.9em;">{% blocktrans %}Push-Benachrichtigungen werden von diesem Browser nicht unterstützt.{% endblocktrans %}</span>
     </div>
 </div>
 
 <!-- Kalender-Abo -->
 <div class="card" style="margin-bottom:24px;">
-    <h2 style="margin-top:0; border-bottom:2px solid var(--border-color); padding-bottom:8px;">Kalender abonnieren</h2>
-    <p style="color:var(--text-secondary); font-size:0.9em; margin-top:0;">Trage diesen Link einmalig als Kalender-Abo in Google Kalender, iCloud oder Outlook ein – neue Termine erscheinen dann automatisch (Aktualisierung alle paar Stunden). Nur lesend: Änderungen im externen Kalender wirken sich nicht auf Preceptly aus.</p>
+    <h2 style="margin-top:0; border-bottom:2px solid var(--border-color); padding-bottom:8px;">{% blocktrans %}Kalender abonnieren{% endblocktrans %}</h2>
+    <p style="color:var(--text-secondary); font-size:0.9em; margin-top:0;">{% blocktrans %}Trage diesen Link einmalig als Kalender-Abo in Google Kalender, iCloud oder Outlook ein – neue Termine erscheinen dann automatisch (Aktualisierung alle paar Stunden). Nur lesend: Änderungen im externen Kalender wirken sich nicht auf Preceptly aus.{% endblocktrans %}</p>
     <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
         <input type="text" readonly value="{{ ical_feed_url }}" id="icalFeedUrl" style="flex:1; min-width:220px;" data-select-on-click>
-        <button type="button" class="btn btn-secondary" id="icalFeedCopyBtn">Kopieren</button>
+        <button type="button" class="btn btn-secondary" id="icalFeedCopyBtn">{% blocktrans %}Kopieren{% endblocktrans %}</button>
     </div>
-    <p style="color:var(--text-secondary); font-size:0.8em; margin-top:8px;">⚠️ Dieser Link ist persönlich – nicht weitergeben.</p>
+    <p style="color:var(--text-secondary); font-size:0.8em; margin-top:8px;">{% blocktrans %}⚠️ Dieser Link ist persönlich – nicht weitergeben.{% endblocktrans %}</p>
     <form method="post" action="{% url 'portal:ical_feed_renew' %}" style="margin-top:4px;"
           data-confirm="Neuen Link erstellen? Der bisherige Link funktioniert danach nicht mehr und muss in deinem Kalender ersetzt werden.">
         {% csrf_token %}
-        <button type="submit" class="btn-sm btn-sm-secondary">Link erneuern</button>
-        <span style="color:var(--text-secondary); font-size:0.8em; margin-left:6px;">falls du ihn versehentlich weitergegeben hast</span>
+        <button type="submit" class="btn-sm btn-sm-secondary">{% blocktrans %}Link erneuern{% endblocktrans %}</button>
+        <span style="color:var(--text-secondary); font-size:0.8em; margin-left:6px;">{% blocktrans %}falls du ihn versehentlich weitergegeben hast{% endblocktrans %}</span>
     </form>
 </div>
 
@@ -118,49 +120,49 @@
         } else {
             document.execCommand('copy');
         }
-        btn.textContent = 'Kopiert!';
-        setTimeout(function() { btn.textContent = 'Kopieren'; }, 2000);
+        btn.textContent = '{% filter escapejs %}{% blocktrans %}Kopiert!{% endblocktrans %}{% endfilter %}';
+        setTimeout(function() { btn.textContent = '{% filter escapejs %}{% blocktrans %}Kopieren{% endblocktrans %}{% endfilter %}'; }, 2000);
     });
 })();
 </script>
 
 <!-- App installieren -->
 <div class="card" style="margin-bottom:24px;">
-    <h2 style="margin-top:0; border-bottom:2px solid var(--border-color); padding-bottom:8px;">App auf dem Home-Bildschirm</h2>
-    <p style="color:var(--text-secondary); font-size:0.9em; margin-top:0;">Nutze das Preceptly-Portal wie eine App direkt von deinem Home-Bildschirm aus.</p>
-    <button type="button" class="btn" id="pwaSettingsInstallBtn">📲 Zum Home-Bildschirm hinzufügen</button>
+    <h2 style="margin-top:0; border-bottom:2px solid var(--border-color); padding-bottom:8px;">{% blocktrans %}App auf dem Home-Bildschirm{% endblocktrans %}</h2>
+    <p style="color:var(--text-secondary); font-size:0.9em; margin-top:0;">{% blocktrans %}Nutze das Preceptly-Portal wie eine App direkt von deinem Home-Bildschirm aus.{% endblocktrans %}</p>
+    <button type="button" class="btn" id="pwaSettingsInstallBtn">{% blocktrans %}📲 Zum Home-Bildschirm hinzufügen{% endblocktrans %}</button>
 </div>
 
 <!-- Passwort ändern -->
 <div class="card">
-    <h2 style="margin-top:0; border-bottom:2px solid var(--border-color); padding-bottom:8px;">Passwort ändern</h2>
+    <h2 style="margin-top:0; border-bottom:2px solid var(--border-color); padding-bottom:8px;">{% blocktrans %}Passwort ändern{% endblocktrans %}</h2>
     <form method="post" novalidate>
         {% csrf_token %}
         <input type="hidden" name="action" value="password">
 
         <div style="margin-bottom:16px;">
-            <label for="id_current_pw" style="display:block; font-weight:600; margin-bottom:4px;">Aktuelles Passwort</label>
+            <label for="id_current_pw" style="display:block; font-weight:600; margin-bottom:4px;">{% blocktrans %}Aktuelles Passwort{% endblocktrans %}</label>
             <input type="password" id="id_current_pw" name="current_password"
                    autocomplete="current-password"
                    style="width:100%; max-width:320px; padding:8px 10px; border:1px solid var(--input-border); border-radius:5px; background:var(--bg-secondary); color:var(--text-primary);">
         </div>
 
         <div style="margin-bottom:16px;">
-            <label for="id_new_pw" style="display:block; font-weight:600; margin-bottom:4px;">Neues Passwort</label>
+            <label for="id_new_pw" style="display:block; font-weight:600; margin-bottom:4px;">{% blocktrans %}Neues Passwort{% endblocktrans %}</label>
             <input type="password" id="id_new_pw" name="new_password"
                    autocomplete="new-password" minlength="8"
                    style="width:100%; max-width:320px; padding:8px 10px; border:1px solid var(--input-border); border-radius:5px; background:var(--bg-secondary); color:var(--text-primary);">
-            <div style="font-size:0.85em; color:var(--text-secondary); margin-top:4px;">Mindestens 8 Zeichen.</div>
+            <div style="font-size:0.85em; color:var(--text-secondary); margin-top:4px;">{% blocktrans %}Mindestens 8 Zeichen.{% endblocktrans %}</div>
         </div>
 
         <div style="margin-bottom:20px;">
-            <label for="id_new_pw2" style="display:block; font-weight:600; margin-bottom:4px;">Neues Passwort bestätigen</label>
+            <label for="id_new_pw2" style="display:block; font-weight:600; margin-bottom:4px;">{% blocktrans %}Neues Passwort bestätigen{% endblocktrans %}</label>
             <input type="password" id="id_new_pw2" name="new_password_confirm"
                    autocomplete="new-password"
                    style="width:100%; max-width:320px; padding:8px 10px; border:1px solid var(--input-border); border-radius:5px; background:var(--bg-secondary); color:var(--text-primary);">
         </div>
 
-        <button type="submit" class="btn">Passwort ändern</button>
+        <button type="submit" class="btn">{% blocktrans %}Passwort ändern{% endblocktrans %}</button>
     </form>
 </div>
 {% endblock %}

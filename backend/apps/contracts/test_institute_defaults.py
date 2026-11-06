@@ -10,7 +10,7 @@ from pathlib import Path
 
 from django.contrib.auth import get_user_model
 from django.db import connection
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.test.utils import CaptureQueriesContext
 from django.urls import reverse
 
@@ -201,6 +201,7 @@ class StudentDefaultsTest(InstituteFixture):
         self.assertEqual(len(bare), 0)
 
 
+@override_settings(LANGUAGE_CODE="de")
 class InstituteFormTest(InstituteFixture):
     def data(self, **extra):
         data = {
@@ -265,6 +266,7 @@ class InstituteFormTest(InstituteFixture):
         self.assertEqual(self.bare.default_unit_duration_minutes, 50)
 
 
+@override_settings(LANGUAGE_CODE="de")
 class ContractFormPrefillTest(InstituteFixture):
     def test_the_map_has_only_own_institutes_with_something_to_fill(self):
         form = ContractForm(user=self.tutor)
@@ -334,6 +336,7 @@ class ContractFormPrefillTest(InstituteFixture):
         self.assertNotIn("data-institute-prefill", form.fields["institute_fk"].widget.attrs)
 
 
+@override_settings(LANGUAGE_CODE="de")
 class PagesTest(InstituteFixture):
     def test_both_create_pages_ship_the_defaults_and_the_script(self):
         for name in ("contracts:create", "students:create"):

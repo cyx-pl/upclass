@@ -1,13 +1,13 @@
 {% extends 'core/base.html' %}
 {% load i18n %}
 
-{% block title %}Schüler – Preceptly{% endblock %}
+{% block title %}{% blocktrans %}Schüler – Preceptly{% endblocktrans %}{% endblock %}
 
 {% block content %}
 <h1>{% trans "Students" %}</h1>
 <a href="{% url 'students:create' %}" class="btn">{% trans "New Student" %}</a>
 
-<table aria-label="Schülerliste">
+<table aria-label="{% blocktrans %}Schülerliste{% endblocktrans %}">
     <thead>
         <tr>
             <th scope="col">{% trans "Name" %}</th>

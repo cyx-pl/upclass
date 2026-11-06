@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}
 {% load i18n %}
 
-{% block title %}Nachrichten – Preceptly{% endblock %}
+{% block title %}{% blocktrans %}Nachrichten – Preceptly{% endblocktrans %}{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -68,13 +68,13 @@
 {% endblock %}
 
 {% block content %}
-<h1>💬 Nachrichten</h1>
+<h1>{% blocktrans %}💬 Nachrichten{% endblocktrans %}</h1>
 
 {% if threads %}
 <p style="color:var(--text-secondary); font-size:0.88em; margin-bottom:18px;">
-    {{ threads|length }} Chat{% if threads|length != 1 %}s{% endif %} mit Schülern und Eltern im Portal
+    {% blocktrans count counter=threads|length %}{{ counter }} chat{% plural %}{{ counter }} chats{% endblocktrans %} {% blocktrans %}mit Schülern und Eltern im Portal{% endblocktrans %}
 </p>
-<section aria-label="Nachrichtenübersicht">
+<section aria-label="{% blocktrans %}Nachrichtenübersicht{% endblocktrans %}">
 <div class="thread-list">
 {% for t in threads %}
 <a class="thread-card" href="{% url 'core:tutor_messages' t.contract.pk %}">
@@ -85,9 +85,9 @@
         <div class="thread-name">{{ t.contract.full_name }}</div>
         <div class="thread-preview">
             {% if t.last_msg %}
-                {% if t.last_msg.sender_is_tutor %}<span style="color:var(--text-primary); font-weight:500;">Du:</span> {% endif %}{{ t.last_msg.text|truncatechars:80 }}
+                {% if t.last_msg.sender_is_tutor %}<span style="color:var(--text-primary); font-weight:500;">{% blocktrans %}Du:{% endblocktrans %}</span> {% endif %}{{ t.last_msg.text|truncatechars:80 }}
             {% else %}
-                <em>Noch keine Nachrichten</em>
+                <em>{% blocktrans %}Noch keine Nachrichten{% endblocktrans %}</em>
             {% endif %}
         </div>
     </div>
@@ -107,9 +107,9 @@
 {% else %}
 <div class="empty-box">
     <div class="empty-icon">💬</div>
-    <h2>Noch keine Portal-Registrierungen</h2>
-    <p>Sobald sich Schüler oder Eltern über einen Einladungslink im Portal anmelden, erscheinen ihre Chats hier.</p>
-    <a class="btn" href="{% url 'contracts:list' %}">👤 Zu den Schülern</a>
+    <h2>{% blocktrans %}Noch keine Portal-Registrierungen{% endblocktrans %}</h2>
+    <p>{% blocktrans %}Sobald sich Schüler oder Eltern über einen Einladungslink im Portal anmelden, erscheinen ihre Chats hier.{% endblocktrans %}</p>
+    <a class="btn" href="{% url 'contracts:list' %}">{% blocktrans %}👤 Zu den Schülern{% endblocktrans %}</a>
 </div>
 {% endif %}
 {% endblock %}

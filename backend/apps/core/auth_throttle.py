@@ -220,8 +220,7 @@ def throttle_portal_login(request):
         "portal/login.html",
         {
             "error": (
-                "Zu viele Anmeldeversuche für diese E-Mail-Adresse. "
-                "Bitte warte ein paar Minuten und versuche es dann erneut."
+                _('Zu viele Anmeldeversuche für diese E-Mail-Adresse. Bitte warte ein paar Minuten und versuche es dann erneut.')
             ),
             "next": request.POST.get("next", ""),
         },

@@ -7,7 +7,7 @@ from datetime import date, time, timedelta
 from decimal import Decimal
 
 from django.contrib.auth.models import User
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.urls import reverse
 
 from apps.contracts.institute_billing import calculate_lesson_amount
@@ -79,6 +79,7 @@ class StartedHoursTest(TestCase):
         self.assertEqual(counted_total(durations, COUNT_BY_STARTED_HOUR, offset=5), Decimal("10"))
 
 
+@override_settings(LANGUAGE_CODE="de")
 class CountByUnitTest(TierCountingFixture):
     def test_short_lessons_count_fully_but_pay_by_duration(self):
         first = self.lesson(30)
@@ -152,6 +153,7 @@ class CountByDurationTest(TierCountingFixture):
         self.assertEqual(self.amount(self.lesson(60)), Decimal("15.00"))
 
 
+@override_settings(LANGUAGE_CODE="de")
 class InstituteFormTest(TierCountingFixture):
     mode = COUNT_BY_DURATION
 

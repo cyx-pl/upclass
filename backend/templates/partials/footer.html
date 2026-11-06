@@ -75,9 +75,9 @@
     }
 }
 </style>
-<footer class="site-footer" aria-label="Seitenende">
+<footer class="site-footer" aria-label="{% blocktrans %}Seitenende{% endblocktrans %}">
     <div class="footer-container">
-        <nav aria-label="Footer-Navigation">
+        <nav aria-label="{% blocktrans %}Footer-Navigation{% endblocktrans %}">
             <div class="footer-links">
                 <a href="{% url 'core:legal_imprint' %}">{% trans "Imprint" %}</a>
                 <a href="{% url 'core:legal_privacy' %}">{% trans "Privacy Policy" %}</a>
@@ -85,17 +85,17 @@
                 <a href="{% url 'core:legal_withdrawal' %}">{% trans "Withdrawal" %}</a>
                 <a href="{% url 'core:legal_avv' %}">{% trans "Data Processing Agreement" %}</a>
                 <a href="{% url 'core:legal_about' %}">
-                    {% if LANGUAGE_CODE == "de" %}Über uns{% else %}About us{% endif %}
+                    {% if LANGUAGE_CODE == "de" %}{% blocktrans %}Über uns{% endblocktrans %}{% else %}{% blocktrans %}About us{% endblocktrans %}{% endif %}
                 </a>
                 <!-- Widerrufsbutton fuer den Shop "Preceptly" - Anfang -->
-                <a id="eRecht24RevocationButton" href="https://widerrufsbutton-cdn.e-recht24.de/019f5526-4b9d-7212-9233-20b6dabdf91d" data-shop-id="019f5526-4b9d-7212-9233-20b6dabdf91d" data-key="4A7hLTFn8T3hQgVkcE0fBAA8gJZPagrOSCn4n6CXq4FTw0CsxeJiaY925LGHiKAJ" aria-label="Vertrag widerrufen" aria-disabled="true" title="Widerrufsformular konnte nicht geladen werden" style="opacity:.5" class="btn btn-primary" target="_blank"><span>Vertrag widerrufen</span></a>
+                <a id="eRecht24RevocationButton" href="https://widerrufsbutton-cdn.e-recht24.de/019f5526-4b9d-7212-9233-20b6dabdf91d" data-shop-id="019f5526-4b9d-7212-9233-20b6dabdf91d" data-key="4A7hLTFn8T3hQgVkcE0fBAA8gJZPagrOSCn4n6CXq4FTw0CsxeJiaY925LGHiKAJ" aria-label="{% blocktrans %}Vertrag widerrufen{% endblocktrans %}" aria-disabled="true" title="{% blocktrans %}Widerrufsformular konnte nicht geladen werden{% endblocktrans %}" style="opacity:.5" class="btn btn-primary" target="_blank"><span>{% blocktrans %}Vertrag widerrufen{% endblocktrans %}</span></a>
                 <!-- Widerrufsbutton fuer den Shop "Preceptly" - Ende -->
             </div>
         </nav>
         <script nonce="{{ csp_nonce }}" async src="https://widerrufsbutton-cdn.e-recht24.de/widgets/revocation-button.js"></script>
         <div class="footer-meta">
             <span>© {% now "Y" %} andicode</span>
-            <span>· Preceptly by <a href="https://andicode.de" target="_blank" rel="noopener noreferrer" style="color: inherit;">andicode</a></span>
+            <span>{% blocktrans %}· Preceptly by{% endblocktrans %} <a href="https://andicode.de" target="_blank" rel="noopener noreferrer" style="color: inherit;">andicode</a></span>
         </div>
     </div>
 </footer>

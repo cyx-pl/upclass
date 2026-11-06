@@ -139,7 +139,7 @@ class WorkingHoursForm(forms.Form):
             # Checkbox whether the day is enabled
             self.fields[f"{weekday_key}_enabled"] = forms.BooleanField(
                 required=False,
-                label=f"{weekday_label} - {_('Enabled')}",
+                label=_('{value0} - {value1}').format(value0=weekday_label, value1=_('Enabled')),
                 initial=bool(initial_working_hours.get(weekday_key)),
             )
 
@@ -149,26 +149,26 @@ class WorkingHoursForm(forms.Form):
                 first_period = day_hours[0]
                 self.fields[f"{weekday_key}_start"] = forms.TimeField(
                     required=False,
-                    label=f"{weekday_label} - {_('Start time')}",
+                    label=_('{value0} - {value1}').format(value0=weekday_label, value1=_('Start time')),
                     initial=first_period.get("start", "09:00"),
                     widget=forms.TimeInput(attrs={"type": "time", "format": "%H:%M"}),
                 )
                 self.fields[f"{weekday_key}_end"] = forms.TimeField(
                     required=False,
-                    label=f"{weekday_label} - {_('End time')}",
+                    label=_('{value0} - {value1}').format(value0=weekday_label, value1=_('End time')),
                     initial=first_period.get("end", "17:00"),
                     widget=forms.TimeInput(attrs={"type": "time", "format": "%H:%M"}),
                 )
             else:
                 self.fields[f"{weekday_key}_start"] = forms.TimeField(
                     required=False,
-                    label=f"{weekday_label} - {_('Start time')}",
+                    label=_('{value0} - {value1}').format(value0=weekday_label, value1=_('Start time')),
                     initial="09:00",
                     widget=forms.TimeInput(attrs={"type": "time", "format": "%H:%M"}),
                 )
                 self.fields[f"{weekday_key}_end"] = forms.TimeField(
                     required=False,
-                    label=f"{weekday_label} - {_('End time')}",
+                    label=_('{value0} - {value1}').format(value0=weekday_label, value1=_('End time')),
                     initial="17:00",
                     widget=forms.TimeInput(attrs={"type": "time", "format": "%H:%M"}),
                 )

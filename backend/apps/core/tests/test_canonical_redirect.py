@@ -16,6 +16,7 @@ def _make_middleware(status=200):
     return CanonicalDomainMiddleware(get_response)
 
 
+@override_settings(SITE_URL="https://preceptly.de")
 class CanonicalDomainMiddlewareTest(TestCase):
     def setUp(self):
         self.factory = RequestFactory()
@@ -57,3 +58,16 @@ class CanonicalDomainMiddlewareTest(TestCase):
         request = self.factory.get("/", HTTP_HOST="www.preceptly.de")
         response = _make_middleware()(request)
         self.assertEqual(response.status_code, 200)
+
+    @override_settings(DEBUG=False, SITE_URL="https://upclass-production.up.railway.app")
+    def test_configured_railway_host_does_not_redirect(self):
+        request = self.factory.get("/login/", HTTP_HOST="upclass-production.up.railway.app")
+        response = _make_middleware()(request)
+        self.assertEqual(response.status_code, 200)
+
+    @override_settings(DEBUG=False, SITE_URL="https://app.upclass.pl/")
+    def test_railway_alias_redirects_to_configured_site(self):
+        request = self.factory.get("/login/?next=/dashboard/", HTTP_HOST="upclass.up.railway.app")
+        response = _make_middleware()(request)
+        self.assertEqual(response.status_code, 301)
+        self.assertEqual(response["Location"], "https://app.upclass.pl/login/?next=/dashboard/")

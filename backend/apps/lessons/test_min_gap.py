@@ -10,7 +10,7 @@ from decimal import Decimal
 import django.utils.timezone as tz
 from django.contrib.auth import get_user_model
 from django.db import connection
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.test.utils import CaptureQueriesContext
 from django.urls import reverse
 
@@ -89,6 +89,7 @@ class GapFixture(TestCase):
         )
 
 
+@override_settings(LANGUAGE_CODE="de")
 class ConflictServiceGapTest(GapFixture):
     def conflicts(self, session):
         return SessionConflictService.check_conflicts(session)
@@ -363,6 +364,7 @@ class PortalGapTest(GapFixture):
         )  # 16:10 Beginn mit Fahrzeit: nur 10 Min Abstand
 
 
+@override_settings(LANGUAGE_CODE="de")
 class SettingsGapTest(GapFixture):
     def setUp(self):
         super().setUp()

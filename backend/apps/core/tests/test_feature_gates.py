@@ -9,7 +9,7 @@ from decimal import Decimal
 
 from django.contrib.auth.models import User
 from django.contrib.messages import get_messages
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
 
@@ -67,6 +67,7 @@ class GateFixture(TestCase):
         return [str(m) for m in get_messages(response.wsgi_request)]
 
 
+@override_settings(LANGUAGE_CODE="de")
 class FreeTierGateTest(GateFixture):
     tier = "free"
 
@@ -190,6 +191,7 @@ class FreeTierGateTest(GateFixture):
         )
 
 
+@override_settings(LANGUAGE_CODE="de")
 class StarterTierGateTest(GateFixture):
     tier = "starter"
 

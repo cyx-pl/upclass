@@ -1,13 +1,13 @@
 """
 Views for PWA (Progressive Web App) support.
 """
-
 import json
 from pathlib import Path
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponse, HttpResponseBadRequest, JsonResponse
+from django.utils.translation import gettext_lazy as _
 from django.views.decorators.cache import cache_control
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
@@ -56,7 +56,7 @@ def push_subscribe_view(request):
         p256dh = keys["p256dh"]
         auth = keys["auth"]
     except (json.JSONDecodeError, KeyError, TypeError):
-        return HttpResponseBadRequest("Invalid subscription payload")
+        return HttpResponseBadRequest(_('Invalid subscription payload'))
 
     save_push_subscription(request.user, endpoint, p256dh, auth)
     return JsonResponse({"status": "ok"})
@@ -74,7 +74,7 @@ def push_unsubscribe_view(request):
         data = json.loads(request.body)
         endpoint = data["endpoint"]
     except (json.JSONDecodeError, KeyError, TypeError):
-        return HttpResponseBadRequest("Invalid payload")
+        return HttpResponseBadRequest(_('Invalid payload'))
 
     delete_push_subscription(request.user, endpoint)
     return JsonResponse({"status": "ok"})
