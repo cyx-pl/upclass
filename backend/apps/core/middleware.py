@@ -2,6 +2,7 @@ import hashlib
 import logging
 import time
 from datetime import timedelta
+from urllib.parse import urlsplit
 
 from django.conf import settings
 from django.core.cache import cache
@@ -17,7 +18,7 @@ _LOCAL_HOSTS = {"localhost", "127.0.0.1", "testserver"}
 
 
 class CanonicalDomainMiddleware:
-    """Redirect www.preceptly.de and *.up.railway.app to https://preceptly.de (301)."""
+    """Redirect hosted aliases to this installation's configured SITE_URL."""
 
     def __init__(self, get_response):
         self.get_response = get_response
@@ -26,12 +27,15 @@ class CanonicalDomainMiddleware:
         if not settings.DEBUG:
             raw = request.META.get("HTTP_HOST") or request.META.get("SERVER_NAME", "")
             host = raw.split(":")[0].lower()
-            if host not in _LOCAL_HOSTS and (
-                host == "www.preceptly.de" or host.endswith(".up.railway.app")
+            canonical_url = settings.SITE_URL.rstrip("/")
+            canonical_host = urlsplit(canonical_url).hostname
+            if (
+                canonical_host
+                and host != canonical_host
+                and host not in _LOCAL_HOSTS
+                and (host == f"www.{canonical_host}" or host.endswith(".up.railway.app"))
             ):
-                return HttpResponsePermanentRedirect(
-                    "https://preceptly.de" + request.get_full_path()
-                )
+                return HttpResponsePermanentRedirect(canonical_url + request.get_full_path())
         return self.get_response(request)
 
 
@@ -70,7 +74,8 @@ def _pseudonymous_session_id(session_key):
     """Nur ein Kennzeichen zum Wiedererkennen - nie der Sitzungsschlüssel selbst.
 
     Der echte Schlüssel würde im Protokoll wie ein zweites Passwort liegen:
-    Wer ihn liest, könnte die Sitzung übernehmen."""
+    Wer ihn liest, könnte die Sitzung übernehmen.
+    """
     if not session_key:
         return ""
     return hashlib.sha256(session_key.encode()).hexdigest()[:40]
