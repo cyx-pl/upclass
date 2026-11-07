@@ -1,0 +1,10 @@
+{% load i18n %}
+<header class="workspace-toolbar">
+  <button type="button" class="workspace-menu-button" aria-controls="workspaceSidebar" aria-expanded="false" aria-label="{% trans 'Toggle menu' %}">☰ <span>Menu</span></button>
+  <span class="workspace-context">{% if workspace_area == 'portal' %}Portal ucznia i rodzica{% else %}Przestrzeń nauczyciela{% endif %}</span>
+  <div class="workspace-tools"><span class="workspace-username">{{ user.username }}</span>
+    <button type="button" class="theme-toggle" id="themeToggle" aria-label="{% trans 'Toggle dark mode' %}"><span id="themeIcon" aria-hidden="true">◐</span></button>
+    {% if workspace_area != 'portal' %}<form action="{% url 'set_language' %}" method="post">{% csrf_token %}<input type="hidden" name="next" value="{{ request.get_full_path }}">{% get_current_language as LANGUAGE_CODE %}{% get_available_languages as LANGUAGES %}<select name="language" data-autosubmit aria-label="{% trans 'Change language' %}">{% for code, name in LANGUAGES %}<option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>{{ code|upper }}</option>{% endfor %}</select></form>{% endif %}
+    <form method="post" action="{% if workspace_area == 'portal' %}{% url 'portal:logout' %}{% else %}{% url 'core:logout' %}{% endif %}">{% csrf_token %}<button type="submit" class="workspace-logout">{% trans 'Logout' %}</button></form>
+  </div>
+</header>

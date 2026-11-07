@@ -1,0 +1,58 @@
+/* Preserve Django's controls, permissions and form behaviors; unify their presentation. */
+html:root { --primary: #007780; --secondary: #233e5c; --accent: #fff; --primary-fg: #fff; --link-fg: #006c9c; --link-selected-fg: #004b6d; --body-bg: #f3f6fa; --body-fg: #20364e; --body-quiet-color: #536679; --hairline-color: #dce5ed; --border-color: #dce5ed; --darkened-bg: #edf3f8; --selected-bg: #e7f4f3; --selected-row: #e7f4f3; --button-bg: #007780; --button-hover-bg: #00646c; --default-button-bg: #233e5c; --default-button-hover-bg: #172e46; }
+.workspace-admin #container { min-width: 0; width: 100%; }
+.workspace-admin #header { min-height: 76px; padding: 16px 32px; background: var(--bg-secondary); color: var(--text-primary); border-bottom: 1px solid var(--border-color); gap: 16px; }
+.workspace-admin #header a, .workspace-admin #header button { color: var(--text-primary); }
+.workspace-admin #branding .admin-wordmark { color: var(--text-primary); font-size: 22px; font-weight: 750; letter-spacing: -.04em; text-decoration: none; }
+.admin-wordmark span { font-size: 12px; font-weight: 500; color: var(--body-quiet-color); letter-spacing: 0; margin-left: 12px; }
+.workspace-admin #user-tools { font-size: 12px; text-transform: none; letter-spacing: 0; line-height: 2; }
+.workspace-admin #user-tools a, .workspace-admin #logout-form button { border-bottom-color: var(--border-color); }
+.workspace-admin .breadcrumbs { background: var(--bg-secondary); color: var(--text-secondary); padding: 12px 32px; border-bottom: 1px solid var(--border-color); font-size: 12px; }
+.workspace-admin .breadcrumbs a { color: var(--workspace-blue); }
+.workspace-admin #main { display: block; }
+.workspace-admin .main > .content { max-width: none; min-width: 0; width: 100%; }
+.workspace-admin #content { padding: 28px 32px; width: auto; box-sizing: border-box; }
+.workspace-admin #content > h1 { font-size: 28px; font-weight: 650; letter-spacing: -.03em; color: var(--text-primary); margin-bottom: 24px; }
+.workspace-admin .module { border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; background: var(--bg-secondary); margin-bottom: 22px; }
+.workspace-admin .module h2, .workspace-admin .module caption { background: var(--table-header-bg); color: var(--text-primary); font-size: 13px; font-weight: 650; padding: 14px 18px; letter-spacing: .02em; }
+.workspace-admin .module caption a.section { color: var(--text-primary); }
+.workspace-admin .module table { width: 100%; }
+.workspace-admin td, .workspace-admin th { padding: 13px 16px; font-size: 13px; }
+.workspace-admin .dashboard #content { width: auto; }
+.workspace-admin.dashboard #content { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 0 28px; }
+.workspace-admin.dashboard #content > h1 { grid-column: 1 / -1; }
+.workspace-admin.dashboard #content-main { width: auto; float: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); align-items: start; gap: 22px; }
+.workspace-admin.dashboard #content-main .module { margin: 0; }
+.workspace-admin.dashboard #content-related { float: none; width: auto; margin: 0; background: transparent; }
+.workspace-admin.dashboard #content-related .module { padding-bottom: 16px; }
+.workspace-admin .colMS { margin-right: 0; }
+.workspace-admin #changelist { border-radius: 12px; }
+.workspace-admin #changelist .results { overflow-x: auto; }
+.workspace-admin #changelist-filter { background: var(--bg-secondary); border-left: 1px solid var(--border-color); }
+.workspace-admin #changelist-filter h2 { background: var(--table-header-bg); color: var(--text-primary); }
+.workspace-admin #toolbar { background: var(--bg-secondary); padding: 16px; border-bottom: 1px solid var(--border-color); }
+.workspace-admin #toolbar form input { border-radius: 7px; }
+.workspace-admin input, .workspace-admin textarea, .workspace-admin select { border-radius: 7px; }
+.workspace-admin .submit-row { border-radius: 12px; padding: 16px; }
+.workspace-admin .button, .workspace-admin input[type="submit"], .workspace-admin .submit-row a.deletelink { border-radius: 7px; }
+.workspace-admin .object-tools a { background: var(--workspace-teal); border-radius: 8px; padding: 10px 16px; }
+.workspace-admin .form-row { padding: 16px 20px; }
+.workspace-admin .inline-group { min-width: 0; }
+.workspace-admin .inline-group .tabular { overflow-x: auto; }
+.workspace-admin #nav-sidebar, .workspace-admin #toggle-nav-sidebar { display: none; }
+html[data-theme="dark"] { --body-bg: #142331; --body-fg: #e8f0f7; --body-quiet-color: #b7c8d8; --body-loud-color: #fff; --darkened-bg: #263e52; --hairline-color: #3b5266; --border-color: #3b5266; --link-fg: #85cfea; --link-selected-fg: #b4e3f4; --selected-bg: #284356; --selected-row: #284356; }
+@media (max-width: 1200px) { .workspace-admin.dashboard #content { grid-template-columns: minmax(0, 1fr); } .workspace-admin.dashboard #content-related { margin-top: 24px; } }
+@media (max-width: 1000px) { .workspace-admin #header { padding: 14px 20px; flex-wrap: wrap; } .workspace-admin #header .workspace-menu-button { order: -1; } .workspace-admin #content { padding: 22px 20px; } .workspace-admin #branding { flex: 1; } .workspace-admin #user-tools { width: auto; } }
+@media (max-width: 600px) { .workspace-admin #header { padding: 12px; gap: 10px; } .workspace-admin #user-tools { width: 100%; text-align: left; } .workspace-admin #content { padding: 18px 12px; } .workspace-admin #content > h1 { font-size: 24px; } .workspace-admin .breadcrumbs { padding: 12px; } .workspace-admin .form-row { padding: 14px 12px; } }
+.workspace-admin.dashboard #content > .titles-and-tools { grid-column: 1 / -1; }
+.workspace-admin.dashboard #content-main { grid-column: 1; min-width: 0; }
+.workspace-admin.dashboard #content-related { grid-column: 2; grid-row: 2; min-width: 0; }
+.workspace-admin #content .titles h1 { font-size: 28px; font-weight: 650; letter-spacing: -.03em; color: var(--text-primary); margin: 0 0 24px; }
+.workspace-admin.dashboard .module th { width: auto; overflow-wrap: normal; }
+.workspace-admin.dashboard .module td { white-space: nowrap; }
+.workspace-admin .workspace-navigation a:link, .workspace-admin .workspace-navigation a:visited { text-decoration: none; }
+.workspace-admin #header .theme-toggle { background: transparent; }
+@media (max-width: 1200px) { .workspace-admin.dashboard #content-related { grid-column: 1; grid-row: auto; } }
+@media (max-width: 1000px) { .workspace-admin #header { flex-direction: row; } .workspace-admin #user-tools { min-width: 0; margin: 0; overflow-wrap: anywhere; } }
+@media (max-width: 600px) { .workspace-admin #user-tools { flex-basis: 100%; } }
+.workspace-admin #header, .workspace-admin #container > nav { flex-shrink: 0; }

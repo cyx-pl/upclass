@@ -1,0 +1,7 @@
+{% extends "admin/base.html" %}{% load i18n static %}
+{% block title %}{{ title }} | upclass — administracja{% endblock %}
+{% block branding %}<a class="admin-wordmark" aria-label="Administracja upclass" href="{% url 'admin:index' %}">upclass <span>Administracja</span></a>{% endblock %}
+{% block bodyclass %}{{ block.super }}{% if has_permission and not is_popup %} workspace workspace-admin{% endif %}{% endblock %}
+{% block responsive %}{{ block.super }}<link rel="icon" type="image/png" href="{% static 'brand/upclass-favicon.png' %}"><link rel="stylesheet" href="{% static 'css/workspace.css' %}?v=20261107c"><link rel="stylesheet" href="{% static 'css/workspace-admin.css' %}?v=20261107c"><script src="{% static 'js/workspace.js' %}?v=20261107c" nonce="{{ csp_nonce }}" defer></script>{% endblock %}
+{% block nav-global %}{% if has_permission %}<button type="button" class="workspace-menu-button" aria-controls="workspaceSidebar" aria-expanded="false" aria-label="{% trans 'Toggle menu' %}">☰ <span>Menu</span></button>{% endif %}{% endblock %}
+{% block nav-sidebar %}{% if has_permission %}{% include "partials/workspace_sidebar.html" with workspace_area="admin" %}{% endif %}{% endblock %}

@@ -1,0 +1,40 @@
+{% load i18n static %}
+<aside class="workspace-sidebar" id="workspaceSidebar" aria-label="{% trans 'Main navigation' %}">
+  <a class="workspace-brand" href="{% if workspace_area == 'admin' %}{% url 'admin:index' %}{% elif workspace_area == 'portal' %}{% if portal_user.role == 'parent' %}{% url 'portal:parent_home' %}{% else %}{% url 'portal:student_home' %}{% endif %}{% else %}{% url 'core:dashboard' %}{% endif %}"><img src="{% static 'brand/upclass-logo.svg' %}" alt="upclass" width="174" height="58"></a>
+  <div class="workspace-area">{% if workspace_area == 'admin' %}Administracja{% elif workspace_area == 'portal' %}Portal ucznia i rodzica{% else %}Twoja przestrzeń pracy{% endif %}</div>
+  <button type="button" class="workspace-close" aria-label="{% trans 'Close' %}" data-workspace-close>×</button>
+  <nav class="workspace-navigation" aria-label="{% trans 'Main navigation' %}">
+  {% if workspace_area == 'admin' %}
+    <a href="{% url 'admin:index' %}" class="workspace-link">Przegląd administracji</a>
+    {% for app in available_apps %}
+    <details class="workspace-group" {% if app.app_url in request.path %}open{% endif %}>
+      <summary>{{ app.name }}</summary>
+      {% for model in app.models %}{% if model.admin_url %}<a class="workspace-link" href="{{ model.admin_url }}">{{ model.name }}</a>{% endif %}{% endfor %}
+    </details>
+    {% endfor %}
+    <div class="workspace-divider"></div><a class="workspace-link" href="{% url 'core:dashboard' %}">Przejdź do aplikacji ↗</a>
+  {% elif workspace_area == 'portal' %}
+    {% if portal_user.role == 'parent' %}<a class="workspace-link" href="{% url 'portal:parent_home' %}">{% trans 'Dashboard' %}</a>
+    {% else %}<a class="workspace-link" href="{% url 'portal:student_home' %}">{% trans 'Dashboard' %}</a>
+    <a class="workspace-link" href="{% url 'portal:calendar_week' %}">{% trans 'Calendar' %}</a>
+    <a class="workspace-link" href="{% url 'portal:student_lessons' %}">{% trans 'Lessons' %}</a>{% endif %}
+    <div class="workspace-divider"></div><a class="workspace-link" href="{% url 'portal:faq' %}">Pomoc i FAQ</a>
+  {% else %}
+    <a class="workspace-link" href="{% url 'core:dashboard' %}">{% trans 'Dashboard' %}</a>
+    <div class="workspace-group-label">Organizacja</div>
+    <a class="workspace-link" href="{% url 'contracts:list' %}">{% trans 'Students' %}</a>
+    <a class="workspace-link" href="{% url 'lessons:week' %}">{% trans 'Calendar' %}</a>
+    <a class="workspace-link" href="{% url 'contracts:institute_list' %}">{% trans 'Institutes' %}</a>
+    <a class="workspace-link" href="{% url 'core:tutor_messages_overview' %}">{% trans 'Messages' %}{% if unread_portal_count %}<span class="workspace-count">{{ unread_portal_count }}</span>{% endif %}</a>
+    <div class="workspace-group-label">Rozliczenia</div>
+    <a class="workspace-link" href="{% url 'billing:invoice_list' %}">{% trans 'Invoices' %}</a>
+    <a class="workspace-link" href="{% url 'core:income' %}">{% trans 'Finance' %}</a>
+    <div class="workspace-divider"></div>
+    <a class="workspace-link" href="{% url 'core:settings' %}">{% trans 'Settings' %}</a>
+    <a class="workspace-link" href="{% url 'core:faq' %}">Pomoc i FAQ</a>
+    {% if user.is_superuser %}<a class="workspace-link" href="{% url 'admin:index' %}">Administracja ↗</a>{% endif %}
+  {% endif %}
+  </nav>
+  <div class="workspace-sidebar-footer">upclass <span>Wszystko na swoim miejscu.</span></div>
+</aside>
+<div class="workspace-backdrop" data-workspace-close hidden></div>

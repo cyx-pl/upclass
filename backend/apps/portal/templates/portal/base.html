@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#2c3e50">
-    <link rel="icon" href="{% static 'icons/favicon.ico' %}" sizes="any">
-    <link rel="icon" type="image/svg+xml" href="{% static 'brand/preceptly-icon.svg' %}">
+    <link rel="icon" href="{% static 'brand/upclass-favicon.png' %}" sizes="any">
+    <link rel="icon" type="image/png" href="{% static 'brand/upclass-favicon.png' %}">
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'icons/apple-touch-icon-180x180.png' %}">
     <link rel="manifest" href="{% url 'core:manifest' %}">
     <title>{% block title %}{% blocktrans %}Preceptly Portal{% endblocktrans %}{% endblock %}</title>
@@ -396,13 +396,16 @@
     </style>
     {% block extra_css %}{% endblock %}
     <script src="{% static 'js/actions.js' %}" nonce="{{ csp_nonce }}" defer></script>
+<link rel="stylesheet" href="{% static 'css/workspace.css' %}?v=20261107c">
+<script src="{% static 'js/workspace.js' %}?v=20261107c" nonce="{{ csp_nonce }}" defer></script>
 </head>
-<body>
+<body class="{% if portal_user %}workspace workspace-portal{% endif %}">
+{% if portal_user %}{% include "partials/workspace_sidebar.html" with workspace_area="portal" %}{% endif %}
 <a href="#main-content" class="skip-link">{% blocktrans %}Zum Hauptinhalt springen{% endblocktrans %}</a>
-<nav aria-label="{% blocktrans %}Portalnavigation{% endblocktrans %}">
+{% if portal_user %}{% include "partials/workspace_toolbar.html" with workspace_area="portal" %}{% else %}<nav aria-label="{% blocktrans %}Portalnavigation{% endblocktrans %}">
     {% if portal_user %}
     <a class="nav-brand" href="{% if portal_user.role == 'parent' %}{% url 'portal:parent_home' %}{% else %}{% url 'portal:student_home' %}{% endif %}">
-        <img src="{% static 'brand/preceptly-logo-dark.svg' %}" alt="Preceptly">
+        <img src="{% static 'brand/upclass-logo.svg' %}" alt="upclass">
     </a>
     <button class="menu-toggle" id="portalMenuToggle" aria-label="{% blocktrans %}Menü ein-/ausblenden{% endblocktrans %}" aria-expanded="false" aria-controls="portalNavLinks">☰</button>
     <div class="nav-links" id="portalNavLinks">
@@ -426,14 +429,14 @@
         </form>
     </div>
     {% else %}
-    <a class="nav-brand" href="#"><img src="{% static 'brand/preceptly-logo-dark.svg' %}" alt="Preceptly"></a>
+    <a class="nav-brand" href="#"><img src="{% static 'brand/upclass-logo.svg' %}" alt="upclass"></a>
     <div class="nav-right">
         <button class="theme-toggle" id="themeToggle" title="{% blocktrans %}Design wechseln{% endblocktrans %}" aria-label="{% blocktrans %}Design wechseln{% endblocktrans %}">
             <span id="themeIcon">🌙</span>
         </button>
     </div>
     {% endif %}
-</nav>
+</nav>{% endif %}
 <main id="main-content" class="container">
     {% if messages %}
     {% for message in messages %}
